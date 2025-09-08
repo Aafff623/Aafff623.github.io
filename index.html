@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeTwoA | CS Student & Full-Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, #0f172a, #0c4a6e);
+            min-height: 100vh;
+        }
+        .card-hover { 
+            transition: all 0.3s ease; 
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.3);
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .neural-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- 3D神经网络背景 -->
+    <canvas class="neural-network" id="neuralNetwork"></canvas>
+    
+    <div class="container mx-auto px-4 py-10 max-w-6xl">
+        <!-- 头部信息 -->
+        <header class="flex flex-col items-center mb-12 text-center">
+            <!-- 头像占位 -->
+            <div class="w-32 h-32 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mb-6 flex items-center justify-center text-4xl font-bold">
+                <img src="images/touxiang.png" class="w-32 h-32 rounded-full object-cover" alt="threetwoa">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">threetwoa</h1>
+            <p class="text-xl text-primary-100 mb-2">CS Student & Aspiring Full-Stack Developer</p>
+            <p class="text-gray-300 max-w-2xl">这是一个简陋的页面，ds辅导生成的，不过之后会进行博客的系统优化</p>
+            
+            <!-- 社交链接 -->
+     <div class="flex space-x-4 mt-6">
+                <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                </a>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 左侧：学习进度 -->
+            <div class="md:col-span-1">
+                <div class="card-hover rounded-2xl p-6 mb-6">
+                    <h2 class="text-xl font-bold mb-4 gradient-text">学习进度</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Java后端</span>
+                                <span class="text-sm">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">前端开发</span>
+                                <span class="text-sm">40%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">算法</span>
+                                <span class="text-sm">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-primary-500 h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover rounded-2xl p-6">
+                    <h2 class="text-xl font-bold mb-4 gradient-text">本周任务</h2>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-primary-500 mr-2">✓</span>
+                            <span>完善导航页内容</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary-500 mr-2">✓</span>
+                            <span>学习Tailwind响应式设计</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-2">•</span>
+                            <span>规划博客板块</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-2">•</span>
+                            <span>LeetCode每日一题</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 中间：核心链接 -->
+            <div class="md:col-span-1">
+                <div class="card-hover rounded-2xl p-6 h-full">
+                    <h2 class="text-xl font-bold mb-4 gradient-text">核心资源</h2>
+                    <div class="space-y-4">
+
+                   <a href="https://threetwoa.me/threetwoa-hugoBlog/" 
+   target="_blank"
+   class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+    <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+    </div>
+    <div>
+        <h3 class="font-medium">个人博客</h3>
+        <p class="text-sm text-gray-400">技术笔记与学习心得</p>
+    </div>
+</a>
+                        
+                        <a href="#" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">代码仓库</h3>
+                                <p class="text-sm text-gray-400">GitHub项目与代码</p>
+                            </div>
+                        </a>
+                        
+                        <a href="social-security.html" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">社保计算器</h3>
+                                <p class="text-sm text-gray-400">社保系统计算页面</p>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">学习看板</h3>
+                                <p class="text-sm text-gray-400">任务管理与进度追踪</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：技术栈 -->
+            <div class="md:col-span-1">
+                <div class="card-hover rounded-2xl p-6 mb-6">
+                    <h2 class="text-xl font-bold mb-4 gradient-text">技术栈</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Spring</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">MySQL</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Tailwind</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Git</span>
+                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Linux</span>
+                    </div>
+                </div>
+
+                <div class="card-hover rounded-2xl p-6">
+                    <h2 class="text-xl font-bold mb-4 gradient-text">学习计划</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-medium mb-1">当前阶段</h3>
+                            <p class="text-sm text-gray-400">JavaWeb (Servlet/JSP)</p>
+                        </div>
+                        <div>
+                            <h3 class="font-medium mb-1">下一阶段</h3>
+                            <p class="text-sm text-gray-400">SSM框架学习</p>
+                        </div>
+                        <div>
+                            <h3 class="font-medium mb-1">长期目标</h3>
+                            <p class="text-sm text-gray-400">全栈博客系统开发</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部横幅 -->
+        <div class="mt-10 card-hover rounded-2xl p-6 bg-gradient-to-r from-primary-900 to-primary-700">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold mb-2">全栈开发学习之旅</h2>
+                    <p class="text-primary-100">以项目驱动学习，构建完整的知识体系</p>
+                </div>
+                <a href="#" class="mt-4 md:mt-0 px-6 py-3 bg-white text-primary-900 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                    查看详细计划
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 神经网络背景的JavaScript -->
+    <script>
+        // 简单的神经网络背景效果
+        const canvas = document.getElementById('neuralNetwork');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        
+        // 调整canvas大小
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+        
+        // 节点类
+        class Node {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(14, 165, 233, 0.6)';
+                ctx.fill();
+            }
+        }
+        
+        // 创建节点
+        const nodes = Array.from({ length: 30 }, () => new Node());
+        
+        // 绘制连接线
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(14, 165, 233, ${0.2 * (1 - dist/150)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        
+        // 动画循环
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+            
+            drawConnections();
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+    </script>
+</body>
+</html>
