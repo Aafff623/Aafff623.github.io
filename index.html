@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeTwoA | CS Student  Full-Stack Developer</title>
+    <title>ThreeTwoA | CS Student & Full-Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -29,7 +29,7 @@
             background: linear-gradient(to bottom, #0f172a, #0c4a6e);
             min-height: 100vh;
         }
-        。card-hover { 
+        .card-hover { 
             transition: all 0.3s ease; 
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -77,6 +77,14 @@
             width: 800px;
             border: 1px solid rgba(14, 165, 233, 0.3);
         }
+        /* 项目列表模态框样式 */
+        .project-list-modal {
+            z-index: 1001;
+        }
+        /* 确保详情模态框在列表模态框之上 */
+        #projectModal {
+            z-index: 1002;
+        }
     </style>
 </head>
 <body class="text-gray-100">
@@ -100,8 +108,8 @@
                         <!-- 技术标签会通过JS动态添加 -->
                     </div>
                     <div class="flex space-x-4">
-                        <a id="modalDemo" href="#" target="_blank" class="px-4 py-2 bg-primary-500 rounded-lg hover:bg-primary-600 transition-colors">查看演示</a>
-                        <a id="modalGithub" href="#" target="_blank" class="px-4 py-2 border border-primary-500 text-primary-300 rounded-lg hover:bg-primary-500/20 transition-colors">GitHub</a>
+                        <a id="modalDemo" href="#" target="_blank" class="px-4 py-2 bg-primary-500 rounded-lg hover:bg-primary-600 transition-colors" onclick="event.stopPropagation()">查看演示</a>
+                        <a id="modalGithub" href="#" target="_blank" class="px-4 py-2 border border-primary-500 text-primary-300 rounded-lg hover:bg-primary-500/20 transition-colors" onclick="event.stopPropagation()">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -123,15 +131,14 @@
                 Goals: Full-Stack Developer</p>
             <p class="text-gray-300 max-w-2xl">threetwoa主页导航栏目,技术欠缺,后续成长起来会进行维护</p>
             
-      <!-- 社交链接 -->
-<div class="flex space-x-4 mt-6">
-    <a href="https://github.com/Aafff623" target="_blank" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-    </a>
-    
-</div>
+            <!-- 社交链接 -->
+            <div class="flex space-x-4 mt-6">
+                <a href="https://github.com/Aafff623" target="_blank" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
         </header>
 
         <!-- 主要内容区域 -->
@@ -193,65 +200,66 @@
                     </ul>
                 </div>
             </div>
-<!-- 中间：核心链接 -->
-<div class="md:col-span-1">
-    <div class="card-hover rounded-2xl p-6 h-full">
-        <h2 class="text-xl font-bold mb-4 gradient-text">核心资源</h2>
-        <div class="space-y-4">
-            <!-- 个人博客链接 -->
-            <a href="https://threetwoa.me/threetwoa-hugoBlog/" target="_blank" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+
+            <!-- 中间：核心链接 -->
+            <div class="md:col-span-1">
+                <div class="card-hover rounded-2xl p-6 h-full">
+                    <h2 class="text-xl font-bold mb-4 gradient-text">核心资源</h2>
+                    <div class="space-y-4">
+                        <!-- 个人博客链接 -->
+                        <a href="https://threetwoa.me/threetwoa-hugoBlog/" target="_blank" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">个人博客</h3>
+                                <p class="text-sm text-gray-400">技术笔记与学习心得</p>
+                            </div>
+                        </a>
+                        
+                        <!-- 代码仓库链接 -->
+                        <a href="https://github.com/Aafff623" target="_blank" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">代码仓库</h3>
+                                <p class="text-sm text-gray-400">GitHub项目与代码</p>
+                            </div>
+                        </a>
+                        
+                        <!-- 项目展示链接 -->
+                        <a href="#" onclick="showProjects(); return false;" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">项目展示</h3>
+                                <p class="text-sm text-gray-400">页面和项目</p>
+                            </div>
+                        </a>
+                        
+                        <!-- 学习看板链接 -->
+                        <a href="https://github.com/Aafff623?tab=repositories" target="_blank" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
+                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">图形可视化展示</h3>
+                                <p class="text-sm text-gray-400">任务管理与进度追踪</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-medium">个人博客</h3>
-                    <p class="text-sm text-gray-400">技术笔记与学习心得</p>
-                </div>
-            </a>
-            
-            <!-- 代码仓库链接 -->
-            <a href="https://github.com/Aafff623" target="_blank" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="font-medium">代码仓库</h3>
-                    <p class="text-sm text-gray-400">GitHub项目与代码</p>
-                </div>
-            </a>
-            
-            <!-- 项目展示链接 -->
-            <a href="#" onclick="showProjects(); return false;" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="font-medium">项目展示</h3>
-                    <p class="text-sm text-gray-400">页面和项目</p>
-                </div>
-            </a>
-            
-            <!-- 学习看板链接 -->
-            <a href="https://github.com/Aafff623?tab=repositories" target="_blank" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="font-medium">图形可视化展示</h3>
-                    <p class="text-sm text-gray-400">任务管理与进度追踪</p>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
+            </div>
 
             <!-- 右侧：技术栈 -->
             <div class="md:col-span-1">
@@ -285,18 +293,19 @@
             </div>
         </main>
 
-<!-- 底部横幅 -->
-<div class="mt-10 card-hover rounded-2xl p-6 bg-gradient-to-r from-primary-900 to-primary-700">
-    <div class="flex flex-col md:flex-row items-center justify-between">
-        <div>
-            <h2 class="text-xl font-bold mb-2">全栈开发学习之旅</h2>
-            <p class="text-primary-100">以项目驱动学习，构建完整的知识体系</p>
+        <!-- 底部横幅 -->
+        <div class="mt-10 card-hover rounded-2xl p-6 bg-gradient-to-r from-primary-900 to-primary-700">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div>
+                    <h2 class="text-xl font-bold mb-2">全栈开发学习之旅</h2>
+                    <p class="text-primary-100">以项目驱动学习，构建完整的知识体系</p>
+                </div>
+                <a href="https://github.com/Aafff623" target="_blank" class="mt-4 md:mt-0 px-6 py-3 bg-white text-primary-900 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                    查看详细计划
+                </a>
+            </div>
         </div>
-        <a href="https://github.com/Aafff623" target="_blank" class="mt-4 md:mt-0 px-6 py-3 bg-white text-primary-900 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-            查看详细计划
-        </a>
     </div>
-</div>
 
     <!-- 神经网络背景的JavaScript -->
     <script>
@@ -377,146 +386,139 @@
         
         animate();
         
-  // 项目数据
-const projects = [
-    {
-        id: 1,
-        title: "简易记事本",
-        description: "简易版网页记事本应用，支持Markdown格式、标签分类和本地存储。具有自动保存、主题切换、搜索功能和回收站等特性。",
-        technologies: ["HTML", "CSS", "JavaScript", "Markdown"],
-        demoUrl: "simpleNotes_web/index.html", // 相对路径
-        githubUrl: "https://github.com/Aafff623/Notes_MyWebSoftware",
-        image: "https://images.unsplash.com/photo-1518843025960-d60217f226f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 2,
-        title: "社保计算器",
-        description: "测试用的计算页面。",
-        technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-        demoUrl: "social-security.html", // 相对路径
-        githubUrl: "https://github.com/Aafff623/social-security-calculator",
-        image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-    }
-];
-
-// 显示项目详情模态框
-function showProject(projectId) {
-    const project = projects.find(p => p.id === projectId);
-    if (!project) return;
-    
-    document.getElementById('modalTitle').textContent = project.title;
-    document.getElementById('modalImage').src = project.image;
-    document.getElementById('modalDemo').href = project.demoUrl;
-    document.getElementById('modalGithub').href = project.githubUrl;
-    
-    // 清空并添加技术标签
-    const techsContainer = document.getElementById('modalTechs');
-    techsContainer.innerHTML = '';
-    project.technologies.forEach(tech => {
-        const span = document.createElement('span');
-        span.className = 'bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs';
-        span.textContent = tech;
-        techsContainer.appendChild(span);
-    });
-    
-    // 添加项目描述
-    document.getElementById('modalDescription').textContent = project.description;
-    
-    // 显示模态框
-    document.getElementById('projectModal').style.display = 'flex';
-    
-    // 关闭所有项目列表模态框
-    const projectListModals = document.querySelectorAll('.project-list-modal');
-    projectListModals.forEach(modal => {
-        document.body.removeChild(modal);
-    });
-}
-
-// 关闭模态框
-function closeModal() {
-    document.getElementById('projectModal').style.display = 'none';
-}
-
-// 点击模态框外部关闭
-document.getElementById('projectModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
-    }
-});
-
-// 显示所有项目的函数
-function showProjects() {
-    // 关闭已存在的项目列表模态框
-    const existingModals = document.querySelectorAll('.project-list-modal');
-    existingModals.forEach(modal => document.body.removeChild(modal));
-    
-    // 创建项目列表模态框
-    const modal = document.createElement('div');
-    modal.className = 'project-modal project-list-modal';
-    modal.style.display = 'flex';
-    modal.onclick = function(e) {
-        if (e.target === modal) {
-            document.body.removeChild(modal);
+        // 项目数据
+        const projects = [
+            {
+                id: 1,
+                title: "简易记事本",
+                description: "一个功能比较丰富的网页记事本应用(支持md语法和预览、标签分类笔记查询和以及本地存储,自动保存,主题切换和回收站等。",
+                technologies: ["HTML", "CSS", "JavaScript", "Markdown"],
+                demoUrl: "simpleNotes_web/index.html",
+                githubUrl: "https://github.com/Aafff623/Notes_MyWebSoftware",
+                image: "https://images.unsplash.com/photo-1518843025960-d60217f226f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                title: "社保计算器(小作业,测试链接功能用的)",
+                description: "一个实用的社保计算工具，帮助用户计算社保缴纳金额和预估退休金。支持多种社保类型和自定义参数设置。",
+                technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+                demoUrl: "social-security.html",
+                githubUrl: "https://github.com/Aafff623/social-security-calculator",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+        
+        // 显示项目模态框
+        function showProject(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalImage').src = project.image;
+            document.getElementById('modalDemo').href = project.demoUrl;
+            document.getElementById('modalGithub').href = project.githubUrl;
+            
+            // 清空并添加技术标签
+            const techsContainer = document.getElementById('modalTechs');
+            techsContainer.innerHTML = '';
+            project.technologies.forEach(tech => {
+                const span = document.createElement('span');
+                span.className = 'bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs';
+                span.textContent = tech;
+                techsContainer.appendChild(span);
+            });
+            
+            // 添加项目描述
+            document.getElementById('modalDescription').textContent = project.description;
+            
+            // 显示模态框
+            document.getElementById('projectModal').style.display = 'flex';
+            
+            // 关闭所有项目列表模态框
+            const projectListModals = document.querySelectorAll('.project-list-modal');
+            projectListModals.forEach(modal => {
+                document.body.removeChild(modal);
+            });
         }
-    };
-    
-    let projectsHTML = `
-        <div class="project-modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold gradient-text">我的项目</h2>
-                <button class="text-gray-400 hover:text-white text-2xl" onclick="this.parentElement.parentElement.parentElement.parentElement.remove()">&times;</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    `;
-    
-    projects.forEach(project => {
-        projectsHTML += `
-            <div class="card-hover rounded-2xl p-6 cursor-pointer" onclick="showProject(${project。id})">
-                <h3 class="text-xl font-semibold mb-3">${project。title}</h3>
-                <div class="flex flex-wrap gap-2 mb-4">
-        `;
         
-        project。technologies。forEach(tech => {
-            projectsHTML += `<span class="bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs">${tech}</span>`;
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+        
+        // 点击模态框外部关闭
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
         
-        projectsHTML += `
+        // 显示所有项目的函数
+        function showProjects() {
+            // 关闭已存在的项目列表模态框
+            const existingModals = document.querySelectorAll('.project-list-modal');
+            existingModals.forEach(modal => document.body.removeChild(modal));
+            
+            // 创建项目列表模态框
+            const modal = document.createElement('div');
+            modal.className = 'project-modal project-list-modal';
+            modal.style.display = 'flex';
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            };
+            
+            let projectsHTML = `
+                <div class="project-modal-content">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold gradient-text">我的项目</h2>
+                        <button class="text-gray-400 hover:text-white text-2xl" onclick="this.parentElement.parentElement.parentElement.remove()">&times;</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            `;
+            
+            projects.forEach(project => {
+                projectsHTML += `
+                    <div class="card-hover rounded-2xl p-6 cursor-pointer" onclick="showProject(${project.id})">
+                        <h3 class="text-xl font-semibold mb-3">${project.title}</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                `;
+                
+                project.technologies.forEach(tech => {
+                    projectsHTML += `<span class="bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs">${tech}</span>`;
+                });
+                
+                projectsHTML += `
+                        </div>
+                        <p class="text-gray-400 text-sm">${project.description.substring(0, 100)}...</p>
+                        <div class="mt-4 flex space-x-2">
+                            <a href="${project.demoUrl}" target="_blank" class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded text-sm hover:bg-primary-500/30 transition-colors" onclick="event.stopPropagation()">查看演示</a>
+                            <a href="${project.githubUrl}" target="_blank" class="px-3 py-1 border border-primary-500/30 text-primary-300 rounded text-sm hover:bg-primary-500/20 transition-colors" onclick="event.stopPropagation()">GitHub</a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            projectsHTML += `
+                    </div>
                 </div>
-                <p class="text-gray-400 text-sm">${project。description。substring(0， 100)}...</p>
-                <div class="mt-4 flex space-x-2">
-                    <a href="${project。demoUrl}" target="_blank" class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded text-sm hover:bg-primary-500/30 transition-colors" onclick="event.stopPropagation()">查看演示</a>
-                    <a href="${project。githubUrl}" target="_blank" class="px-3 py-1 border border-primary-500/30 text-primary-300 rounded text-sm hover:bg-primary-500/20 transition-colors" onclick="event.stopPropagation()">GitHub</a>
-                </div>
-            </div>
-        `;
-    });
-    
-    projectsHTML += `
-            </div>
-        </div>
-    `;
-    
-    modal.innerHTML = projectsHTML;
-    document.body.appendChild(modal);
-}
-
-// 添加键盘ESC键关闭功能
-document。addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-        const projectListModals = document.querySelectorAll('.project-list-modal');
-        projectListModals.forEach(modal => {
-            document.body.removeChild(modal);
-        });
-    }
-});
-
+            `;
+            
+            modal.innerHTML = projectsHTML;
+            document.body.appendChild(modal);
+        }
         
+        // 添加键盘ESC键关闭功能
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                const projectListModals = document.querySelectorAll('.project-list-modal');
+                projectListModals.forEach(modal => {
+                    document.body.removeChild(modal);
+                });
+            }
+        });
     </script>
 </body>
-
 </html>
-
-
-
-
