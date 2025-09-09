@@ -77,13 +77,18 @@
             width: 800px;
             border: 1px solid rgba(14, 165, 233, 0.3);
         }
-        /* 项目列表模态框样式 */
         .project-list-modal {
             z-index: 1001;
         }
-        /* 确保详情模态框在列表模态框之上 */
         #projectModal {
             z-index: 1002;
+        }
+        .path-guide {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-left: 4px solid #0ea5e9;
         }
     </style>
 </head>
@@ -293,6 +298,50 @@
             </div>
         </main>
 
+        <!-- 路径配置指南 -->
+        <div class="mt-10 card-hover rounded-2xl p-6">
+            <h2 class="text-xl font-bold mb-4 gradient-text">项目路径配置指南</h2>
+            <p class="text-gray-300 mb-4">以下是您的项目文件结构和正确的路径配置方式：</p>
+            
+            <div class="path-guide">
+                <h3 class="font-semibold mb-2">您的文件结构：</h3>
+                <pre class="text-sm bg-gray-800 p-4 rounded overflow-x-auto">
+dist/
+images/
+  touxiang.png
+smallWeb/
+Other/
+  social-calcSimpleWeb/
+    index.html
+index.html (主页)
+simpleNotes_web/
+  index.html
+  script.js
+  style.css
+CNAME
+README.md
+                </pre>
+            </div>
+            
+            <div class="path-guide mt-4">
+                <h3 class="font-semibold mb-2">正确的项目链接：</h3>
+                <ul class="list-disc list-inside text-sm space-y-2">
+                    <li>简易记事本：<code class="bg-gray-800 px-2 py-1 rounded">simpleNotes_web/index.html</code></li>
+                    <li>社保计算器：<code class="bg-gray-800 px-2 py-1 rounded">Other/social-calcSimpleWeb/index.html</code></li>
+                </ul>
+            </div>
+            
+            <div class="path-guide mt-4">
+                <h3 class="font-semibold mb-2">添加新项目的步骤：</h3>
+                <ol class="list-decimal list-inside text-sm space-y-2 pl-4">
+                    <li>将项目文件夹放在正确的位置</li>
+                    <li>在JavaScript的<code>projects</code>数组中添加新项目信息</li>
+                    <li>使用正确的相对路径指向项目的<code>index.html</code>文件</li>
+                    <li>测试链接是否正常工作</li>
+                </ol>
+            </div>
+        </div>
+
         <!-- 底部横幅 -->
         <div class="mt-10 card-hover rounded-2xl p-6 bg-gradient-to-r from-primary-900 to-primary-700">
             <div class="flex flex-col md:flex-row items-center justify-between">
@@ -386,25 +435,25 @@
         
         animate();
         
-        // 项目数据
+        // 项目数据 - 已修复链接路径
         const projects = [
             {
                 id: 1,
                 title: "简易记事本",
                 description: "一个功能比较丰富的网页记事本应用(支持md语法和预览、标签分类笔记查询和以及本地存储,自动保存,主题切换和回收站等。",
                 technologies: ["HTML", "CSS", "JavaScript", "Markdown"],
-                demoUrl: "simpleNotes_web/index.html",
+                demoUrl: "simpleNotes_web/index.html", // 修复的路径
                 githubUrl: "https://github.com/Aafff623/Notes_MyWebSoftware",
                 image: "https://images.unsplash.com/photo-1518843025960-d60217f226f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
             },
             {
                 id: 2,
-                title: "社保计算器(小作业,测试链接功能用的)",
+                title: "社保计算器",
                 description: "一个实用的社保计算工具，帮助用户计算社保缴纳金额和预估退休金。支持多种社保类型和自定义参数设置。",
                 technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-                demoUrl: "social-security.html",
+                demoUrl: "Other/social-calcSimpleWeb/index.html", // 修复的路径
                 githubUrl: "https://github.com/Aafff623/social-security-calculator",
-                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
             }
         ];
         
@@ -480,8 +529,8 @@
             
             projects.forEach(project => {
                 projectsHTML += `
-                    <div class="card-hover rounded-2xl p-6 cursor-pointer" onclick="showProject(${project.id})">
-                        <h3 class="text-xl font-semibold mb-3">${project.title}</h3>
+                    <div class="card-hover rounded-2xl p-6 cursor-pointer" onclick="showProject(${project。id})">
+                        <h3 class="text-xl font-semibold mb-3">${project。title}</h3>
                         <div class="flex flex-wrap gap-2 mb-4">
                 `;
                 
@@ -491,10 +540,10 @@
                 
                 projectsHTML += `
                         </div>
-                        <p class="text-gray-400 text-sm">${project.description.substring(0, 100)}...</p>
+                        <p class="text-gray-400 text-sm">${project。description。substring(0， 100)}...</p>
                         <div class="mt-4 flex space-x-2">
-                            <a href="${project.demoUrl}" target="_blank" class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded text-sm hover:bg-primary-500/30 transition-colors" onclick="event.stopPropagation()">查看演示</a>
-                            <a href="${project.githubUrl}" target="_blank" class="px-3 py-1 border border-primary-500/30 text-primary-300 rounded text-sm hover:bg-primary-500/20 transition-colors" onclick="event.stopPropagation()">GitHub</a>
+                            <a href="${project。demoUrl}" target="_blank" class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded text-sm hover:bg-primary-500/30 transition-colors" onclick="event.stopPropagation()">查看演示</a>
+                            <a href="${project。githubUrl}" target="_blank" class="px-3 py-1 border border-primary-500/30 text-primary-300 rounded text-sm hover:bg-primary-500/20 transition-colors" onclick="event.stopPropagation()">GitHub</a>
                         </div>
                     </div>
                 `;
