@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>ThreeTwoA 数字可视化花园</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(120deg,#60a5fa 0%,#38bdf8 50%,#0ea5e9 100%);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        #main3d {
+            width: 100vw;
+            height: 100vh;
+        }
+        .title {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 0 2px 12px #2563eb;
+            z-index: 10;
+        }
+        /* 弹窗样式 */
+        #projectModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 999;
+        }
+        #projectModal .modal-content {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(59,130,246,0.18);
+            padding: 32px 40px;
+            min-width: 320px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        #projectModal .modal-content .close-btn {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            font-size: 1.5rem;
+            color: #2563eb;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #projectModal .modal-content h2 {
+            color: #2563eb;
+            margin-bottom: 18px;
+        }
+        #projectModal .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #projectModal .modal-content ul li {
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e7ef;
+        }
+        #projectModal .modal-content ul li a {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        #projectModal .modal-content ul li div {
+            color: #374151;
+            font-size: 0.98rem;
+            margin-top: 4px;
+        }
+    </style>
+    <!-- ECharts GL 3D库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
+</head>
+<body>
+    <div class="title">ThreeTwoA 数字可视化花园</div>
+    <div id="main3d"></div>
+
+    <!-- 项目展示弹窗结构 -->
+    <div id="projectModal">
+        <div class="modal-content">
+            <span class="close-btn" id="modalCloseBtn">&times;</span>
+            <h2>我的项目展示</h2>
+            <ul>
+                <li>
+                    <a href="https://threetwoa.me/social-security-calc/" target="_blank">社保计算器</a>
+                    <div>支持自定义参数的社保计算工具，适合学生和职场新人。</div>
+                </li>
+                <li>
+                    <a href="projects/simple-notes/index.html" target="_blank">简易记事本</a>
+                    <div>在线记录和管理你的学习笔记，支持多端同步。</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 3D 柱状图示例
+        var chart = echarts.init(document.getElementById('main3d'));
+        var data = [];
+        for (var i = 0; i <= 10; i++) {
+            for (var j = 0; j <= 10; j++) {
+                data.push([i, j, Math.round(Math.random()*20)]);
+            }
+        }
+        chart.setOption({
+            tooltip: {},
+            visualMap: {
+                max: 20,
+                inRange: {
+                    color: ['#bae6fd', '#38bdf8', '#2563eb']
+                }
+            },
+            xAxis3D: { type: 'category', data: Array.from({length:11},(_,i)=>i) },
+            yAxis3D: { type: 'category', data: Array.from({length:11},(_,i)=>i) },
+            zAxis3D: { type: 'value' },
+            grid3D: {
+                boxWidth: 180,
+                boxDepth: 80,
+                viewControl: { // 支持鼠标旋转缩放
+                    autoRotate: true,
+                    autoRotateSpeed: 20
+                },
+                light: {
+                    main: { intensity: 1.2, shadow: true },
+                    ambient: { intensity: 0.3 }
+                }
+            },
+            series: [{
+                type: 'bar3D',
+                data: data,
+                shading: 'lambert',
+                label: { show: false }
+            }]
+        });
+        window.addEventListener('resize', ()=>chart.resize());
+
+        // 弹窗相关脚本
+        function showProjectModal() {
+            document.getElementById('projectModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function hideProjectModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        document.getElementById('projectShowBtn').onclick = showProjectModal;
+        document.getElementById('modalCloseBtn').onclick = hideProjectModal;
+    </script>
+</body>
+</html>

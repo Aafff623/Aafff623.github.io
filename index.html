@@ -1,502 +1,202 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="scroll-smooth">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeTwoA | CS Student  Full-Stack Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
-                        },
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(to bottom, #0f172a, #0c4a6e);
-            min-height: 100vh;
-        }
-        .card-hover { 
-            transition: all 0.3s ease; 
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .card-hover:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.3);
-            border-color: rgba(14, 165, 233, 0.3);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #0ea5e9, #22d3ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .neural-network {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-        .project-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        .project-modal-content {
-            background: linear-gradient(to bottom, #1e293b, #0f172a);
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 90%;
-            max-height: 90%;
-            overflow-y: auto;
-            width: 800px;
-            border: 1px solid rgba(14, 165, 233, 0.3);
-        }
-    </style>
+    <title>ThreeTwoA | CS Student & Full-Stack Developer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Palp1tate/LXGW-WenKai-Web@latest/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="text-gray-100">
-    <!-- 3D神经网络背景 -->
-    <canvas class="neural-network" id="neuralNetwork"></canvas>
-    
-    <!-- 项目详情模态框 -->
-    <div class="project-modal" id="projectModal">
-        <div class="project-modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold gradient-text" id="modalTitle">项目标题</h2>
-                <button class="text-gray-400 hover:text-white text-2xl" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <img id="modalImage" src="" alt="项目截图" class="rounded-lg w-full h-48 object-cover">
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-2">项目信息</h3>
-                    <div class="flex flex-wrap gap-2 mb-4" id="modalTechs">
-                        <!-- 技术标签会通过JS动态添加 -->
-                    </div>
-                    <div class="flex space-x-4">
-                        <a id="modalDemo" href="#" target="_blank" class="px-4 py-2 bg-primary-500 rounded-lg hover:bg-primary-600 transition-colors">查看演示</a>
-                        <a id="modalGithub" href="#" target="_blank" class="px-4 py-2 border border-primary-500 text-primary-300 rounded-lg hover:bg-primary-500/20 transition-colors">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div id="modalDescription" class="text-gray-300">
-                <!-- 项目描述会通过JS动态添加 -->
+<body class="lxgw-main">
+    <!-- 顶部导航栏 -->
+    <nav class="lxgw-nav">
+        <div class="nav-inner">
+            <span class="brand">ThreeTwoA</span>
+            <div>
+                <a href="#">首页</a>
+                <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank">博客</a>
+                <a href="#" id="projectLink">项目</a>
+                <a href="https://github.com/Aafff623?tab=repositories" target="_blank">学习看板</a>
+                <a href="#">分类</a>
+                <a href="#">友链</a>
+                <!-- 添加主题切换按钮 -->
+                <button class="theme-toggle" id="themeToggle" title="切换主题">
+                    <svg class="theme-icon" id="themeIcon" viewBox="0 0 24 24">
+                        <!-- 月亮图标 -->
+                        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        <!-- 太阳图标 -->
+                        <circle class="sun-icon" cx="12" cy="12" r="5"/>
+                        <line class="sun-icon" x1="12" y1="1" x2="12" y2="3"/>
+                        <line class="sun-icon" x1="12" y1="21" x2="12" y2="23"/>
+                        <line class="sun-icon" x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line class="sun-icon" x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line class="sun-icon" x1="1" y1="12" x2="3" y2="12"/>
+                        <line class="sun-icon" x1="21" y1="12" x2="23" y2="12"/>
+                        <line class="sun-icon" x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line class="sun-icon" x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
             </div>
         </div>
+    </nav>
+    <!-- 欢迎横幅 -->
+    <div class="welcome-banner">
+        <span>欢迎访问我的主页！</span>
     </div>
-    
-    <div class="container mx-auto px-4 py-10 max-w-6xl">
-        <!-- 头部信息 -->
-        <header class="flex flex-col items-center mb-12 text-center">
-            <!-- 头像占位 -->
-            <div class="w-32 h-32 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full mb-6 flex items-center justify-center text-4xl font-bold">
-                <img src="images/touxiang.png" class="w-32 h-32 rounded-full object-cover" alt="threetwoa">
+    <div class="container">
+        <!-- 主页头部信息 -->
+        <header class="main-header">
+            <div class="avatar-large">
+                <img src="images/touxiang.png" alt="threetwoa">
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">threetwoa</h1>
-            <p class="text-xl text-primary-100 mb-2">CS sophomore (software engineering) <hr>
-                Goals: Full-Stack Developer</p>
-            <p class="text-gray-300 max-w-2xl">threetwoa主页导航栏目,技术欠缺,后续成长起来会进行维护</p>
-            
-            <!-- 社交链接 -->
-            <div class="flex space-x-4 mt-6">
-                <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
-                <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-primary-500 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-                    </svg>
-                </a>
+            <h1>threetwoa</h1>
+            <p>CS sophomore (software engineering)</p>
+            <p class="desc">Goals: Full-Stack Developer</p>
+            <p class="desc">专注于Web开发与Java后端学习，通过项目驱动成长</p>
+            <div class="links">
+                <a href="https://github.com/Aafff623" target="_blank" title="GitHub">GitHub</a>
+                <a href="https://space.bilibili.com/3499088584312327" target="_blank" title="B站">B站</a>
             </div>
         </header>
-
+        <!-- 技术栈标签自适应区域 -->
+        <section class="mb-8">
+            <div id="techTags" class="tech-tags"></div>
+        </section>
+        <!-- 技术栈关系图区域 -->
+        <section>
+            <div id="techGraph" class="tech-graph-canvas"></div>
+        </section>
         <!-- 主要内容区域 -->
-        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- 左侧：学习进度 -->
-            <div class="md:col-span-1">
-                <div class="card-hover rounded-2xl p-6 mb-6">
-                    <h2 class="text-xl font-bold mb-4 gradient-text">学习进度</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">Java后端</span>
-                                <span class="text-sm">65%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-primary-500 h-2 rounded-full" style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">前端开发</span>
-                                <span class="text-sm">40%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-primary-500 h-2 rounded-full" style="width: 40%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm">算法</span>
-                                <span class="text-sm">30%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="bg-primary-500 h-2 rounded-full" style="width: 30%"></div>
-                            </div>
-                        </div>
+        <main class="main-grid">
+            <!-- 左侧：学习进度 + 本周任务 -->
+            <div class="card-hover grid-left">
+                <h2>学习进度</h2>
+                <div style="margin-bottom:18px;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                        <span>Java后端</span><span>65%</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" style="width:65%"></div>
                     </div>
                 </div>
-
-                <div class="card-hover rounded-2xl p-6">
-                    <h2 class="text-xl font-bold mb-4 gradient-text">本周任务</h2>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <span class="text-primary-500 mr-2">✓</span>
-                            <span>完善导航页内容</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-primary-500 mr-2">✓</span>
-                            <span>学习Tailwind响应式设计</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-500 mr-2">•</span>
-                            <span>规划博客板块</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-500 mr-2">•</span>
-                            <span>LeetCode每日一题</span>
-                        </li>
-                    </ul>
+                <div style="margin-bottom:18px;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                        <span>前端开发</span><span>40%</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" style="width:40%"></div>
+                    </div>
                 </div>
+                <div style="margin-bottom:32px;">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                        <span>算法</span><span>30%</span>
+                    </div>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" style="width:30%"></div>
+                    </div>
+                </div>
+                
+                <h2>本周任务</h2>
+                <ul style="margin:0;padding:0;list-style:none;">
+                    <li style="margin-bottom:10px;"><span style="color:#38bdf8;font-weight:bold;">&#10003;</span> 完善导航页内容</li>
+                    <li style="margin-bottom:10px;"><span style="color:#38bdf8;font-weight:bold;">&#10003;</span> 学习Tailwind响应式设计</li>
+                    <li style="margin-bottom:10px;"><span style="color:#aaa;">•</span> 规划博客板块</li>
+                    <li><span style="color:#aaa;">•</span> LeetCode每日一题</li>
+                </ul>
             </div>
-
-            <!-- 中间：核心链接 -->
-            <div class="md:col-span-1">
-                <div class="card-hover rounded-2xl p-6 h-full">
-                    <h2 class="text-xl font-bold mb-4 gradient-text">核心资源</h2>
-                    <div class="space-y-4">
-                        <a href="#" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">个人博客</h3>
-                                <p class="text-sm text-gray-400">技术笔记与学习心得</p>
-                            </div>
-                        </a>
-                        
-                        <a href="#" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">代码仓库</h3>
-                                <p class="text-sm text-gray-400">GitHub项目与代码</p>
-                            </div>
-                        </a>
-                        
-                        <!-- 项目展示链接 -->
-                        <a href="#" onclick="showProjects(); return false;" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">项目展示</h3>
-                                <p class="text-sm text-gray-400">查看我的项目集合</p>
-                            </div>
-                        </a>
-                        
-                        <a href="#" class="flex items-center p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group">
-                            <div class="bg-primary-500/20 p-3 rounded-lg mr-4 group-hover:bg-primary-500/30 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">学习看板</h3>
-                                <p class="text-sm text-gray-400">任务管理与进度追踪</p>
-                            </div>
-                        </a>
+            
+            <!-- 中间：核心资源模块 -->
+            <div class="card-hover grid-center">
+                <h2>核心资源</h2>
+                <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank" class="resource-link">
+                    <span class="resource-icon">&#128221;</span>
+                    <div>
+                        <h3>个人博客</h3>
+                        <p>技术笔记与学习心得</p>
                     </div>
-                </div>
+                </a>
+                <a href="https://github.com/Aafff623" target="_blank" class="resource-link">
+                    <span class="resource-icon">&#128187;</span>
+                    <div>
+                        <h3>代码仓库</h3>
+                        <p>GitHub项目与代码</p>
+                    </div>
+                </a>
+                <a href="#" id="projectShowBtn" class="resource-link">
+                    <span class="resource-icon">&#128230;</span>
+                    <div>
+                        <h3>项目展示</h3>
+                        <p>页面和项目</p>
+                    </div>
+                </a>
+                <a href="garden.html" target="_blank" class="resource-link">
+                    <span class="resource-icon">&#128202;</span>
+                    <div>
+                        <h3>数字可视化展示</h3>
+                        <p>任务管理与进度追踪</p>
+                    </div>
+                </a>
             </div>
-
-            <!-- 右侧：技术栈 -->
-            <div class="md:col-span-1">
-                <div class="card-hover rounded-2xl p-6 mb-6">
-                    <h2 class="text-xl font-bold mb-4 gradient-text">技术栈</h2>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Java</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Spring</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">MySQL</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Tailwind</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Git</span>
-                        <span class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm">Linux</span>
-                    </div>
+            
+            <!-- 右侧：技术栈 + 学习规划 -->
+            <div class="card-hover grid-right">
+                <h2>目前掌握并使用的技术栈</h2>
+                <div class="tech-stack-list">
+                    <span>JavaSE/MySQL/JDBC</span>
+                    <span>HTML/CSS/JavaScript</span>
+                    <span>Bootstrap/Tailwind CSS</span>
+                    <span>Git/Gitee</span>
                 </div>
-
-                <div class="card-hover rounded-2xl p-6">
-                    <h2 class="text-xl font-bold mb-4 gradient-text">学习计划</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="font-medium mb-1">当前阶段</h3>
-                            <p class="text-sm text-gray-400">JavaWeb (Servlet/JSP)</p>
-                        </div>
-                        <div>
-                            <h3 class="font-medium mb-1">下一阶段</h3>
-                            <p class="text-sm text-gray-400">SSM框架学习</p>
-                        </div>
-                        <div>
-                            <h3 class="font-medium mb-1">长期目标</h3>
-                            <p class="text-sm text-gray-400">全栈博客系统开发</p>
-                        </div>
-                    </div>
+                
+                <h2>学习规划</h2>
+                <div style="margin-bottom:14px;">
+                    <h3 style="margin-bottom:4px;">当前阶段</h3>
+                    <p style="color:var(--text-secondary);">复习目前所学的前后端知识,整理个人计划,制作并且维护项目驱动学习的初版生态</p>
+                </div>
+                <div style="margin-bottom:14px;">
+                    <h3 style="margin-bottom:4px;">下一阶段</h3>
+                    <p style="color:var(--text-secondary);">JavaWeb,Maven,SSM框架的学习,前端小组件的样例练习</p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:4px;">长期目标</h3>
+                    <p style="color:var(--text-secondary);">全栈博客系统开发,项目实战的练习,一定的算法基础</p>
                 </div>
             </div>
         </main>
-
-        <!-- 底部横幅 -->
-        <div class="mt-10 card-hover rounded-2xl p-6 bg-gradient-to-r from-primary-900 to-primary-700">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div>
-                    <h2 class="text-xl font-bold mb-2">全栈开发学习之旅</h2>
-                    <p class="text-primary-100">以项目驱动学习，构建完整的知识体系</p>
-                </div>
-                <a href="#" class="mt-4 md:mt-0 px-6 py-3 bg-white text-primary-900 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-                    查看详细计划
-                </a>
+    </div>
+    <!-- 项目弹窗 -->
+    <div id="projectModal" style="display:none;">
+        <div class="modal-bg" id="modalBg">
+            <div class="modal-content">
+                <span class="modal-close" id="modalCloseBtn">&times;</span>
+                <h2>我的项目展示</h2>
+                <ul class="project-list">
+                    <li>
+                        <div class="project-icon">🧮</div>
+                        <a href="projects/social-calculator/index.html" target="_blank">社保计算器</a>
+                        <div class="project-desc">支持自定义参数的社保计算工具，适合学生和职场新人。</div>
+                    </li>
+                    <li>
+                        <div class="project-icon">📝</div>
+                        <a href="projects/simple-notes/index.html" target="_blank">简易笔记本</a>
+                        <div class="project-desc">在线记录和管理你的学习笔记，支持多端同步。</div>
+                    </li>
+                    <li>
+                        <div class="project-icon">🌤️</div>
+                        <a href="https://threetwoa.me/mini-weather/" target="_blank">天气小组件</a>
+                        <div class="project-desc">实时天气查询，支持城市切换和未来预报。</div>
+                    </li>
+                    <li>
+                        <div class="project-icon">📄</div>
+                        <a href="https://threetwoa.me/markdown-editor/" target="_blank">Markdown编辑器</a>
+                        <div class="project-desc">支持实时预览和导出，适合技术博客写作。</div>
+                    </li>
+                    <!-- 可继续添加你的项目 -->
+                </ul>
             </div>
         </div>
     </div>
-
-    <!-- 神经网络背景的JavaScript -->
-    <script>
-        // 简单的神经网络背景效果
-        const canvas = document.getElementById('neuralNetwork');
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-        
-        // 调整canvas大小
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
-        
-        // 节点类
-        class Node {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2 + 1;
-            }
-            
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(14, 165, 233, 0.6)';
-                ctx.fill();
-            }
-        }
-        
-        // 创建节点
-        const nodes = Array.from({ length: 30 }, () => new Node());
-        
-        // 绘制连接线
-        function drawConnections() {
-            for (let i = 0; i < nodes.length; i++) {
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const dx = nodes[i].x - nodes[j].x;
-                    const dy = nodes[i].y - nodes[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(14, 165, 233, ${0.2 * (1 - dist/150)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(nodes[i].x, nodes[i].y);
-                        ctx.lineTo(nodes[j].x, nodes[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-        
-        // 动画循环
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            nodes.forEach(node => {
-                node.update();
-                node.draw();
-            });
-            
-            drawConnections();
-            
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
-        
-        // 项目数据
-        const projects = [
-            {
-                id: 1,
-                title: "简易记事本",
-                description: "一个功能丰富的网页记事本应用，支持Markdown格式、标签分类和本地存储。具有自动保存、主题切换、搜索功能和回收站等特性。",
-                technologies: ["HTML", "CSS", "JavaScript", "Markdown"],
-                demoUrl: "https://threetwoa.me/Notes_MyWebSoftware/",
-                githubUrl: "https://github.com/Aafff623/Notes_MyWebSoftware",
-                image: "https://images.unsplash.com/photo-1518843025960-d60217f226f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-            },
-            {
-                id: 2,
-                title: "社保计算器",
-                description: "一个实用的社保计算工具，帮助用户计算社保缴纳金额和预估退休金。支持多种社保类型和自定义参数设置。",
-                technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-                demoUrl: "https://threetwoa.me/social-security-calculator/",
-                githubUrl: "https://github.com/Aafff623/social-security-calculator",
-                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-            }
-        ];
-        
-        // 显示项目模态框
-        function showProject(projectId) {
-            const project = projects.find(p => p.id === projectId);
-            if (!project) return;
-            
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalImage').src = project.image;
-            document.getElementById('modalDemo').href = project.demoUrl;
-            document.getElementById('modalGithub').href = project.githubUrl;
-            
-            // 清空并添加技术标签
-            const techsContainer = document.getElementById('modalTechs');
-            techsContainer.innerHTML = '';
-            project.technologies.forEach(tech => {
-                const span = document.createElement('span');
-                span.className = 'bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs';
-                span.textContent = tech;
-                techsContainer.appendChild(span);
-            });
-            
-            // 添加项目描述
-            document.getElementById('modalDescription').textContent = project.description;
-            
-            // 显示模态框
-            document.getElementById('projectModal').style.display = 'flex';
-        }
-        
-        // 关闭模态框
-        function closeModal() {
-            document.getElementById('projectModal').style.display = 'none';
-        }
-        
-        // 点击模态框外部关闭
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-        
-        // 显示所有项目的函数
-        function showProjects() {
-            // 创建一个项目列表模态框
-            const modal = document.createElement('div');
-            modal.className = 'project-modal';
-            modal.style.display = 'flex';
-            modal.onclick = function(e) {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            };
-            
-            let projectsHTML = `
-                <div class="project-modal-content">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-bold gradient-text">我的项目</h2>
-                        <button class="text-gray-400 hover:text-white text-2xl" onclick="document.body.removeChild(this.parentElement.parentElement.parentElement)">&times;</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            `;
-            
-            projects.forEach(project => {
-                projectsHTML += `
-                    <div class="card-hover rounded-2xl p-6 cursor-pointer" onclick="showProject(${project.id}); document.body.removeChild(this.parentElement.parentElement.parentElement.parentElement)">
-                        <h3 class="text-xl font-semibold mb-3">${project.title}</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                `;
-                
-                project.technologies.forEach(tech => {
-                    projectsHTML += `<span class="bg-primary-500/20 text-primary-300 px-2 py-1 rounded text-xs">${tech}</span>`;
-                });
-                
-                projectsHTML += `
-                        </div>
-                        <p class="text-gray-400 text-sm">${project.description.substring(0, 100)}...</p>
-                    </div>
-                `;
-            });
-            
-            projectsHTML += `
-                    </div>
-                </div>
-            `;
-            
-            modal.innerHTML = projectsHTML;
-            document.body.appendChild(modal);
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
