@@ -1,764 +1,1046 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Threetwoa的全栈开发大师之路</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root {
-            --primary: #4361ee;
-            --primary-dark: #3a0ca3;
-            --secondary: #f72585;
-            --accent: #4cc9f0;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4ade80;
-            --warning: #facc15;
-            --danger: #f87171;
-            --gray: #6b7280;
-            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3, #7209b7);
-            --gradient-secondary: linear-gradient(135deg, #f72585, #b5179e);
-            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f7ff;
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        /* 可访问性 focus 状态 */
-        a:focus, button:focus, .resource-card:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-            box-shadow: 0 0 0 4px rgba(76,201,240,0.2);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* 导航栏 */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        /* 英雄区域 */
-        .hero {
-            position: relative;
-            padding: 170px 0 100px;
-            text-align: center;
-            background: #f5f7ff;
-            overflow: hidden;
-        }
-        .hero-bg-wave {
-            position: absolute;
-            left: 0; top: 0; width: 100%; height: 100%; z-index: 0;
-            pointer-events: none;
-        }
-        .hero-glyph {
-            width: 80px; height: 80px; margin-bottom: 18px;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            z-index: 1;
-            position: relative;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: var(--gray);
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background: var(--gradient);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
-        }
-        
-        /* 卡片样式 */
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-        
-        /* 时间线 */
-        .timeline {
-            position: relative;
-            padding: 40px 0;
-        }
-        
+      :root {
+        --primary: #4361ee;
+        --primary-dark: #3a0ca3;
+        --secondary: #f72585;
+        --accent: #4cc9f0;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --success: #4ade80;
+        --warning: #facc15;
+        --danger: #f87171;
+        --gray: #6b7280;
+        --gradient: linear-gradient(135deg, #4361ee, #3a0ca3, #7209b7);
+        --gradient-secondary: linear-gradient(135deg, #f72585, #b5179e);
+        --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f5f7ff;
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      /* 可访问性 focus 状态 */
+      a:focus,
+      button:focus,
+      .resource-card:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.2);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* 导航栏 */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 15px 0;
+        z-index: 1000;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      /* 英雄区域 */
+      .hero {
+        position: relative;
+        padding: 170px 0 100px;
+        text-align: center;
+        background: #f5f7ff;
+        overflow: hidden;
+      }
+      .hero-bg-wave {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .hero-glyph {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 18px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .hero h1 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        letter-spacing: -0.5px;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        z-index: 1;
+        position: relative;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: var(--gray);
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 15px 35px;
+        background: var(--gradient);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: var(--transition);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+      }
+
+      /* 卡片样式 */
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .card-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--primary-dark);
+      }
+
+      /* 时间线 */
+      .timeline {
+        position: relative;
+        padding: 40px 0;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--gradient);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        width: 50%;
+        padding: 20px 40px;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .timeline-content {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: var(--card-shadow);
+        position: relative;
+      }
+
+      .timeline-date {
+        display: inline-block;
+        padding: 8px 15px;
+        background: var(--gradient);
+        color: white;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+
+      /* 资源网格 */
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+      }
+
+      .resource-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        text-align: center;
+        border-top: 5px solid var(--primary);
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .resource-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        background: var(--gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* 阶段指南 */
+      .phase-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .phase-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .phase-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: var(--gradient);
+      }
+
+      .phase-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .phase-number {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: var(--gradient);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      /* 思维导图区域 */
+      .mind-map-container {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--card-shadow);
+        margin: 50px 0;
+        text-align: center;
+      }
+
+      /* 页脚 */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
+        margin-top: 80px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+      }
+
+      .footer-section h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-section h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--gradient);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 992px) {
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--gradient);
-            transform: translateX(-50%);
+          left: 30px;
         }
-        
+
         .timeline-item {
-            width: 50%;
-            padding: 20px 40px;
-            position: relative;
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
         }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
+
         .timeline-item:nth-child(even) {
-            left: 50%;
+          left: 0;
         }
-        
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            position: relative;
+
+        .hero h1 {
+          font-size: 2.8rem;
         }
-        
-        .timeline-date {
-            display: inline-block;
-            padding: 8px 15px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            font-weight: 500;
+      }
+
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 15px;
         }
-        
-        /* 资源网格 */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+
+        .hero {
+          padding: 180px 0 60px;
         }
-        
-        .resource-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            text-align: center;
-            border-top: 5px solid var(--primary);
+
+        .hero h1 {
+          font-size: 2.2rem;
         }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+        .hero p {
+          font-size: 1rem;
         }
-        
-        .resource-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+
+        .card-title {
+          font-size: 1.5rem;
         }
-        
-        /* 阶段指南 */
-        .phase-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+      }
+
+      /* 动画效果 */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        
-        .phase-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+        50% {
+          transform: translateY(-10px);
         }
-        
-        .phase-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--gradient);
-        }
-        
-        .phase-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .phase-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        /* 思维导图区域 */
-        .mind-map-container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--card-shadow);
-            margin: 50px 0;
-            text-align: center;
-        }
-        
-        /* 页脚 */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 80px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .footer-section h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 992px) {
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .hero {
-                padding: 180px 0 60px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .card-title {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* 动画效果 */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        .floating {
-            animation: float 5s ease-in-out infinite;
-        }
+      }
+
+      .floating {
+        animation: float 5s ease-in-out infinite;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">FullStack Journey</div>
-            <div class="nav-links">
-                <a href="#timeline" class="nav-link">时间线</a>
-                <a href="#resources" class="nav-link">资源</a>
-                <a href="#phases" class="nav-link">阶段</a>
-                <a href="#mindmap" class="nav-link">思维导图</a>
-                <a href="road.md.html" class="nav-link">原文笔记</a>
-            </div>
+      <div class="container nav-container">
+        <div class="logo">FullStack Journey</div>
+        <div class="nav-links">
+          <a href="#timeline" class="nav-link">时间线</a>
+          <a href="#resources" class="nav-link">资源</a>
+          <a href="#phases" class="nav-link">阶段</a>
+          <a href="#mindmap" class="nav-link">思维导图</a>
+          <a href="ttajouery.html" class="nav-link">原文笔记</a>
         </div>
-        <button id="backToTop" style="display:none;position:fixed;right:30px;bottom:40px;z-index:999;background:var(--primary);color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:1.5rem;box-shadow:0 2px 8px rgba(67,97,238,0.2);cursor:pointer;transition:var(--transition);"><i class="fas fa-arrow-up"></i></button>
+      </div>
+      <button
+        id="backToTop"
+        style="
+          display: none;
+          position: fixed;
+          right: 30px;
+          bottom: 40px;
+          z-index: 999;
+          background: var(--primary);
+          color: #fff;
+          border: none;
+          border-radius: 50%;
+          width: 48px;
+          height: 48px;
+          font-size: 1.5rem;
+          box-shadow: 0 2px 8px rgba(67, 97, 238, 0.2);
+          cursor: pointer;
+          transition: var(--transition);
+        "
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
     </nav>
 
     <!-- 英雄区域 -->
     <section class="hero">
-        <svg class="hero-bg-wave" viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path fill="#4cc9f0" fill-opacity="0.12" d="M0,160L60,165.3C120,171,240,181,360,165.3C480,149,600,107,720,117.3C840,128,960,192,1080,218.7C1200,245,1320,235,1380,229.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
-        <div class="container" style="position:relative;z-index:1;">
-            <span class="hero-glyph">
-                <!-- 火箭SVG吉祥物 -->
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><g><ellipse cx="32" cy="56" rx="8" ry="4" fill="#4cc9f0"/><path d="M32 8C44 8 56 32 32 56C8 32 20 8 32 8Z" fill="url(#paint0_linear)"/><circle cx="32" cy="28" r="7" fill="#fff" stroke="#4361ee" stroke-width="2"/><circle cx="32" cy="28" r="3" fill="#4361ee"/><defs><linearGradient id="paint0_linear" x1="32" y1="8" x2="32" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#4361ee"/><stop offset="1" stop-color="#3a0ca3"/></linearGradient></defs></g></svg>
-            </span>
-            <h1>从新手到全栈大师的6个月冒险</h1>
-            <p>加入Threetwoa的终极学习之旅，掌握现代全栈开发技能，构建令人印象深刻的作品集，并在2026年开启你的职业生涯！</p>
-            <a href="#phases" class="cta-button">开始冒险</a>
-        </div>
+      <svg
+        class="hero-bg-wave"
+        viewBox="0 0 1440 320"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#4cc9f0"
+          fill-opacity="0.12"
+          d="M0,160L60,165.3C120,171,240,181,360,165.3C480,149,600,107,720,117.3C840,128,960,192,1080,218.7C1200,245,1320,235,1380,229.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
+      <div class="container" style="position: relative; z-index: 1">
+        <span class="hero-glyph">
+          <!-- 火箭SVG吉祥物 -->
+          <svg
+            viewBox="0 0 64 64"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <ellipse cx="32" cy="56" rx="8" ry="4" fill="#4cc9f0" />
+              <path
+                d="M32 8C44 8 56 32 32 56C8 32 20 8 32 8Z"
+                fill="url(#paint0_linear)"
+              />
+              <circle
+                cx="32"
+                cy="28"
+                r="7"
+                fill="#fff"
+                stroke="#4361ee"
+                stroke-width="2"
+              />
+              <circle cx="32" cy="28" r="3" fill="#4361ee" />
+              <defs>
+                <linearGradient
+                  id="paint0_linear"
+                  x1="32"
+                  y1="8"
+                  x2="32"
+                  y2="56"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#4361ee" />
+                  <stop offset="1" stop-color="#3a0ca3" />
+                </linearGradient>
+              </defs>
+            </g>
+          </svg>
+        </span>
+        <h1>从新手到全栈大师的6个月冒险</h1>
+        <p>
+          加入Threetwoa的终极学习之旅，掌握现代全栈开发技能，构建令人印象深刻的作品集，并在2026年开启你的职业生涯！
+        </p>
+        <a href="#phases" class="cta-button">开始冒险</a>
+      </div>
     </section>
 
     <!-- 时间线部分 -->
     <section class="container" id="timeline">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">📅 学习路线时间线</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2025年9月</div>
-                    <div class="timeline-content">
-                        <h3>基础构建</h3>
-                        <p>复习JavaSE，配置开发环境，设计博客品牌</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2025年10月</div>
-                    <div class="timeline-content">
-                        <h3>JavaWeb与框架</h3>
-                        <p>学习Servlet, JSP, Spring, MyBatis</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2025年11月</div>
-                    <div class="timeline-content">
-                        <h3>中间件与前端</h3>
-                        <p>集成Redis，学习Vue3，系统设计</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2025年12月</div>
-                    <div class="timeline-content">
-                        <h3>项目优化</h3>
-                        <p>添加AI功能，生产环境部署</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2026年1月</div>
-                    <div class="timeline-content">
-                        <h3>计算机基础</h3>
-                        <p>深入学习OS、网络、数据库原理</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2026年2月</div>
-                    <div class="timeline-content">
-                        <h3>求职准备</h3>
-                        <p>完善作品集，准备面试，申请工作</p>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📅 学习路线时间线</h2>
         </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2025年9月</div>
+            <div class="timeline-content">
+              <h3>基础构建</h3>
+              <p>复习JavaSE，配置开发环境，设计博客品牌</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2025年10月</div>
+            <div class="timeline-content">
+              <h3>JavaWeb与框架</h3>
+              <p>学习Servlet, JSP, Spring, MyBatis</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2025年11月</div>
+            <div class="timeline-content">
+              <h3>中间件与前端</h3>
+              <p>集成Redis，学习Vue3，系统设计</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2025年12月</div>
+            <div class="timeline-content">
+              <h3>项目优化</h3>
+              <p>添加AI功能，生产环境部署</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2026年1月</div>
+            <div class="timeline-content">
+              <h3>计算机基础</h3>
+              <p>深入学习OS、网络、数据库原理</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2026年2月</div>
+            <div class="timeline-content">
+              <h3>求职准备</h3>
+              <p>完善作品集，准备面试，申请工作</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 资源部分 -->
     <section class="container" id="resources">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">🛠️ 开发资源宝库</h2>
-            </div>
-            <div class="resources-grid">
-                <div class="resource-card" data-title="GitHub Copilot" data-detail="AI辅助编程，提高开发效率，自动补全代码，支持多种语言。">
-                    <div class="resource-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>GitHub Copilot</h3>
-                    <p>AI辅助编程，提高开发效率</p>
-                </div>
-                <div class="resource-card" data-title="JetBrains套件" data-detail="专业的Java和Web开发IDE，支持智能重构和调试。">
-                    <div class="resource-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>JetBrains套件</h3>
-                    <p>专业的Java和Web开发IDE</p>
-                </div>
-                <div class="resource-card" data-title="Canva Pro" data-detail="设计博客品牌和视觉资产，支持团队协作。">
-                    <div class="resource-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Canva Pro</h3>
-                    <p>设计博客品牌和视觉资产</p>
-                </div>
-                <div class="resource-card" data-title="DigitalOcean" data-detail="云服务器部署你的应用，支持一键部署和自动扩容。">
-                    <div class="resource-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>DigitalOcean</h3>
-                    <p>云服务器部署你的应用</p>
-                </div>
-                <div class="resource-card" data-title="Educative" data-detail="交互式编程课程学习，涵盖算法、系统设计等。">
-                    <div class="resource-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Educative</h3>
-                    <p>交互式编程课程学习</p>
-                </div>
-                <div class="resource-card" data-title="FrontendMasters" data-detail="深入学习前端开发技能，涵盖React、Vue等主流技术。">
-                    <div class="resource-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>FrontendMasters</h3>
-                    <p>深入学习前端开发技能</p>
-                </div>
-            </div>
-            <!-- 资源弹窗 -->
-            <div id="resourceModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:2000;align-items:center;justify-content:center;">
-                <div style="background:#fff;padding:32px 24px;border-radius:16px;max-width:350px;box-shadow:0 8px 32px rgba(67,97,238,0.15);position:relative;">
-                    <button id="closeResourceModal" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:1.2rem;color:#888;cursor:pointer;"><i class="fas fa-times"></i></button>
-                    <h3 id="modalTitle"></h3>
-                    <p id="modalDetail" style="margin-top:12px;color:#555;"></p>
-                </div>
-            </div>
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🛠️ 开发资源宝库</h2>
         </div>
+        <div class="resources-grid">
+          <div
+            class="resource-card"
+            data-title="GitHub Copilot"
+            data-detail="AI辅助编程，提高开发效率，自动补全代码，支持多种语言。"
+          >
+            <div class="resource-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>GitHub Copilot</h3>
+            <p>AI辅助编程，提高开发效率</p>
+          </div>
+          <div
+            class="resource-card"
+            data-title="JetBrains套件"
+            data-detail="专业的Java和Web开发IDE，支持智能重构和调试。"
+          >
+            <div class="resource-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>JetBrains套件</h3>
+            <p>专业的Java和Web开发IDE</p>
+          </div>
+          <div
+            class="resource-card"
+            data-title="Canva Pro"
+            data-detail="设计博客品牌和视觉资产，支持团队协作。"
+          >
+            <div class="resource-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3>Canva Pro</h3>
+            <p>设计博客品牌和视觉资产</p>
+          </div>
+          <div
+            class="resource-card"
+            data-title="DigitalOcean"
+            data-detail="云服务器部署你的应用，支持一键部署和自动扩容。"
+          >
+            <div class="resource-icon">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <h3>DigitalOcean</h3>
+            <p>云服务器部署你的应用</p>
+          </div>
+          <div
+            class="resource-card"
+            data-title="Educative"
+            data-detail="交互式编程课程学习，涵盖算法、系统设计等。"
+          >
+            <div class="resource-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>Educative</h3>
+            <p>交互式编程课程学习</p>
+          </div>
+          <div
+            class="resource-card"
+            data-title="FrontendMasters"
+            data-detail="深入学习前端开发技能，涵盖React、Vue等主流技术。"
+          >
+            <div class="resource-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>FrontendMasters</h3>
+            <p>深入学习前端开发技能</p>
+          </div>
+        </div>
+        <!-- 资源弹窗 -->
+        <div
+          id="resourceModal"
+          style="
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <div
+            style="
+              background: #fff;
+              padding: 32px 24px;
+              border-radius: 16px;
+              max-width: 350px;
+              box-shadow: 0 8px 32px rgba(67, 97, 238, 0.15);
+              position: relative;
+            "
+          >
+            <button
+              id="closeResourceModal"
+              style="
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                background: none;
+                border: none;
+                font-size: 1.2rem;
+                color: #888;
+                cursor: pointer;
+              "
+            >
+              <i class="fas fa-times"></i>
+            </button>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDetail" style="margin-top: 12px; color: #555"></p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 阶段指南 -->
     <section class="container" id="phases">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">📖 冒险阶段指南</h2>
-            </div>
-            <div class="phase-container">
-                <div class="phase-card" data-progress="30">
-                    <div class="phase-number">1</div>
-                    <h3>复习与工具配置</h3>
-                    <button class="toggle-detail" style="float:right;background:none;border:none;color:var(--primary);font-size:1rem;cursor:pointer;">展开</button>
-                    <div class="phase-progress" style="margin:10px 0 8px 0;height:8px;background:#eee;border-radius:4px;overflow:hidden;"><div style="width:30%;height:100%;background:var(--gradient);"></div></div>
-                    <div class="phase-detail" style="display:none;">
-                        <p>巩固Java基础，配置开发环境，设计博客视觉形象</p>
-                        <ul>
-                            <li>Java集合与多线程</li>
-                            <li>LeetCode算法题</li>
-                            <li>MySQL配置</li>
-                            <li>域名注册与SSL</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="phase-card" data-progress="50">
-                    <div class="phase-number">2</div>
-                    <h3>JavaWeb与前端基础</h3>
-                    <button class="toggle-detail" style="float:right;background:none;border:none;color:var(--primary);font-size:1rem;cursor:pointer;">展开</button>
-                    <div class="phase-progress" style="margin:10px 0 8px 0;height:8px;background:#eee;border-radius:4px;overflow:hidden;"><div style="width:50%;height:100%;background:var(--gradient);"></div></div>
-                    <div class="phase-detail" style="display:none;">
-                        <p>开发留言板应用，理解客户端-服务器交互</p>
-                        <ul>
-                            <li>Servlet与JSP</li>
-                            <li>JavaScript ES6+</li>
-                            <li>Ajax与API测试</li>
-                            <li>响应式设计</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="phase-card" data-progress="70">
-                    <div class="phase-number">3</div>
-                    <h3>SSM框架精通</h3>
-                    <button class="toggle-detail" style="float:right;background:none;border:none;color:var(--primary);font-size:1rem;cursor:pointer;">展开</button>
-                    <div class="phase-progress" style="margin:10px 0 8px 0;height:8px;background:#eee;border-radius:4px;overflow:hidden;"><div style="width:70%;height:100%;background:var(--gradient);"></div></div>
-                    <div class="phase-detail" style="display:none;">
-                        <p>使用Spring、Spring MVC和MyBatis构建博客后端</p>
-                        <ul>
-                            <li>Spring IoC与AOP</li>
-                            <li>MyBatis数据库操作</li>
-                            <li>RESTful API设计</li>
-                            <li>API文档编写</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="phase-card" data-progress="90">
-                    <div class="phase-number">4</div>
-                    <h3>SpringBoot与云部署</h3>
-                    <button class="toggle-detail" style="float:right;background:none;border:none;color:var(--primary);font-size:1rem;cursor:pointer;">展开</button>
-                    <div class="phase-progress" style="margin:10px 0 8px 0;height:8px;background:#eee;border-radius:4px;overflow:hidden;"><div style="width:90%;height:100%;background:var(--gradient);"></div></div>
-                    <div class="phase-detail" style="display:none;">
-                        <p>迁移到SpringBoot并部署到云端服务器</p>
-                        <ul>
-                            <li>SpringBoot配置</li>
-                            <li>云服务器管理</li>
-                            <li>Nginx配置</li>
-                            <li>生产环境部署</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📖 冒险阶段指南</h2>
         </div>
+        <div class="phase-container">
+          <div class="phase-card" data-progress="30">
+            <div class="phase-number">1</div>
+            <h3>复习与工具配置</h3>
+            <button
+              class="toggle-detail"
+              style="
+                float: right;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 1rem;
+                cursor: pointer;
+              "
+            >
+              展开
+            </button>
+            <div
+              class="phase-progress"
+              style="
+                margin: 10px 0 8px 0;
+                height: 8px;
+                background: #eee;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="width: 30%; height: 100%; background: var(--gradient)"
+              ></div>
+            </div>
+            <div class="phase-detail" style="display: none">
+              <p>巩固Java基础，配置开发环境，设计博客视觉形象</p>
+              <ul>
+                <li>Java集合与多线程</li>
+                <li>LeetCode算法题</li>
+                <li>MySQL配置</li>
+                <li>域名注册与SSL</li>
+              </ul>
+            </div>
+          </div>
+          <div class="phase-card" data-progress="50">
+            <div class="phase-number">2</div>
+            <h3>JavaWeb与前端基础</h3>
+            <button
+              class="toggle-detail"
+              style="
+                float: right;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 1rem;
+                cursor: pointer;
+              "
+            >
+              展开
+            </button>
+            <div
+              class="phase-progress"
+              style="
+                margin: 10px 0 8px 0;
+                height: 8px;
+                background: #eee;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="width: 50%; height: 100%; background: var(--gradient)"
+              ></div>
+            </div>
+            <div class="phase-detail" style="display: none">
+              <p>开发留言板应用，理解客户端-服务器交互</p>
+              <ul>
+                <li>Servlet与JSP</li>
+                <li>JavaScript ES6+</li>
+                <li>Ajax与API测试</li>
+                <li>响应式设计</li>
+              </ul>
+            </div>
+          </div>
+          <div class="phase-card" data-progress="70">
+            <div class="phase-number">3</div>
+            <h3>SSM框架精通</h3>
+            <button
+              class="toggle-detail"
+              style="
+                float: right;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 1rem;
+                cursor: pointer;
+              "
+            >
+              展开
+            </button>
+            <div
+              class="phase-progress"
+              style="
+                margin: 10px 0 8px 0;
+                height: 8px;
+                background: #eee;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="width: 70%; height: 100%; background: var(--gradient)"
+              ></div>
+            </div>
+            <div class="phase-detail" style="display: none">
+              <p>使用Spring、Spring MVC和MyBatis构建博客后端</p>
+              <ul>
+                <li>Spring IoC与AOP</li>
+                <li>MyBatis数据库操作</li>
+                <li>RESTful API设计</li>
+                <li>API文档编写</li>
+              </ul>
+            </div>
+          </div>
+          <div class="phase-card" data-progress="90">
+            <div class="phase-number">4</div>
+            <h3>SpringBoot与云部署</h3>
+            <button
+              class="toggle-detail"
+              style="
+                float: right;
+                background: none;
+                border: none;
+                color: var(--primary);
+                font-size: 1rem;
+                cursor: pointer;
+              "
+            >
+              展开
+            </button>
+            <div
+              class="phase-progress"
+              style="
+                margin: 10px 0 8px 0;
+                height: 8px;
+                background: #eee;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="width: 90%; height: 100%; background: var(--gradient)"
+              ></div>
+            </div>
+            <div class="phase-detail" style="display: none">
+              <p>迁移到SpringBoot并部署到云端服务器</p>
+              <ul>
+                <li>SpringBoot配置</li>
+                <li>云服务器管理</li>
+                <li>Nginx配置</li>
+                <li>生产环境部署</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 思维导图 -->
     <section class="container" id="mindmap">
-        <div class="mind-map-container">
-            <h2>🧠 知识体系思维导图</h2>
-            <p>以下是全栈开发知识体系的交互式思维导图，展示了各技术领域之间的关联</p>
-            <canvas id="mindmapChart" width="800" height="500"></canvas>
-        </div>
+      <div class="mind-map-container">
+        <h2>🧠 知识体系思维导图</h2>
+        <p>
+          以下是全栈开发知识体系的交互式思维导图，展示了各技术领域之间的关联
+        </p>
+        <canvas id="mindmapChart" width="800" height="500"></canvas>
+      </div>
     </section>
 
     <!-- 页脚 -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>关于本指南</h3>
-                    <p>这是一个为期6个月的全栈开发学习计划，专为渴望从新手成长为具备就业能力开发者的学习者设计。</p>
-                </div>
-                <div class="footer-section">
-                    <h3>资源链接</h3>
-                    <ul>
-                        <li><a href="#">GitHub学生包</a></li>
-                        <li><a href="#">免费编程资源</a></li>
-                        <li><a href="#">开发者社区</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>联系作者</h3>
-                    <p>如有问题或建议，请通过以下方式联系：</p>
-                    <p>email: example@threetwoa.me</p>
-                    <div style="margin-top:12px;">
-                        <a href="https://github.com/Aafff623" target="_blank" style="color:#fff;margin-right:10px;font-size:1.3rem;"><i class="fab fa-github"></i></a>
-                        <a href="#" style="color:#fff;margin-right:10px;font-size:1.3rem;"><i class="fab fa-weixin"></i></a>
-                        <a href="#" style="color:#fff;font-size:1.3rem;"><i class="fab fa-qq"></i></a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>关于本指南</h3>
+            <p>
+              这是一个为期6个月的全栈开发学习计划，专为渴望从新手成长为具备就业能力开发者的学习者设计。
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>资源链接</h3>
+            <ul>
+              <li><a href="#">GitHub学生包</a></li>
+              <li><a href="#">免费编程资源</a></li>
+              <li><a href="#">开发者社区</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>联系作者</h3>
+            <p>如有问题或建议，请通过以下方式联系：</p>
+            <p>email: example@threetwoa.me</p>
+            <div style="margin-top: 12px">
+              <a
+                href="https://github.com/Aafff623"
+                target="_blank"
+                style="color: #fff; margin-right: 10px; font-size: 1.3rem"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="#"
+                style="color: #fff; margin-right: 10px; font-size: 1.3rem"
+                ><i class="fab fa-weixin"></i
+              ></a>
+              <a href="#" style="color: #fff; font-size: 1.3rem"
+                ><i class="fab fa-qq"></i
+              ></a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Threetwoa全栈开发指南. 保留所有权利</p>
-            </div>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Threetwoa全栈开发指南. 保留所有权利</p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // 平滑滚动导航
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({behavior:'smooth'});
-                }
-            });
+      // 平滑滚动导航
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href.startsWith("#")) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: "smooth" });
+          }
         });
+      });
 
-        // 返回顶部按钮
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', function() {
-            backToTop.style.display = window.scrollY > 300 ? '' : 'none';
-        });
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({top:0,behavior:'smooth'});
-        });
+      // 返回顶部按钮
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", function () {
+        backToTop.style.display = window.scrollY > 300 ? "" : "none";
+      });
+      backToTop.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
 
-        // 资源弹窗交互
-        document.querySelectorAll('.resource-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.getElementById('modalTitle').textContent = card.dataset.title;
-                document.getElementById('modalDetail').textContent = card.dataset.detail;
-                document.getElementById('resourceModal').style.display = 'flex';
-            });
+      // 资源弹窗交互
+      document.querySelectorAll(".resource-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          document.getElementById("modalTitle").textContent =
+            card.dataset.title;
+          document.getElementById("modalDetail").textContent =
+            card.dataset.detail;
+          document.getElementById("resourceModal").style.display = "flex";
         });
-        document.getElementById('closeResourceModal').onclick = function() {
-            document.getElementById('resourceModal').style.display = 'none';
-        };
-        document.getElementById('resourceModal').onclick = function(e) {
-            if (e.target === this) this.style.display = 'none';
-        };
+      });
+      document.getElementById("closeResourceModal").onclick = function () {
+        document.getElementById("resourceModal").style.display = "none";
+      };
+      document.getElementById("resourceModal").onclick = function (e) {
+        if (e.target === this) this.style.display = "none";
+      };
 
-        // 阶段卡片展开/收起
-        document.querySelectorAll('.toggle-detail').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const detail = this.parentElement.querySelector('.phase-detail');
-                if (detail.style.display === 'none') {
-                    detail.style.display = '';
-                    this.textContent = '收起';
-                } else {
-                    detail.style.display = 'none';
-                    this.textContent = '展开';
-                }
-            });
+      // 阶段卡片展开/收起
+      document.querySelectorAll(".toggle-detail").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const detail = this.parentElement.querySelector(".phase-detail");
+          if (detail.style.display === "none") {
+            detail.style.display = "";
+            this.textContent = "收起";
+          } else {
+            detail.style.display = "none";
+            this.textContent = "展开";
+          }
         });
+      });
 
-        // 思维导图
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('mindmapChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['前端开发', '后端开发', '数据库', 'DevOps', '计算机基础', '软技能'],
-                    datasets: [{
-                        label: '技能掌握进度',
-                        data: [85, 90, 80, 70, 75, 90],
-                        backgroundColor: 'rgba(67, 97, 238, 0.2)',
-                        borderColor: 'rgba(67, 97, 238, 1)',
-                        pointBackgroundColor: 'rgba(67, 97, 238, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(67, 97, 238, 1)'
-                    }]
-                },
-                options: {
-                    elements: { line: { borderWidth: 3 } },
-                    scales: { r: { angleLines: { display: true }, suggestedMin: 0, suggestedMax: 100 } }
-                }
-            });
-            // 滚动动画效果
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('floating');
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.phase-card, .resource-card').forEach(card => observer.observe(card));
+      // 思维导图
+      document.addEventListener("DOMContentLoaded", function () {
+        const ctx = document.getElementById("mindmapChart").getContext("2d");
+        new Chart(ctx, {
+          type: "radar",
+          data: {
+            labels: [
+              "前端开发",
+              "后端开发",
+              "数据库",
+              "DevOps",
+              "计算机基础",
+              "软技能",
+            ],
+            datasets: [
+              {
+                label: "技能掌握进度",
+                data: [85, 90, 80, 70, 75, 90],
+                backgroundColor: "rgba(67, 97, 238, 0.2)",
+                borderColor: "rgba(67, 97, 238, 1)",
+                pointBackgroundColor: "rgba(67, 97, 238, 1)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgba(67, 97, 238, 1)",
+              },
+            ],
+          },
+          options: {
+            elements: { line: { borderWidth: 3 } },
+            scales: {
+              r: {
+                angleLines: { display: true },
+                suggestedMin: 0,
+                suggestedMax: 100,
+              },
+            },
+          },
         });
+        // 滚动动画效果
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("floating");
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document
+          .querySelectorAll(".phase-card, .resource-card")
+          .forEach((card) => observer.observe(card));
+      });
     </script>
-</body>
+  </body>
 </html>

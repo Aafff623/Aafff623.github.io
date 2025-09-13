@@ -1,0 +1,704 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --mermaid-theme: default; --mermaid-sequence-numbers: off; --mermaid-flowchart-curve: linear; --mermaid--gantt-left-padding: 75; --sequence-theme: simple; }
+.privacy { display: none; }
+
+
+:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p *, #write.first-line-indent svg * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; position: relative; }
+#write svg h1, #write svg h2, #write svg h3, #write svg h4, #write svg h5, #write svg h6, #write svg p { position: static; white-space: nowrap; overflow: visible; }
+foreignobject { overflow: visible; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.mermaid-svg { margin: auto; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.mac-os #write{
+    caret-color: AccentColor;
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+ol, ul {padding-left: 40px}
+</style><title>总规划</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='🚀-threetwoa的全栈开发终极指南从新手到大师的6个月冒险2025年9月---2026年2月'><span>🚀 Threetwoa的全栈开发终极指南：从新手到大师的6个月冒险（2025年9月 - 2026年2月）</span></h1><p><span>嘿，Threetwoa！这份终极指南是将你原先的路线图和我的详细讲解完美融合而成——像拼乐高一样，把蓝图的结构和故事的生动解释合体，确保零缺失内容。原路线图的战略框架、甘特图、表格、阶段任务和建议全在；我加了通俗的故事类比、用途举例、资源实现逻辑，以及每个阶段的“冒险结局”，让你像读小说一样轻松理解技术。格式上，我创新了：用“冒险章节”风格组织，每个阶段像一章小说，先概述原目标/任务，然后深入讲解用途和资源，最后以结局收尾。思维导图也升级了，融入更多互联。走起，你的“博客城堡”之旅正式启航！</span></p><hr /><h2 id='🌟-冒险总览建造你的数字帝国'><span>🌟 冒险总览：建造你的数字帝国</span></h2><p><span>你的核心使命：打造一个生产级个人博客（</span><code>blog.threetwoa.me</code><span>），作为你的技术作品集，展示全栈能力。这份指南整合GitHub学生包资源，确保每个工具像“超级道具”一样发挥作用。分为三大篇章：</span><strong><span>基础构建</span></strong><span>（打地基）、</span><strong><span>技能提升</span></strong><span>（加墙壁与窗户）、</span><strong><span>项目交付与职业准备</span></strong><span>（装修与开业）。坚持6个月，你将从编程新人变身准备充分的全栈开发者！</span></p><hr /><h2 id='📅-时间线全景互动甘特图'><span>📅 时间线全景：互动甘特图</span></h2><p><span>以下甘特图以月为单位，清晰展示进度——想象它像游戏进度条，帮你追踪冒险。</span></p><div class="md-diagram-panel md-fences-adv-panel" lang="mermaid"><svg id="mermaidChart12" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1140 340" style="max-width: 1140px;" role="graphics-document document" aria-roledescription="gantt" class="mermaid-svg"><style>#mermaidChart12{font-family:sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaidChart12 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaidChart12 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaidChart12 .error-icon{fill:#552222;}#mermaidChart12 .error-text{fill:#552222;stroke:#552222;}#mermaidChart12 .edge-thickness-normal{stroke-width:1px;}#mermaidChart12 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart12 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart12 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaidChart12 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart12 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart12 .marker{fill:#333333;stroke:#333333;}#mermaidChart12 .marker.cross{stroke:#333333;}#mermaidChart12 svg{font-family:sans-serif;font-size:16px;}#mermaidChart12 p{margin:0;}#mermaidChart12 .mermaid-main-font{font-family:sans-serif;}#mermaidChart12 .exclude-range{fill:#eeeeee;}#mermaidChart12 .section{stroke:none;opacity:0.2;}#mermaidChart12 .section0{fill:rgba(102, 102, 255, 0.49);}#mermaidChart12 .section2{fill:#fff400;}#mermaidChart12 .section1,#mermaidChart12 .section3{fill:white;opacity:0.2;}#mermaidChart12 .sectionTitle0{fill:#333;}#mermaidChart12 .sectionTitle1{fill:#333;}#mermaidChart12 .sectionTitle2{fill:#333;}#mermaidChart12 .sectionTitle3{fill:#333;}#mermaidChart12 .sectionTitle{text-anchor:start;font-family:sans-serif;}#mermaidChart12 .grid .tick{stroke:lightgrey;opacity:0.8;shape-rendering:crispEdges;}#mermaidChart12 .grid .tick text{font-family:sans-serif;fill:#333;}#mermaidChart12 .grid path{stroke-width:0;}#mermaidChart12 .today{fill:none;stroke:red;stroke-width:2px;}#mermaidChart12 .task{stroke-width:2;}#mermaidChart12 .taskText{text-anchor:middle;font-family:sans-serif;}#mermaidChart12 .taskTextOutsideRight{fill:black;text-anchor:start;font-family:sans-serif;}#mermaidChart12 .taskTextOutsideLeft{fill:black;text-anchor:end;}#mermaidChart12 .task.clickable{cursor:pointer;}#mermaidChart12 .taskText.clickable{cursor:pointer;fill:#003163!important;font-weight:bold;}#mermaidChart12 .taskTextOutsideLeft.clickable{cursor:pointer;fill:#003163!important;font-weight:bold;}#mermaidChart12 .taskTextOutsideRight.clickable{cursor:pointer;fill:#003163!important;font-weight:bold;}#mermaidChart12 .taskText0,#mermaidChart12 .taskText1,#mermaidChart12 .taskText2,#mermaidChart12 .taskText3{fill:white;}#mermaidChart12 .task0,#mermaidChart12 .task1,#mermaidChart12 .task2,#mermaidChart12 .task3{fill:#8a90dd;stroke:#534fbc;}#mermaidChart12 .taskTextOutside0,#mermaidChart12 .taskTextOutside2{fill:black;}#mermaidChart12 .taskTextOutside1,#mermaidChart12 .taskTextOutside3{fill:black;}#mermaidChart12 .active0,#mermaidChart12 .active1,#mermaidChart12 .active2,#mermaidChart12 .active3{fill:#bfc7ff;stroke:#534fbc;}#mermaidChart12 .activeText0,#mermaidChart12 .activeText1,#mermaidChart12 .activeText2,#mermaidChart12 .activeText3{fill:black!important;}#mermaidChart12 .done0,#mermaidChart12 .done1,#mermaidChart12 .done2,#mermaidChart12 .done3{stroke:grey;fill:lightgrey;stroke-width:2;}#mermaidChart12 .doneText0,#mermaidChart12 .doneText1,#mermaidChart12 .doneText2,#mermaidChart12 .doneText3{fill:black!important;}#mermaidChart12 .crit0,#mermaidChart12 .crit1,#mermaidChart12 .crit2,#mermaidChart12 .crit3{stroke:#ff8888;fill:red;stroke-width:2;}#mermaidChart12 .activeCrit0,#mermaidChart12 .activeCrit1,#mermaidChart12 .activeCrit2,#mermaidChart12 .activeCrit3{stroke:#ff8888;fill:#bfc7ff;stroke-width:2;}#mermaidChart12 .doneCrit0,#mermaidChart12 .doneCrit1,#mermaidChart12 .doneCrit2,#mermaidChart12 .doneCrit3{stroke:#ff8888;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges;}#mermaidChart12 .milestone{transform:rotate(45deg) scale(0.8,0.8);}#mermaidChart12 .milestoneText{font-style:italic;}#mermaidChart12 .doneCritText0,#mermaidChart12 .doneCritText1,#mermaidChart12 .doneCritText2,#mermaidChart12 .doneCritText3{fill:black!important;}#mermaidChart12 .vert{stroke:navy;}#mermaidChart12 .vertText{font-size:15px;text-anchor:middle;fill:navy!important;}#mermaidChart12 .activeCritText0,#mermaidChart12 .activeCritText1,#mermaidChart12 .activeCritText2,#mermaidChart12 .activeCritText3{fill:black!important;}#mermaidChart12 .titleText{text-anchor:middle;font-size:18px;fill:#333;font-family:sans-serif;}#mermaidChart12 :root{--mermaid-alt-font-family:sans-serif;}</style><g></g><g class="grid" transform="translate(75, 290)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0,-255V0H1045V-255"></path><g class="tick" opacity="1" transform="translate(136,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">10/01</text></g><g class="tick" opacity="1" transform="translate(346,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">11/01</text></g><g class="tick" opacity="1" transform="translate(550,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">12/01</text></g><g class="tick" opacity="1" transform="translate(760,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">01/01</text></g><g class="tick" opacity="1" transform="translate(970,0)"><line stroke="currentColor" y2="-255"></line><text fill="#000" y="3" dy="1em" stroke="none" font-size="10" style="text-anchor: middle;">02/01</text></g></g><g><rect x="0" y="48" width="1130" height="24" class="section section0"></rect><rect x="0" y="72" width="1130" height="24" class="section section0"></rect><rect x="0" y="96" width="1130" height="24" class="section section0"></rect><rect x="0" y="120" width="1130" height="24" class="section section0"></rect><rect x="0" y="144" width="1130" height="24" class="section section1"></rect><rect x="0" y="168" width="1130" height="24" class="section section1"></rect><rect x="0" y="192" width="1130" height="24" class="section section1"></rect><rect x="0" y="216" width="1130" height="24" class="section section2"></rect><rect x="0" y="240" width="1130" height="24" class="section section2"></rect><rect x="0" y="264" width="1130" height="24" class="section section2"></rect></g><g><rect id="phase1" rx="3" ry="3" x="75" y="50" width="95" height="20" transform-origin="122.5px 60px" class="task crit0 "></rect><rect id="phase2" rx="3" ry="3" x="170" y="74" width="95" height="20" transform-origin="217.5px 84px" class="task task0 "></rect><rect id="phase3" rx="3" ry="3" x="265" y="98" width="95" height="20" transform-origin="312.5px 108px" class="task task0 "></rect><rect id="phase4" rx="3" ry="3" x="360" y="122" width="95" height="20" transform-origin="407.5px 132px" class="task task0 "></rect><rect id="phase5" rx="3" ry="3" x="455" y="146" width="95" height="20" transform-origin="502.5px 156px" class="task task1 "></rect><rect id="phase6" rx="3" ry="3" x="550" y="170" width="95" height="20" transform-origin="597.5px 180px" class="task task1 "></rect><rect id="phase7" rx="3" ry="3" x="645" y="194" width="143" height="20" transform-origin="716.5px 204px" class="task task1 "></rect><rect id="phase8" rx="3" ry="3" x="788" y="218" width="95" height="20" transform-origin="835.5px 228px" class="task task2 "></rect><rect id="phase9" rx="3" ry="3" x="883" y="242" width="95" height="20" transform-origin="930.5px 252px" class="task task2 "></rect><rect id="phase10" rx="3" ry="3" x="978" y="266" width="142" height="20" transform-origin="1049px 276px" class="task task2 "></rect><text id="phase1-text" font-size="11" x="122.5" y="63.5" text-height="20" class=" taskText taskText0  critText0 width-78.37211608886719">复习与工具配置 </text><text id="phase2-text" font-size="11" x="217.5" y="87.5" text-height="20" class=" taskText taskText0  width-80.46625518798828">JavaWeb与前端 </text><text id="phase3-text" font-size="11" x="312.5" y="111.5" text-height="20" class=" taskText taskText0  width-46.235233306884766">SSM框架 </text><text id="phase4-text" font-size="11" x="407.5" y="135.5" text-height="20" class=" taskText taskText0  width-81.49321746826172">SpringBoot与云 </text><text id="phase5-text" font-size="11" x="502.5" y="159.5" text-height="20" class=" taskText taskText1  width-87.21402740478516">中间件Redis, MQ </text><text id="phase6-text" font-size="11" x="597.5" y="183.5" text-height="20" class=" taskText taskText1  width-81.0568618774414">前端工程 (Vue3) </text><text id="phase7-text" font-size="11" x="716.5" y="207.5" text-height="20" class=" taskText taskText1  width-77.78211975097656">系统设计与面试 </text><text id="phase8-text" font-size="11" x="835.5" y="231.5" text-height="20" class=" taskText taskText2  width-77.78211975097656">项目优化与部署 </text><text id="phase9-text" font-size="11" x="930.5" y="255.5" text-height="20" class=" taskText taskText2  width-55.197906494140625">计算机基础 </text><text id="phase10-text" font-size="11" x="1049" y="279.5" text-height="20" class=" taskText taskText2  width-55.197906494140625">面试与求职 </text></g><g><text dy="0em" x="10" y="98" font-size="11" class="sectionTitle sectionTitle0"><tspan alignment-baseline="central" x="10">基础构建</tspan></text><text dy="0em" x="10" y="182" font-size="11" class="sectionTitle sectionTitle1"><tspan alignment-baseline="central" x="10">技能提升</tspan></text><text dy="0em" x="10" y="254" font-size="11" class="sectionTitle sectionTitle2"><tspan alignment-baseline="central" x="10">项目与职业</tspan></text></g><g class="today"><line x1="92" x2="92" y1="25" y2="315" class="today"></line></g><text x="570" y="25" class="titleText">Threetwoa全栈开发路线图 (2025.9 - 2026.2)</text></svg></div><hr /><h2 id='🛡️-道具宝库资源-任务匹配表'><span>🛡️ 道具宝库：资源-任务匹配表</span></h2><p><span>这个表格是你的“武器库”，将GitHub学生包资源与任务精准对接，确保高效利用。每个资源像游戏道具，有特定“技能加成”。</span></p><figure class='table-figure'><table><thead><tr><th><strong><span>类别</span></strong></th><th><strong><span>资源</span></strong></th><th><strong><span>主要用途</span></strong></th><th><strong><span>任务</span></strong></th></tr></thead><tbody><tr><td><strong><span>核心开发</span></strong></td><td><span>GitHub Copilot</span></td><td><span>AI辅助编码，用于算法、API开发和调试</span></td><td><span>算法题解、Servlet开发、MyBatis映射、Vue组件</span></td></tr><tr><td>&nbsp;</td><td><span>JetBrains套件 (IDEA, WebStorm)</span></td><td><span>专业的Java、Spring和前端开发IDE</span></td><td><span>SSM整合、SpringBoot配置、Vue3开发</span></td></tr><tr><td>&nbsp;</td><td><span>Educative</span></td><td><span>交互式课程，涵盖算法、系统设计和面试准备</span></td><td><span>数据结构、Java多线程、系统设计</span></td></tr><tr><td>&nbsp;</td><td><span>FrontendMasters</span></td><td><span>深入学习JavaScript和前端工程课程</span></td><td><span>JavaScript ES6+、Vue3、前端最佳实践</span></td></tr><tr><td><strong><span>设计与品牌</span></strong></td><td><span>Canva Pro</span></td><td><span>为博客品牌和作品集创建专业视觉效果</span></td><td><span>博客Logo、favicon、社交媒体分享图、简历设计</span></td></tr><tr><td>&nbsp;</td><td><span>Iconscout</span></td><td><span>高质量图标，确保UI设计一致性</span></td><td><span>博客UI图标、作品集素材</span></td></tr><tr><td>&nbsp;</td><td><span>Bootstrap Studio</span></td><td><span>快速原型设计，创建响应式前端布局</span></td><td><span>博客UI原型、留言板UI</span></td></tr><tr><td><strong><span>效率工具</span></strong></td><td><span>Roundpie</span></td><td><span>API测试和环境管理</span></td><td><span>测试Servlet、博客API、缓存性能</span></td></tr><tr><td>&nbsp;</td><td><span>Polypane</span></td><td><span>多设备响应式设计测试</span></td><td><span>确保博客在多设备上的响应式表现</span></td></tr><tr><td>&nbsp;</td><td><span>GitKraken</span></td><td><span>可视化Git管理，确保版本控制清晰</span></td><td><span>管理博客和项目代码库</span></td></tr><tr><td>&nbsp;</td><td><span>Termius</span></td><td><span>SSH客户端，用于服务器管理</span></td><td><span>配置云服务器（DigitalOcean、Azure）</span></td></tr><tr><td><strong><span>云基础设施</span></strong></td><td><span>DigitalOcean ($100信用)</span></td><td><span>托管生产级博客，练习DevOps</span></td><td><span>将博客部署到</span><code>blog.threetwoa.me</code></td></tr><tr><td>&nbsp;</td><td><span>Microsoft Azure ($100信用)</span></td><td><span>体验云服务（如Azure Redis Cache）</span></td><td><span>可选Redis托管、云架构探索</span></td></tr><tr><td>&nbsp;</td><td><span>Namecheap (域名+SSL)</span></td><td><span>为专业品牌提供安全域名</span></td><td><span>配置</span><code>threetwoa.me</code><span>及SSL</span></td></tr><tr><td><strong><span>学习资源</span></strong></td><td><span>GoRails, Codédex, DataCamp</span></td><td><span>补充特定技能学习（如Rails、Python、数据科学）</span></td><td><span>可选深入学习（Rails对比、Python脚本）</span></td></tr></tbody></table></figure><hr /><h2 id='📖-冒险章节阶段-by-阶段深入攻略'><span>📖 冒险章节：阶段-by-阶段深入攻略</span></h2><p><span>每个章节以前一阶段为基础，最终铸就你的博客帝国。结构：先原目标/任务/交付/课程，然后加故事类比、用途举例、资源实现逻辑，最后以“章节结局”收尾。技术讲解通俗逻辑：先为什么用（类比/举例），再怎么用资源实现。</span></p><h3 id='🛠️-章节1复习与工具配置2025年9月11日---9月24日'><span>🛠️ 章节1：复习与工具配置（2025年9月11日 - 9月24日）</span></h3><p><strong><span>原目标</span></strong><span>：通过掌握核心工具和发布博客视觉形象，建立坚实基础。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>通过Educative的《Data Structures for Coding Interviews》复习JavaSE（集合、多线程）。</span></p></li><li><p><span>使用GitHub Copilot解决LeetCode Hot100和SQL50题目。</span></p></li><li><p><span>使用DataGrip配置MySQL数据库。</span></p></li><li><p><span>使用Canva Pro和Iconscout设计博客品牌（Logo、favicon、横幅）。</span></p></li><li><p><span>在Namecheap上注册并配置</span><code>threetwoa.me</code><span>，启用SSL。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>LeetCode/SQL笔记（Obsidian）。</span></p></li><li><p><span>博客视觉资产（Logo、favicon、横幅）。</span></p></li><li><p><span>初始</span><code>threetwoa.me</code><span>静态页面。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Data Structures for Coding Interviews in Java》 - 交互式学习Java集合和算法，适合快速复习。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：《Introduction to SQL》 - 巩固SQL基础，结合DataGrip实践SQL50题目。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：这章节像准备建城堡前的“收拾工具箱”。JavaSE（集合、多线程）是编程的“砖块和水泥”——集合帮你存储和管理数据（比如列表里的帖子），多线程让程序同时干多件事（比如一边加载页面一边处理评论，避免卡顿）。LeetCode和SQL题目是“脑力体操”，练你解决问题的肌肉，比如SQL是数据库的“对话语言”，用来问数据库“给我找所有用户的帖子”。用途举例：想象你的博客有成千上万的访问者，多线程就能让服务器不崩溃；集合能高效存帖子列表，避免乱七八糟。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：像互动游戏一样教你集合和算法——边学边练，复习JavaSE。</span></p></li><li><p><strong><span>GitHub Copilot</span></strong><span>：像AI助手帮你写LeetCode代码，输入问题，它自动补全，帮你调试SQL50题目。</span></p></li><li><p><strong><span>JetBrains套件 (DataGrip)</span></strong><span>：配置MySQL数据库，像个数据库“管家”，帮你创建表、测试SQL查询。</span></p></li><li><p><strong><span>Canva Pro + Iconscout</span></strong><span>：设计博客Logo和favicon，就像用画笔和贴纸美化城堡大门——Canva拖拽式设计，Iconscout提供图标，确保看起来专业。</span></p></li><li><p><strong><span>Namecheap</span></strong><span>：注册域名threetwoa.me并加SSL，像给城堡上锁和挂门牌——安全加密，避免浏览器警告。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：两周后，你的“工具箱”收拾好，城堡大门（静态页面）亮闪闪，笔记里满是算法“秘籍”。</span></p><h3 id='🌐-章节2javaweb与前端基础2025年9月25日---10月8日'><span>🌐 章节2：JavaWeb与前端基础（2025年9月25日 - 10月8日）</span></h3><p><strong><span>原目标</span></strong><span>：开发一个留言板，理解客户端-服务器交互。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>使用JetBrains IDEA学习Servlet、JSP和Session管理。</span></p></li><li><p><span>通过FrontendMasters的《JavaScript: The Hard Parts》掌握JavaScript ES6+和Ajax。</span></p></li><li><p><span>使用Bootstrap Studio开发留言板UI，使用Roundpie测试API。</span></p></li><li><p><span>使用Polypane测试多设备响应式布局。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>基于Session的留言板项目。</span></p></li><li><p><span>JavaWeb和JavaScript笔记（Obsidian）。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>FrontendMasters</span></strong><span>：《JavaScript: The Hard Parts》 - 深入理解JavaScript核心概念，适合Ajax和动态交互开发。</span></p></li><li><p><strong><span>Educative</span></strong><span>：《Learn JavaScript for Beginners》 - 快速掌握ES6+语法，适合初学者巩固基础。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：现在开始建城堡的“门窗”——JavaWeb（Servlet、JSP、Session）是后端“门卫”，控制谁进谁出；前端JavaScript和Ajax是“窗户”，让用户互动（比如实时加载评论）。Session像用户的“VIP卡”，记住登录状态，避免每次都问“你是谁？”。Ajax是“快递员”，不刷新页面就更新内容。用途举例：留言板项目像城堡的“聊天室”——用户发消息（前端JS发送），服务器处理（Servlet接收），Session确保只有登录用户能发。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>JetBrains套件 (IDEA)</span></strong><span>：像专业厨房，帮你写Servlet和JSP代码，自动补全和调试。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：用视频和例子教ES6+和Ajax——像老师手把手演示怎么让页面“活起来”。</span></p></li><li><p><strong><span>Bootstrap Studio</span></strong><span>：快速设计留言板UI，像乐高积木搭响应式布局（手机/电脑都好看）。</span></p></li><li><p><strong><span>Roundpie</span></strong><span>：测试API，像试吃厨师——发请求检查Servlet是否正常响应。</span></p></li><li><p><strong><span>Polypane</span></strong><span>：多设备测试，像试穿衣服——确保留言板在手机上不歪。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：城堡有门窗了！用户能留言互动，笔记记录了JS“魔法”。</span></p><h3 id='🏗️-章节3ssm框架精通2025年10月9日---10月22日'><span>🏗️ 章节3：SSM框架精通（2025年10月9日 - 10月22日）</span></h3><p><strong><span>原目标</span></strong><span>：使用Spring、Spring MVC和MyBatis构建强大的博客后端。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>使用JetBrains IDEA的MyBatis插件学习MyBatis和Spring（IoC/AOP）。</span></p></li><li><p><span>开发博客RESTful API（</span><code>GET /posts</code><span>、</span><code>POST /posts</code><span>等），使用Roundpie测试。</span></p></li><li><p><span>在Obsidian记录API文档。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>完整的SSM博客后端。</span></p></li><li><p><span>API文档（Obsidian）。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Spring Boot for Beginners》 - 学习Spring基础，为后续SpringBoot迁移做准备。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：《RESTful API Design》 - 理解RESTful API设计原则，优化博客API开发。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：SSM（Spring、Spring MVC、MyBatis）像城堡的“智能框架”——Spring是“管家”（IoC管理对象，AOP加安全层），MVC是“交通系统”（Model数据、View视图、Controller控制），MyBatis是“数据库翻译官”，帮你轻松存取帖子数据。用途举例：博客API像城堡的“服务窗口”——GET /posts取帖子列表，POST /posts发新帖；SSM让代码整洁，不用从头写数据库连接。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>JetBrains套件 (IDEA)</span></strong><span>：MyBatis插件像助手，自动生成SQL映射，帮你整合SSM。</span></p></li><li><p><strong><span>Roundpie</span></strong><span>：测试RESTful API，像模拟顾客——检查/posts接口是否返回正确数据。</span></p></li><li><p><strong><span>Educative</span></strong><span>：互动教Spring基础（为下阶段铺路）。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：视频教API设计原则，避免乱七八糟的接口。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：城堡后端建好，能处理帖子了！API文档像菜单，清晰明了。</span></p><h3 id='☁️-章节4springboot与云部署2025年10月23日---11月5日'><span>☁️ 章节4：SpringBoot与云部署（2025年10月23日 - 11月5日）</span></h3><p><strong><span>原目标</span></strong><span>：将博客迁移到SpringBoot并部署到云端。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>使用JetBrains IDEA将SSM博客迁移到SpringBoot。</span></p></li><li><p><span>在DigitalOcean上创建Ubuntu Droplet，使用Termius配置JDK、MySQL、Nginx。</span></p></li><li><p><span>将博客部署到</span><code>blog.threetwoa.me</code><span>，使用Namecheap配置DNS和SSL。</span></p></li><li><p><span>使用Polypane测试响应式表现。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>基于SpringBoot的博客，运行在</span><code>blog.threetwoa.me</code><span>。</span></p></li><li><p><span>部署指南（Obsidian）。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Learn Spring Boot in 100 Steps》 - 快速掌握SpringBoot开发和配置。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：《Introduction to Linux for Data Science》 - 学习Linux服务器基础，辅助DigitalOcean部署。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：SpringBoot像SSM的“升级版汽车”——自动配置，开箱即用；云部署（DigitalOcean）是把城堡搬到“云端天空”，让全世界访问，不用本地服务器。用途举例：迁移博客后，SpringBoot简化配置（一键启动）；部署后，threetwoa.me像在线商店，随时上线。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>JetBrains套件 (IDEA)</span></strong><span>：迁移SSM到SpringBoot，像改装车——插件帮你重构代码。</span></p></li><li><p><strong><span>DigitalOcean</span></strong><span>：创建Droplet，像租云房子——安装JDK、MySQL、Nginx。</span></p></li><li><p><strong><span>Termius</span></strong><span>：SSH连接服务器，像远程钥匙——配置环境、上传代码。</span></p></li><li><p><strong><span>Namecheap</span></strong><span>：DNS和SSL配置，像挂云端门牌——指向Droplet，确保https安全。</span></p></li><li><p><strong><span>Polypane</span></strong><span>：测试响应式，像云端试镜。</span></p></li><li><p><strong><span>Educative</span></strong><span>：步步教配置。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：互动学Linux，帮部署。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：城堡飞上云端！博客在线运行，指南记录了“飞行秘诀”。</span></p><h3 id='📦-章节5中间件集成2025年11月6日---11月19日'><span>📦 章节5：中间件集成（2025年11月6日 - 11月19日）</span></h3><p><strong><span>原目标</span></strong><span>：通过Redis和消息队列提升博客性能。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>使用Termius在DigitalOcean Droplet上安装和配置Redis。</span></p></li><li><p><span>为博客API集成Redis缓存，使用Roundpie测试性能。</span></p></li><li><p><span>可选：体验Azure Redis Cache，比较自建和云服务差异。</span></p></li><li><p><span>通过Educative学习消息队列（如RabbitMQ）。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>博客集成Redis缓存。</span></p></li><li><p><span>消息队列Demo项目。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Redis for Beginners》 - 快速学习Redis缓存配置和使用。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：《Working with Data in the Cloud》 - 了解云服务（如Azure Redis），优化云部署。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：Redis和MQ（消息队列）像城堡的“加速器和邮局”——Redis是“高速缓存”（存热门帖子，避免每次查数据库），MQ是“异步邮差”（发邮件通知，不卡主流程）。用途举例：博客加载快了——Redis缓存帖子，访问者秒开；MQ处理评论通知，不影响页面。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>Termius</span></strong><span>：在Droplet安装Redis，像加引擎——配置缓存。</span></p></li><li><p><strong><span>Roundpie</span></strong><span>：测试缓存性能，像测速仪——比较前后加载时间。</span></p></li><li><p><strong><span>Microsoft Azure</span></strong><span>：可选试Azure Redis，像云邮局——比较自建和托管。</span></p></li><li><p><strong><span>Educative</span></strong><span>：教配置和使用。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：学云服务优化。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：城堡变快了！缓存让它如丝般顺滑，Demo展示邮局魔法。</span></p><h3 id='🎨-章节6前端工程化vue32025年11月20日---12月3日'><span>🎨 章节6：前端工程化（Vue3）（2025年11月20日 - 12月3日）</span></h3><p><strong><span>原目标</span></strong><span>：使用Vue3现代化博客前端，提升用户体验。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>通过FrontendMasters的《Vue3 Fundamentals》学习Vue3。</span></p></li><li><p><span>使用WebStorm重构博客前端为Vue3。</span></p></li><li><p><span>使用Iconscout确保UI图标一致性，使用Polypane测试响应式。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>基于Vue3的博客前端。</span></p></li><li><p><span>前端笔记（Obsidian）。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>FrontendMasters</span></strong><span>：《Vue3 Fundamentals》 - 系统学习Vue3，快速上手前端开发。</span></p></li><li><p><strong><span>Educative</span></strong><span>：《Vue.js for Beginners》 - 提供交互式Vue学习，适合快速入门。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：Vue3像前端的“乐高大师”——组件化建UI（复用按钮、列表），响应式让页面自动更新，像活的画布。用途举例：博客前端现代化——Vue组件建帖子列表，用户互动更流畅，不用刷新。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>FrontendMasters</span></strong><span>：视频手把手教Vue。</span></p></li><li><p><strong><span>JetBrains套件 (WebStorm)</span></strong><span>：重构前端，像Vue专属画室——调试组件。</span></p></li><li><p><strong><span>Iconscout</span></strong><span>：加UI图标，像贴装饰——一致美观。</span></p></li><li><p><strong><span>Polypane</span></strong><span>：响应式测试，像多角度镜子。</span></p></li><li><p><strong><span>Educative</span></strong><span>：互动入门。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：城堡前端华丽升级！用户爱上互动界面。</span></p><h3 id='🧠-章节7系统设计与面试准备2025年12月4日---12月24日'><span>🧠 章节7：系统设计与面试准备（2025年12月4日 - 12月24日）</span></h3><p><strong><span>原目标</span></strong><span>：掌握系统设计和面试核心知识。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>通过Educative的《Grokking the Java Interview》学习JVM、JUC、MySQL和Redis原理。</span></p></li><li><p><span>使用Notion的面试题库模板整理问题答案。</span></p></li><li><p><span>使用Copilot练习系统设计（如博客架构）模拟场景。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>系统设计和面试笔记（Notion/Obsidian）。</span></p></li><li><p><span>博客架构图。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Grokking the Java Interview》 - 全面覆盖Java面试题和系统设计。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：《System Design for Developers》 - 学习系统设计基础，适合博客架构设计。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：系统设计像画城堡“蓝图”——JVM是Java“引擎原理”，JUC是多线程“交通规则”，MySQL/Redis是数据“仓库管理”。用途举例：面试时，设计博客架构——怎么处理高流量？用Redis缓存、JUC并发。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：覆盖JVM等，互动练习。</span></p></li><li><p><strong><span>GitHub Copilot</span></strong><span>：模拟设计场景，像AI建筑师——生成架构图代码。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：视频教蓝图绘制。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：你成了建筑师！笔记像宝典，架构图展示智慧。</span></p><h3 id='🚀-章节8项目优化与生产部署2025年12月25日---2026年1月7日'><span>🚀 章节8：项目优化与生产部署（2025年12月25日 - 2026年1月7日）</span></h3><p><strong><span>原目标</span></strong><span>：为博客添加高级功能，完成生产级部署。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>使用JetBrains IDEA集成SpringAI，实现博客搜索/推荐功能。</span></p></li><li><p><span>使用Termius配置Nginx反向代理和Let’s Encrypt SSL。</span></p></li><li><p><span>使用BrowserStack测试多浏览器兼容性。</span></p></li><li><p><span>使用Canva Pro创建社交媒体分享的Open Graph图片。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>生产级博客（带AI功能，</span><code>https://blog.threetwoa.me</code><span>）。</span></p></li><li><p><span>性能优化报告。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《AI for Developers》 - 学习AI集成基础，适合SpringAI开发。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：《Introduction to DevOps》 - 掌握生产级部署和性能优化技巧。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：SpringAI像加“智能助手”——AI搜索帖子；生产部署是城堡“开业”——Nginx代理流量，SSL加密安全。用途举例：博客加AI推荐，像Netflix建议帖子；优化后，兼容多浏览器，不崩溃。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>JetBrains套件 (IDEA)</span></strong><span>：集成SpringAI，像加AI插件。</span></p></li><li><p><strong><span>Termius</span></strong><span>：配置Nginx和SSL，像加门卫和锁。</span></p></li><li><p><strong><span>Canva Pro</span></strong><span>：创建分享图，像宣传海报。</span></p></li><li><p><strong><span>Educative</span></strong><span>：教AI基础。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：学优化。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：城堡开业大吉！AI让它聪明，报告秀性能。</span></p><h3 id='📚-章节9计算机基础深入学习2026年1月8日---1月21日'><span>📚 章节9：计算机基础深入学习（2026年1月8日 - 1月21日）</span></h3><p><strong><span>原目标</span></strong><span>：强化计算机科学基础，为技术面试做准备。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>通过Educative和DataCamp学习操作系统、网络和数据库。</span></p></li><li><p><span>使用Copilot解决高级LeetCode题目。</span></p></li><li><p><span>在Obsidian记录核心概念。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>计算机科学基础笔记（Obsidian）。</span></p></li><li><p><span>LeetCode题解代码库。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Operating Systems for Developers》 - 深入学习操作系统原理。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：《Computer Networking Basics》 - 掌握网络基础，适合面试准备。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：操作系统、网络、数据库像城堡的“地下基础”——OS管理资源，网络是“道路”，数据库是“储藏室”。用途举例：面试问“为什么Redis快？”——懂OS内存、网络传输，就能答。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：深入OS。</span></p></li><li><p><strong><span>DataCamp</span></strong><span>：互动学网络。</span></p></li><li><p><strong><span>GitHub Copilot</span></strong><span>：解决高级LeetCode，像AI陪练。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：基础牢如磐石！笔记记录核心，代码库满是题解。</span></p><h3 id='🏆-章节10面试冲刺与求职2026年1月22日---2月11日'><span>🏆 章节10：面试冲刺与求职（2026年1月22日 - 2月11日）</span></h3><p><strong><span>原目标</span></strong><span>：通过完善的项目和面试准备获得工作机会。</span></p><ul><li><p><strong><span>任务</span></strong><span>：</span></p><ul><li><p><span>完善博客和作品集，在</span><code>threetwoa.me</code><span>上展示项目。</span></p></li><li><p><span>使用Canva Pro设计专业简历和作品集PDF。</span></p></li><li><p><span>使用Copilot练习模拟面试问题。</span></p></li><li><p><span>申请工作，突出云部署博客和GitHub项目。</span></p></li></ul></li><li><p><strong><span>交付成果</span></strong><span>：</span></p><ul><li><p><span>精美简历和作品集。</span></p></li><li><p><span>提交求职申请。</span></p></li></ul></li><li><p><strong><span>推荐课程</span></strong><span>：</span></p><ul><li><p><strong><span>Educative</span></strong><span>：《Grokking the Coding Interview》 - 提供结构化面试题练习。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：《Technical Interview Prep》 - 模拟技术面试场景。</span></p></li></ul></li></ul><p><strong><span>故事类比与用途讲解</span></strong><span>：这像城堡“招聘派对”——完善作品集，练习面试，像排练演讲。用途举例：博客展示技能，简历突出部署；模拟面试练口才。</span></p><p><strong><span>资源实现逻辑</span></strong><span>：</span></p><ul><li><p><strong><span>Canva Pro</span></strong><span>：设计简历/PDF，像包装礼物。</span></p></li><li><p><strong><span>GitHub Copilot</span></strong><span>：练习问题，像面试机器人。</span></p></li><li><p><strong><span>Educative</span></strong><span>：结构化练习。</span></p></li><li><p><strong><span>FrontendMasters</span></strong><span>：模拟场景。</span></p></li></ul><p><strong><span>章节结局</span></strong><span>：你闪亮登场！求职申请飞出，工作机会来敲门。</span></p><hr /><h2 id='🧠-升级思维导图你的知识帝国网络'><span>🧠 升级思维导图：你的知识帝国网络</span></h2><p><span>这个思维导图融合原版和讲解，展示技能、资源、故事如何互联——像冒险地图，点亮你的路径。</span></p><div class="md-diagram-panel md-fences-adv-panel" lang="mermaid"><svg id="mermaidChart13" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart mermaid-svg" style="max-width: 3840.1376953125px;" viewBox="0 0 3840.1376953125 382.0177307128906" role="graphics-document document" aria-roledescription="flowchart-v2"><style>#mermaidChart13{font-family:sans-serif;font-size:16px;fill:#333;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaidChart13 .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaidChart13 .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaidChart13 .error-icon{fill:#552222;}#mermaidChart13 .error-text{fill:#552222;stroke:#552222;}#mermaidChart13 .edge-thickness-normal{stroke-width:1px;}#mermaidChart13 .edge-thickness-thick{stroke-width:3.5px;}#mermaidChart13 .edge-pattern-solid{stroke-dasharray:0;}#mermaidChart13 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaidChart13 .edge-pattern-dashed{stroke-dasharray:3;}#mermaidChart13 .edge-pattern-dotted{stroke-dasharray:2;}#mermaidChart13 .marker{fill:#333333;stroke:#333333;}#mermaidChart13 .marker.cross{stroke:#333333;}#mermaidChart13 svg{font-family:sans-serif;font-size:16px;}#mermaidChart13 p{margin:0;}#mermaidChart13 .label{font-family:sans-serif;color:#333;}#mermaidChart13 .cluster-label text{fill:#333;}#mermaidChart13 .cluster-label span{color:#333;}#mermaidChart13 .cluster-label span p{background-color:transparent;}#mermaidChart13 .label text,#mermaidChart13 span{fill:#333;color:#333;}#mermaidChart13 .node rect,#mermaidChart13 .node circle,#mermaidChart13 .node ellipse,#mermaidChart13 .node polygon,#mermaidChart13 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaidChart13 .rough-node .label text,#mermaidChart13 .node .label text,#mermaidChart13 .image-shape .label,#mermaidChart13 .icon-shape .label{text-anchor:middle;}#mermaidChart13 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaidChart13 .rough-node .label,#mermaidChart13 .node .label,#mermaidChart13 .image-shape .label,#mermaidChart13 .icon-shape .label{text-align:center;}#mermaidChart13 .node.clickable{cursor:pointer;}#mermaidChart13 .root .anchor path{fill:#333333!important;stroke-width:0;stroke:#333333;}#mermaidChart13 .arrowheadPath{fill:#333333;}#mermaidChart13 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaidChart13 .flowchart-link{stroke:#333333;fill:none;}#mermaidChart13 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaidChart13 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaidChart13 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaidChart13 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaidChart13 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaidChart13 .cluster text{fill:#333;}#mermaidChart13 .cluster span{color:#333;}#mermaidChart13 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaidChart13 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaidChart13 rect.text{fill:none;stroke-width:0;}#mermaidChart13 .icon-shape,#mermaidChart13 .image-shape{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaidChart13 .icon-shape p,#mermaidChart13 .image-shape p{background-color:rgba(232,232,232, 0.8);padding:2px;}#mermaidChart13 .icon-shape rect,#mermaidChart13 .image-shape rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaidChart13 .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaidChart13 .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaidChart13 :root{--mermaid-alt-font-family:sans-serif;}</style><g><marker id="mermaidChart13_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaidChart13_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaidChart13_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaidChart13_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></circle></marker><marker id="mermaidChart13_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><marker id="mermaidChart13_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M2178.934,37.961L885.957,87.004L885.957,108.004" id="L_A_B_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2256.938,62.004L2256.938,87.004L2256.938,108.004" id="L_A_C_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2334.942,38.575L3392.138,87.004L3392.138,108.004" id="L_A_D_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M773.73,147.756L218.949,191.009L218.949,212.009" id="L_B_B1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M807.737,166.009L735.318,191.009L735.318,212.009" id="L_B_B2_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M998.184,161.259L1148.22,191.009L1148.22,212.009" id="L_B_B3_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M998.184,147.639L1562.047,191.009L1562.047,212.009" id="L_B_B4_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2152.708,157.461L1963.231,191.009L1963.231,212.009" id="L_C_C1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2256.938,166.009L2256.938,191.009L2256.938,212.009" id="L_C_C2_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2361.168,157.351L2552.415,191.009L2552.415,212.009" id="L_C_C3_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M3287.908,151.632L2962.822,191.009L2962.822,212.009" id="L_D_D1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M3392.138,166.009L3392.138,191.009L3392.138,212.009" id="L_D_D2_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M3496.368,156.491L3702.138,191.009L3702.138,212.009" id="L_D_D3_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M158.299,270.013L102.145,295.013L102.145,316.013" id="L_B1_E1_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M279.6,270.013L335.754,295.013L335.754,316.013" id="L_B1_E2_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M664.127,270.013L598.215,295.013L598.215,316.013" id="L_B2_E3_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M806.508,270.013L872.42,295.013L872.42,316.013" id="L_B2_E4_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M1148.22,270.013L1148.22,295.013L1148.22,316.013" id="L_B3_E5_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M1494.144,270.013L1431.275,295.013L1431.275,316.013" id="L_B4_E6_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M1629.951,270.013L1692.819,295.013L1692.819,316.013" id="L_B4_E7_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M1963.231,270.013L1963.231,295.013L1963.231,316.013" id="L_C1_E8_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2256.938,270.013L2256.938,295.013L2256.938,316.013" id="L_C2_E9_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2552.415,270.013L2552.415,295.013L2552.415,316.013" id="L_C3_E10_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M2893.598,270.013L2829.508,295.013L2829.508,316.013" id="L_D1_E11_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M3032.045,270.013L3096.136,295.013L3096.136,316.013" id="L_D1_E12_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M3392.138,270.013L3392.138,295.013L3392.138,316.013" id="L_D2_E13_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path><path d="M3702.138,270.013L3702.138,295.013L3702.138,316.013" id="L_D3_E14_0" class=" edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style="" marker-end="url(#mermaidChart13_flowchart-v2-pointEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel "></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default  " id="flowchart-A-0" transform="translate(2256.938148498535, 35.00221252441406)"><rect class="basic label-container" style="" x="-78.00424194335938" y="-27.002212524414062" width="156.00848388671875" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-48.004241943359375, -12.002212524414062)"><rect></rect><foreignObject width="96.00848388671875" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>全栈冒险路线</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-B-1" transform="translate(885.9572639465332, 139.0066375732422)"><rect class="basic label-container" style="" x="-112.22714233398438" y="-27.002212524414062" width="224.45428466796875" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-82.22714233398438, -12.002212524414062)"><rect></rect><foreignObject width="164.45428466796875" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>基础构建: 工具箱+门窗</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-C-3" transform="translate(2256.938148498535, 139.0066375732422)"><rect class="basic label-container" style="" x="-104.23027801513672" y="-27.002212524414062" width="208.46055603027344" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-74.23027801513672, -12.002212524414062)"><rect></rect><foreignObject width="148.46055603027344" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>技能提升: 框架+加速</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-D-5" transform="translate(3392.137783050537, 139.0066375732422)"><rect class="basic label-container" style="" x="-104.23027801513672" y="-27.002212524414062" width="208.46055603027344" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-74.23027801513672, -12.002212524414062)"><rect></rect><foreignObject width="148.46055603027344" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>项目交付: 蓝图+开业</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-B1-7" transform="translate(218.94949340820312, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>复习配置: 砖块水泥+脑力体操</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-B2-9" transform="translate(735.3175010681152, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>JavaWeb前端: 门卫窗户+聊天室</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-B3-11" transform="translate(1148.2203636169434, 243.0110626220703)"><rect class="basic label-container" style="" x="-121.27950286865234" y="-27.002212524414062" width="242.5590057373047" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-91.27950286865234, -12.002212524414062)"><rect></rect><foreignObject width="182.5590057373047" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>SSM: 智能管家+服务窗口</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-B4-13" transform="translate(1562.0473518371582, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>SpringBoot云: 升级汽车+云端天空</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-C1-15" transform="translate(1963.2314529418945, 243.0110626220703)"><rect class="basic label-container" style="" x="-128.23009490966797" y="-27.002212524414062" width="256.46018981933594" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-98.23009490966797, -12.002212524414062)"><rect></rect><foreignObject width="196.46018981933594" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>中间件: 加速邮局+高速缓存</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-C2-17" transform="translate(2256.938148498535, 243.0110626220703)"><rect class="basic label-container" style="" x="-115.47659301757812" y="-27.002212524414062" width="230.95318603515625" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-85.47659301757812, -12.002212524414062)"><rect></rect><foreignObject width="170.95318603515625" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Vue3: 乐高大师+活画布</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-C3-19" transform="translate(2552.4147567749023, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>系统设计: 引擎蓝图+高流量处理</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-D1-21" transform="translate(2962.821762084961, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>优化部署: 智能助手+开业安全</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-D2-23" transform="translate(3392.137783050537, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>计算机基础: 地下根基+内存道路</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-D3-25" transform="translate(3702.1378135681152, 243.0110626220703)"><rect class="basic label-container" style="" x="-130.00000762939453" y="-27.002212524414062" width="260.00001525878906" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-100.00000762939453, -12.002212524414062)"><rect></rect><foreignObject width="200.00001525878906" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>面试求职: 招聘派对+排练演讲</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E1-27" transform="translate(102.14546966552734, 347.01548767089844)"><rect class="basic label-container" style="" x="-94.14546966552734" y="-27.002212524414062" width="188.2909393310547" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-64.14546966552734, -12.002212524414062)"><rect></rect><foreignObject width="128.2909393310547" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Copilot: AI剑算法</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E2-29" transform="translate(335.7535171508789, 347.01548767089844)"><rect class="basic label-container" style="" x="-89.46257781982422" y="-27.002212524414062" width="178.92515563964844" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-59.46257781982422, -12.002212524414062)"><rect></rect><foreignObject width="118.92515563964844" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Canva: 画笔品牌</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E3-31" transform="translate(598.2148056030273, 347.01548767089844)"><rect class="basic label-container" style="" x="-122.99871063232422" y="-27.002212524414062" width="245.99742126464844" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-92.99871063232422, -12.002212524414062)"><rect></rect><foreignObject width="185.99742126464844" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>FrontendMasters: JS老师</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E4-33" transform="translate(872.4201965332031, 347.01548767089844)"><rect class="basic label-container" style="" x="-101.20668029785156" y="-27.002212524414062" width="202.41336059570312" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-71.20668029785156, -12.002212524414062)"><rect></rect><foreignObject width="142.41336059570312" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Polypane: 试穿镜子</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E5-35" transform="translate(1148.2203636169434, 347.01548767089844)"><rect class="basic label-container" style="" x="-99.11412811279297" y="-27.002212524414062" width="198.22825622558594" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-69.11412811279297, -12.002212524414062)"><rect></rect><foreignObject width="138.22825622558594" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>IDEA: MyBatis助手</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E6-37" transform="translate(1431.2753219604492, 347.01548767089844)"><rect class="basic label-container" style="" x="-115.71626281738281" y="-27.002212524414062" width="231.43252563476562" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-85.71626281738281, -12.002212524414062)"><rect></rect><foreignObject width="171.43252563476562" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>DigitalOcean: 云梯部署</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E7-39" transform="translate(1692.8193817138672, 347.01548767089844)"><rect class="basic label-container" style="" x="-95.82780456542969" y="-27.002212524414062" width="191.65560913085938" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-65.82780456542969, -12.002212524414062)"><rect></rect><foreignObject width="131.65560913085938" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Termius: 远程钥匙</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E8-41" transform="translate(1963.2314529418945, 347.01548767089844)"><rect class="basic label-container" style="" x="-86.76622772216797" y="-27.002212524414062" width="173.53245544433594" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-56.76622772216797, -12.002212524414062)"><rect></rect><foreignObject width="113.53245544433594" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Redis: 引擎缓存</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E9-43" transform="translate(2256.938148498535, 347.01548767089844)"><rect class="basic label-container" style="" x="-105.3088150024414" y="-27.002212524414062" width="210.6176300048828" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-75.3088150024414, -12.002212524414062)"><rect></rect><foreignObject width="150.6176300048828" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>WebStorm: Vue画室</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E10-45" transform="translate(2552.4147567749023, 347.01548767089844)"><rect class="basic label-container" style="" x="-102.97197723388672" y="-27.002212524414062" width="205.94395446777344" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-72.97197723388672, -12.002212524414062)"><rect></rect><foreignObject width="145.94395446777344" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Educative: 面试宝典</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E11-47" transform="translate(2829.507785797119, 347.01548767089844)"><rect class="basic label-container" style="" x="-91.21405029296875" y="-27.002212524414062" width="182.4281005859375" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-61.21405029296875, -12.002212524414062)"><rect></rect><foreignObject width="122.4281005859375" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>SpringAI: AI插件</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E12-49" transform="translate(3096.1357383728027, 347.01548767089844)"><rect class="basic label-container" style="" x="-125.41390228271484" y="-27.002212524414062" width="250.8278045654297" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-95.41390228271484, -12.002212524414062)"><rect></rect><foreignObject width="190.8278045654297" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>BrowserStack: 浏览器试镜</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E13-51" transform="translate(3392.137783050537, 347.01548767089844)"><rect class="basic label-container" style="" x="-106.59015655517578" y="-27.002212524414062" width="213.18031311035156" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-76.59015655517578, -12.002212524414062)"><rect></rect><foreignObject width="153.18031311035156" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>DataCamp: 网络互动</p></span></div></foreignObject></g></g><g class="node default  " id="flowchart-E14-53" transform="translate(3702.1378135681152, 347.01548767089844)"><rect class="basic label-container" style="" x="-89.46257781982422" y="-27.002212524414062" width="178.92515563964844" height="54.004425048828125"></rect><g class="label" style="" transform="translate(-59.46257781982422, -12.002212524414062)"><rect></rect><foreignObject width="118.92515563964844" height="24.004425048828125"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="nodeLabel "><p>Canva: 礼物包装</p></span></div></foreignObject></g></g></g></g></g></svg></div><hr /><h2 id='💡-冒险秘籍执行建议与成功法则'><span>💡 冒险秘籍：执行建议与成功法则</span></h2><ol start='' ><li><p><strong><span>聚焦博客核心</span></strong><span>：博客（</span><code>blog.threetwoa.me</code><span>）是你的帝国心脏，所有任务都为其服务——像游戏主线，别偏支线。</span></p></li><li><p><strong><span>Obsidian记录知识，Notion管理任务</span></strong><span>：用Obsidian建技术笔记网络（故事+用途），用Notion跟踪进度和面试题库。</span></p></li><li><p><strong><span>高效利用道具</span></strong><span>：</span></p><ul><li><p><span>立即用Canva Pro创建品牌资产，像点亮起点。</span></p></li><li><p><span>尽早激活DigitalOcean，练服务器“魔法”。</span></p></li><li><p><span>用Roundpie测试所有API，简化“战斗调试”。</span></p></li></ul></li><li><p><strong><span>定期复盘</span></strong><span>：每个章节末，在Notion回顾，像游戏存档；更新GitHub代码库。</span></p></li><li><p><strong><span>展示战绩</span></strong><span>：在GitHub和X分享博客项目，打造个人品牌，吸引“招聘Boss”。</span></p></li></ol><hr /><h2 id='✅-起航清单立即行动事项'><span>✅ 起航清单：立即行动事项</span></h2><ul><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>使用</span><strong><span>Canva Pro</span></strong><span>设计博客Logo和favicon（2025年9月13日前）。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>在</span><strong><span>DigitalOcean</span></strong><span>创建Droplet并通过</span><strong><span>Termius</span></strong><span>连接（2025年9月15日前）。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>开始</span><strong><span>Educative</span></strong><span>的《Data Structures for Coding Interviews》（2025年9月14日前）。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>使用</span><strong><span>Copilot</span></strong><span>解决5道LeetCode Hot100题目（2025年9月16日前）。</span></p></li></ul><hr /><p><span>这份终极指南是你的“冒险宝典”——详细指导每日，灵活适应节奏，故事+视觉让你动力满满。到2026年2月，你将是全栈大师，帝国闪耀！如果卡关，再喊我帮忙。加油，Threetwoa！🌌</span></p></div></div>
+</body>
+</html>
