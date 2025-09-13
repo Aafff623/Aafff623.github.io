@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+      <label for="selector">
+        <p>A <code>select</code> element allows users to choose one option from a list.</p>
+        <select name="selector" id="selector">
+            <optgroup label="Group 1">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </optgroup>
+            <optgroup label="Group 2">
+                <option value="option3">Option 3</option>
+                <option value="option4">Option 4</option>
+            </optgroup>
+            <optgroup label="Group 3">
+                <option value="option5">Option 5</option>
+                <option value="option6">Option 6</option>
+            </optgroup>
+        </select>
+      </label>
+    </form>
+
+    <!--
+        该代码包含两个表单示例：
+
+        1. 时间选择（单选按钮）：
+            - 三个 <input type="radio"> 元素，name 属性均为 "time"。
+            - 单选按钮（radio）具有相同的 name 属性时，用户只能从中选择一个选项。
+            - 这是因为浏览器会将具有相同 name 的 radio 归为一组，组内只能单选。
+
+        2. 选项选择（复选框）：
+            - 三个 <input type="checkbox"> 元素，name 属性均为 "option"。
+            - 复选框（checkbox）即使具有相同的 name 属性，用户也可以多选。
+            - 这是因为每个 checkbox 都是独立的，可以同时选中多个。
+
+        总结：
+            - radio 的 name 属性决定了分组，只能单选。
+            - checkbox 的 name 属性不会影响多选，每个都可以独立选中。
+    -->
+    <form>
+        <h2>时间选择</h2>
+        <input type="radio" id="morning" name="time" value="morning">
+        <label for="morning">早上</label><br>
+        <input type="radio" id="afternoon" name="time" value="afternoon">
+        <label for="afternoon">下午</label><br>
+        <input type="radio" id="evening" name="time" value="evening">
+        <label for="evening">晚上</label><br>
+    </form>
+    
+    <form>
+        <h2>checkbox选择示例</h2>
+        <input type="checkbox" id="optionA" name="option" >
+        <label for="optionA">选项 A</label><br>
+        <input type="checkbox" id="optionB" name="option" >
+        <label for="optionB">选项 B</label><br>
+        <input type="checkbox" id="optionC" name="option" >
+        <label for="optionC">选项 C</label><br>
+    </form>
+
+</body>
+</html>
