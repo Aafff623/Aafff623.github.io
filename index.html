@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial</div>-scale=1.0">
     <title>ThreeTwoA | CS Student & Full-Stack Developer</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Palp1tate/LXGW-WenKai-Web@latest/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
@@ -13,14 +13,38 @@
     <!-- 顶部导航栏 -->
     <nav class="lxgw-nav">
         <div class="nav-inner">
-            <span class="brand">ThreeTwoA</span>
+             <img src="images/头像/蓝色卡通小人.svg" alt="品牌" width="40" height="40">
+            <span class="brand">
+                <a href="index.html">
+                    ThreeTwoA
+                </a>
+                
+            </span>
             <div>
-                <a href="#">首页</a>
-                <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank">博客日志</a>
-                <a href="#" id="projectLink">项目导览</a>
-                <a href="Notes/Road/FullStack_Journey.html">全栈规划</a>
-                <a href="#">杂谈琐记</a>
-                <a href="#">资源分享</a>
+                <a href="#">
+                    <img src="images/头像/首页小人.svg" alt="icon" width="30" height="30">
+                    Home
+                </a>
+                <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank">
+                    <img src="images/blogger.svg" alt="icon" width="30" height="30">
+                    Blog
+                </a>
+                <a href="#" id="projectLink">
+                    <img src="images/iconfont/ai.svg" alt="icon" width="30" height="30">
+                    Projects
+                </a>
+                <a href="Notes/Road/FullStack_Journey.html">
+                    <img src="images/头像/蓝色卡通小人.svg" alt="icon" width="30" height="30">
+                    Plan
+                </a>
+                <a href="#">
+                    <img src="images/chat.svg" alt="icon" width="30" height="30">
+                    ChatNotes
+                </a>
+                <a href="#">
+                     <img src="images/iconfont/004-robot hand.svg" alt="icon" width="30" height="30">
+                     Resources
+                    </a>
                 <!-- 添加主题切换按钮 -->
                 <button class="theme-toggle" id="themeToggle" title="切换主题">
                     <svg class="theme-icon" id="themeIcon" viewBox="0 0 24 24">
@@ -42,22 +66,35 @@
         </div>
     </nav>
     <!-- 欢迎横幅 -->
-    <div class="welcome-banner">
-        <span>欢迎访问我的主页！</span>
+    <div class="welcome-banner" style="text-align:center;">
+        <img src="images/iconfont/标签.svg" alt="icon" width="100" height="50">
+        <span>
+            君来此处，风雅自生
+            <hr>
+            Welcome to my personal portfolio!
+        </span>
     </div>
-    <div class="container">
+    <div class="container"></div>
         <!-- 主页头部信息 -->
         <header class="main-header">
             <div class="avatar-large">
-                <img src="images/touxiang.png" alt="threetwoa">
+                <img src="images/wx头像.jpg" alt="threetwoa">
             </div>
-            <h1>threetwoa</h1>
+            <h1>
+                threetwoa
+                <img src="images/Iconscout/黄发小人.svg" alt="icon" width="100" height="100">
+            </h1>
             <p>CS sophomore (software engineering)</p>
             <p class="desc">Goals: Full-Stack Developer</p>
             <p class="desc">专注于Web开发与Java后端学习，通过项目驱动成长</p>
             <div class="links">
-                <a href="https://github.com/Aafff623" target="_blank" title="GitHub">GitHub</a>
-                <a href="https://space.bilibili.com/3499088584312327" target="_blank" title="B站">B站</a>
+                <a href="https://github.com/Aafff623" target="_blank" title="GitHub">
+                    <img src="images/github.svg" alt="icon" width="30" height="20">
+                    GitHub
+                </a>
+                <a href="https://space.bilibili.com/3499088584312327" target="_blank" title="B站">
+                    <img src="images/Bilibili.svg" alt="icon" width="30" height="20">
+                    Bilibili</a>
             </div>
         </header>
         <!-- 技术栈标签自适应区域 -->
@@ -72,44 +109,142 @@
         <main class="main-grid">
             <!-- 左侧：学习进度 + 本周任务 -->
             <div class="card-hover grid-left">
-                <h2>学习进度</h2>
+                <h2>Learning Progress</h2>
+                <!-- JavaSE -->
                 <div style="margin-bottom:18px;">
                     <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                        <span>Java后端</span><span>65%</span>
+                        <span>JavaSE</span><span>90%</span>
                     </div>
                     <div class="progress-bar-wrap">
-                        <div class="progress-bar" style="width:65%"></div>
+                        <div class="progress-bar" style="width:90%"></div>
                     </div>
                 </div>
+                <!-- 前端三件套 -->
                 <div style="margin-bottom:18px;">
                     <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                        <span>前端开发</span><span>40%</span>
+                        <span>html + CSS + JavaScript</span><span>60%</span>
                     </div>
                     <div class="progress-bar-wrap">
-                        <div class="progress-bar" style="width:40%"></div>
+                        <div class="progress-bar" style="width:60%"></div>
                     </div>
                 </div>
+                <!-- Algorithm -->
                 <div style="margin-bottom:32px;">
                     <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                        <span>算法</span><span>30%</span>
+                        <span>Algorithm</span><span>30%</span>
                     </div>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" style="width:30%"></div>
                     </div>
                 </div>
                 
-                <h2>本周任务</h2>
-                <ul style="margin:0;padding:0;list-style:none;">
-                    <li style="margin-bottom:10px;"><span style="color:#38bdf8;font-weight:bold;">&#10003;</span> 完善导航页内容</li>
-                    <li style="margin-bottom:10px;"><span style="color:#38bdf8;font-weight:bold;">&#10003;</span> 学习Tailwind响应式设计</li>
-                    <li style="margin-bottom:10px;"><span style="color:#aaa;">•</span> 规划博客板块</li>
-                    <li><span style="color:#aaa;">•</span> LeetCode每日一题</li>
-                </ul>
+                <h2>WeekTask</h2>
+                <div class="week-task-list" style="background:var(--card-bg,#f8fafc);border-radius:16px;padding:24px 18px;box-shadow:0 2px 12px rgba(60,60,60,0.08);margin-bottom:20px;">
+         
+                    <!-- 周任务列表区域，包含本周和下周任务 -->
+                    <div style="display:flex;gap:18px;flex-w</div>rap:wrap;"></div>
+                        <!-- W1：本周任务 -->
+                        <details open style="flex:1;min-width:220px;background:#e0f2fe;border-radius:10px;padding:14px 12px;box-shadow:0 1px 6px rgba(56,189,248,0.08);display:flex;flex-direction:column;">
+                            <summary style="cursor:pointer;font-size:1.08em;color:#0ea5e9;font-weight:500;display:flex;justify-content:space-between;align-items:center;">
+                                <span><strong>W1</strong> 本周任务</span>
+                            </summary>
+                            <ul style="margin:10px 0 0 0;padding:0;list-style:none;">
+                                <li style="margin-bottom:10px;">
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" checked disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>完善导航页布局,图标,内容更新</span>
+                                    </label>
+                                </li>
+                                <li style="margin-bottom:10px;">
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" checked disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>了解Tailwind设计响应式布局</span>
+                                    </label>
+                                </li>
+                                <li style="margin-bottom:10px;">
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>规划博客板块</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>LeetCode每日一题</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <!-- 本周心情选择 -->
+                            <div class="week-mood">
+                                <span class="mood-icon" title="很棒">😄</span>
+                                <span class="mood-icon" title="一般">😐</span>
+                                <span class="mood-icon" title="压力">😣</span>
+                            </div>
+                        </details>
+                        <!-- W2：下周任务 -->
+                        <details style="flex:1;min-width:220px;background:#fef9c3;border-radius:10px;padding:14px 12px;box-shadow:0 1px 6px rgba(253,224,71,0.08);display:flex;flex-direction:column;">
+                            <summary style="cursor:pointer;font-size:1.08em;color:#eab308;font-weight:500;display:flex;justify-content:space-between;align-items:center;">
+                                <span><strong>W2</strong> 下周任务</span>
+                            </summary>
+                            <ul style="margin:10px 0 0 0;padding:0;list-style:none;">
+                                <li style="margin-bottom:10px;">
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>学习JavaWeb基础</span>
+                                    </label>
+                                </li>
+                                <li style="margin-bottom:10px;">
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>完成一个前端小组件</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label style="display:flex;align-items:center;gap:8px;">
+                                        <span class="custom-checkbox">
+                                            <input type="checkbox" disabled>
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span>继续LeetCode每日一题</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            <!-- 下周心情选择 -->
+                            <div class="week-mood">
+                                <span class="mood-icon" title="很棒">😄</span>
+                                <span class="mood-icon" title="一般">😐</span>
+                                <span class="mood-icon" title="压力">😣</span>
+                            </div>
+                        </details>
+                        <!-- 可继续添加更多周任务 -->
+                    </div>
+                    <script>
+             
+                    </script>
+                </div>
             </div>
             
             <!-- 中间：核心资源模块 -->
             <div class="card-hover grid-center">
-                <h2>核心资源</h2>
+                <h2>Output</h2>
                 <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank" class="resource-link">
                     <span class="resource-icon">&#128221;</span>
                     <div>
@@ -142,26 +277,67 @@
             
             <!-- 右侧：技术栈 + 学习规划 -->
             <div class="card-hover grid-right">
-                <h2>目前掌握并使用的技术栈</h2>
+                <h2>Current Tech Stack</h2>
                 <div class="tech-stack-list">
-                    <span>JavaSE/MySQL/JDBC</span>
-                    <span>HTML/CSS/JavaScript</span>
+                    <span>JavaSE</span>
+                    <span>MySQL</span>
+                    <span>JDBC</span>
                     <span>Bootstrap/Tailwind CSS</span>
-                    <span>Git/Gitee</span>
+                    <span>Git+VSCode Gitee</span>
                 </div>
+                <!-- 收录框：前端三件套（美化+创新UI） -->
+                <!-- <details class="frontend-collection" style="margin-top:28px;background:linear-gradient(135deg,#e0f2fe 60%,#f0f9ff 100%);border-radius:16px;padding:18px 16px;box-shadow:0 4px 18px rgba(56,189,248,0.12);border:1.5px solid #7dd3fc;transition:box-shadow 0.2s;">
+                    <summary style="cursor:pointer;font-size:1.13em;color:#0284c7;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;">
+                        <span style="width:100%;text-align:center;display:block;letter-spacing:2px;">
+                            前端三件套
+                        </span>
+                        <span style="font-size:1.2em;color:#0ea5e9;transition:transform 0.2s;">&#9660;</span>
+                    </summary>
+                    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;justify-content:center;"></div>
+                        <div class="collection-tag" style="background:linear-gradient(90deg,#bae6fd 70%,#f0fdfa 100%);color:#0369a1;padding:10px 22px;border-radius:12px;font-weight:600;box-shadow:0 2px 8px rgba(56,189,248,0.10);display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s;white-space:nowrap;">
+                            HTML
+                        </div>
+                          <div class="collection-tag" style="background:linear-gradient(90deg,#bae6fd 70%,#f0fdfa 100%);color:#0369a1;padding:10px 22px;border-radius:12px;font-weight:600;box-shadow:0 2px 8px rgba(56,189,248,0.10);display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s;white-space:nowrap;">
+                            CSS
+                        </div>
+                          <div class="collection-tag" style="background:linear-gradient(90deg,#bae6fd 70%,#f0fdfa 100%);color:#0369a1;padding:10px 22px;border-radius:12px;font-weight:600;box-shadow:0 2px 8px rgba(56,189,248,0.10);display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s;white-space:nowrap;">
+                            JavaScript
+                        </div>
+                    </div>
+                </details> -->
 
-                <h2><a href="Notes/Road/ttajouery.html">学习规划</a></h2>
+                <h2><a href="Notes/Road/ttajouery.html">Study Plan</a></h2>
                 <div style="margin-bottom:14px;">
-                    <h3 style="margin-bottom:4px;">当前阶段</h3>
-                    <p style="color:var(--text-secondary);">复习目前所学的前后端知识,整理个人计划,制作并且维护项目驱动学习的初版生态</p>
+                    <h3 style="margin-bottom:4px;">Current Stage</h3>
+                    <p style="color:var(--text-secondary);">
+                        <ul>
+                            <li>复习目前所学的前后端知识</li>
+                            <li>整理个人计划</li>
+                            <li>制作并且维护项目驱动学习的初版生态</li>
+                        </ul>
+                    </p>
                 </div>
                 <div style="margin-bottom:14px;">
-                    <h3 style="margin-bottom:4px;">下一阶段</h3>
-                    <p style="color:var(--text-secondary);">JavaWeb,Maven,SSM框架的学习,前端小组件的样例练习</p>
+                    <h3 style="margin-bottom:4px;">Next Level</h3>
+                    <p style="color:var(--text-secondary);">
+                        <ul> 
+                            <li>JavaWeb,Maven,SSM框架的学习</li>
+                            <li>前端小组件的样例练习</li>
+                            <li>LeetCode刷题</li>
+                        </ul>
+                       
+                    </p>
                 </div>
                 <div>
-                    <h3 style="margin-bottom:4px;">长期目标</h3>
-                    <p style="color:var(--text-secondary);">全栈博客系统开发,项目实战的练习,一定的算法基础</p>
+                    <h3 style="margin-bottom:4px;">Long-term Goals</h3>
+                    <p style="color:var(--text-secondary);">
+                        <ul>
+                            <li>Java后端:SpringBoot,SpringCloud,微服务架构</li>
+                            <li>前端:Vue3+TS,React,Node.js</li>
+                            <li>移动端:Flutter</li>
+                            <li>其他:数据结构与算法,计算机网络,操作系统基础</li>
+                        </ul>
+                    </p>
                 </div>
             </div>
         </main>
