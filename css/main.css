@@ -536,3 +536,77 @@ body {
     z-index: 1;
     pointer-events: none;
 }
+           
+                        .custom-checkbox {
+                            position: relative;
+                            width: 22px;
+                            height: 22px;
+                            margin-right: 8px;
+                        }
+                        .custom-checkbox input[type="checkbox"] {
+                            opacity: 0;
+                            width: 22px;
+                            height: 22px;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            cursor: pointer;
+                        }
+                        .custom-checkbox .checkmark {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            width: 22px;
+                            height: 22px;
+                            background: #fff;
+                            border: 2px solid #38bdf8;
+                            border-radius: 6px;
+                            transition: border-color 0.2s;
+                            box-shadow: 0 1px 4px rgba(56,189,248,0.08);
+                        }
+                        .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+                            background: linear-gradient(135deg,#38bdf8 60%,#0ea5e9 100%);
+                            border-color: #0ea5e9;
+                        }
+                        .custom-checkbox .checkmark:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                        }
+                        .custom-checkbox input[type="checkbox"]:checked + .checkmark:after {
+                            display: block;
+                        }
+                        .custom-checkbox .checkmark:after {
+                            left: 6px;
+                            top: 2px;
+                            width: 7px;
+                            height: 13px;
+                            border: solid #fff;
+                            border-width: 0 3px 3px 0;
+                            transform: rotate(45deg);
+                        }
+                        .week-task-list label {
+                            font-size: 1em;
+                            color: #334155;
+                            transition: color 0.2s;
+                        }
+                        .week-task-list input[type="checkbox"]:checked ~ span {
+                            color: #0ea5e9;
+                            text-decoration: line-through;
+                        }
+                        .week-mood {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            margin-left: 12px;
+                        }
+                        .mood-icon {
+                            font-size: 1.4em;
+                            cursor: pointer;
+                            transition: transform 0.15s;
+                        }
+                        .mood-icon.selected {
+                            transform: scale(1.2);
+                            filter: drop-shadow(0 2px 6px #38bdf8);
+                        }
+                    

@@ -214,3 +214,13 @@ function initApp() {
 
 // 启动应用
 document.addEventListener('DOMContentLoaded', initApp);
+
+           // 简单选中效果（仅前端展示，不存储）
+                        document.querySelectorAll('.week-mood').forEach(function(moodBar){
+                            moodBar.querySelectorAll('.mood-icon').forEach(function(icon){
+                                icon.addEventListener('click',function(){
+                                    moodBar.querySelectorAll('.mood-icon').forEach(function(i){i.classList.remove('selected');});
+                                    icon.classList.add('selected');
+                                });
+                            });
+                        });
