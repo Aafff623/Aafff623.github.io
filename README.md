@@ -24,5 +24,5 @@
   - **task:** 把昨晚做成的"简易记事本"在线页面集成到项目展示板块中
   - **技术学习记录:** 将主仓库文件夹进行分类,通过ds询问方向促学
 - ***2025-09-14:*** 
-  - **task:** ui,组件,收纳框,头像,icon,动态json组件插入
-  - **技术学习记录:** Iconscout,iconfont
+  - **task:** ui,组件,收纳框,头像,icon,动态json组件插入,之后打算调整排版,用Tailwind再写一个网页的版本,lottie替换静态组件
+  - **技术学习记录:** Iconscout,iconfont,lottie

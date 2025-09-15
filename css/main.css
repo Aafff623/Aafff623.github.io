@@ -1,612 +1,627 @@
 /* 主题变量定义 */
 :root {
-    /* 明亮主题变量 */
-    --bg-primary: #f8fafc;
-    --bg-secondary: #f1f5f9;
-    --nav-bg: rgba(255, 255, 255, 0.8);
-    --text-header: #1e293b;
-    --text-primary: #334155;
-    --text-secondary: #64748b;
-    --text-accent: #3b82f6;
-    --accent-primary: #3b82f6;
-    --accent-secondary: #60a5fa;
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --card-border: rgba(148, 163, 184, 0.1);
-    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    --nav-gradient: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.9));
+  /* 明亮主题变量 */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --text-header: #1e293b;
+  --text-primary: #334155;
+  --text-secondary: #64748b;
+  --text-accent: #3b82f6;
+  --accent-primary: #3b82f6;
+  --accent-secondary: #60a5fa;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: rgba(148, 163, 184, 0.1);
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --nav-gradient: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.9),
+    rgba(241, 245, 249, 0.9)
+  );
 }
 
 [data-theme="dark"] {
-    /* 暗色主题变量 - 提高对比度 */
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --nav-bg: rgba(15, 23, 42, 0.95);
-    --text-header: #ffffff;
-    --text-primary: #f1f5f9;
-    --text-secondary: #e2e8f0;
-    --text-accent: #60a5fa;
-    --accent-primary: #60a5fa;
-    --accent-secondary: #3b82f6;
-    --card-bg: rgba(30, 41, 59, 0.98);
-    --card-border: rgba(148, 163, 184, 0.3);
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    --nav-gradient: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  /* 暗色主题变量 - 提高对比度 */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --nav-bg: rgba(15, 23, 42, 0.95);
+  --text-header: #ffffff;
+  --text-primary: #f1f5f9;
+  --text-secondary: #e2e8f0;
+  --text-accent: #60a5fa;
+  --accent-primary: #60a5fa;
+  --accent-secondary: #3b82f6;
+  --card-bg: rgba(30, 41, 59, 0.98);
+  --card-border: rgba(148, 163, 184, 0.3);
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --nav-gradient: linear-gradient(
+    to right,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 41, 59, 0.95)
+  );
 }
 
 /* 基础样式 */
 body {
-    font-family: 'LXGW WenKai', sans-serif;
-    background: var(--bg-gradient);
-    color: var(--text-primary);
-    transition: all 0.3s ease-in-out;
-    min-height: 100vh;
+  font-family: "LXGW WenKai", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  transition: all 0.3s ease-in-out;
+  min-height: 100vh;
 }
 
 /* 导航栏样式 */
 .lxgw-nav {
-    background: var(--nav-gradient);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--card-border);
+  background: var(--nav-gradient);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .lxgw-nav .nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 32px;
-    height: 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
 }
 
 .lxgw-nav a {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: 500;
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-    font-size: 1.1rem;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1.1rem;
 }
 
 .lxgw-nav a:hover {
-    background: var(--accent-primary);
-    color: #ffffff;
+  background: var(--accent-primary);
+  color: #ffffff;
 }
 
 .lxgw-nav .brand {
-    font-size: 1.6rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: var(--text-header);
-    margin-right: 16px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--text-header);
+  margin-right: 16px;
 }
 
 /* 主题切换按钮样式 */
 .theme-toggle {
-    background: transparent;
-    border: 1px solid var(--text-secondary);
-    color: var(--text-primary);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    padding: 8px;
-    margin-left: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid var(--text-secondary);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 8px;
+  margin-left: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .theme-toggle:hover {
-    background: var(--bg-secondary);
-    transform: scale(1.1);
+  background: var(--bg-secondary);
+  transform: scale(1.1);
 }
 
 .theme-icon {
-    width: 20px;
-    height: 20px;
-    stroke: currentColor;
-    stroke-width: 2;
-    fill: none;
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 /* 欢迎横幅样式 */
 .welcome-banner {
-    background: linear-gradient(90deg,rgba(59,130,246,0.18) 0%,rgba(30,64,175,0.18) 100%);
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(59,130,246,0.12);
-    backdrop-filter: blur(8px);
-    padding: 1.5rem 2rem;
-    margin-top: 90px;
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.18) 0%,
+    rgba(30, 64, 175, 0.18) 100%
+  );
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.12);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem 2rem;
+  margin-top: 90px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .welcome-banner span {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent-primary);
-    letter-spacing: 2px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 2px;
 }
 
 /* 主页内容区样式 */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    margin-top: 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  margin-top: 120px;
 }
 
 .main-header {
-    margin-top: 180px;
-    margin-bottom: 32px;
-    text-align: center;
+  margin-top: 180px;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 .main-header h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--text-header);
-    margin-bottom: 1rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-header);
+  margin-bottom: 1rem;
 }
 
 .main-header p {
-    font-size: 1.3rem;
-    color: var(--text-accent);
-    margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: var(--text-accent);
+  margin-bottom: 0.5rem;
 }
 
 .main-header .desc {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
 }
 
 .avatar-large {
-    width: 160px;
-    height: 160px;
-    margin: 0 auto 24px auto;
-    border-radius: 50%;
-    box-shadow: 0 4px 24px rgba(59,130,246,0.18);
-    overflow: hidden;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 24px auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.18);
+  overflow: hidden;
 }
 
 .avatar-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .main-header .links {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
 }
 
 .main-header .links a {
-    display: inline-block;
-    padding: 8px 22px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    background: #2563eb;
-    color: #fff;
-    text-decoration: none;
-    transition: background 0.2s;
+  display: inline-block;
+  padding: 8px 22px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s;
 }
 
 .main-header .links a:last-child {
-    background: #fff;
-    color: var(--accent-primary);
-    border: 2px solid var(--accent-primary);
+  background: #fff;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
 }
 
 .main-header .links a:hover {
-    background: #38bdf8;
-    color: #fff;
+  background: #38bdf8;
+  color: #fff;
 }
 
 /* 技术标签样式 */
 .tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    min-height: 40px;
-    max-height: 120px;
-    overflow-y: auto;
-    margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 40px;
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 24px;
 }
 
 .tech-tag {
-    background: var(--card-bg);
-    color: var(--text-accent);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 0.3em 1em;
-    font-size: 1rem;
-    white-space: nowrap;
-    transition: font-size 0.2s;
+  background: var(--card-bg);
+  color: var(--text-accent);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 0.3em 1em;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: font-size 0.2s;
 }
 
 .tech-tags.small .tech-tag {
-    font-size: 0.85rem;
-    padding: 0.2em 0.7em;
+  font-size: 0.85rem;
+  padding: 0.2em 0.7em;
 }
 
 .tech-tags.expanded {
-    max-height: 240px;
+  max-height: 240px;
 }
 
 /* 卡片样式 */
 .card-hover {
-    border-radius: 18px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    box-shadow: 0 4px 24px rgba(59,130,246,0.12);
-    padding: 32px 24px;
-    margin-bottom: 24px;
-    transition: box-shadow 0.2s;
-    color: var(--text-primary);
+  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.12);
+  padding: 32px 24px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s;
+  color: var(--text-primary);
 }
 
 .card-hover:hover {
-    box-shadow: 0 8px 32px rgba(59,130,246,0.18);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.18);
 }
 
 .card-hover h2 {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--text-accent);
-    margin-bottom: 18px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-accent);
+  margin-bottom: 18px;
 }
 
 /* 进度条样式 */
 .progress-bar-wrap {
-    background: #e0e7ef;
-    border-radius: 8px;
-    height: 8px;
-    width: 100%;
-    overflow: hidden;
+  background: #e0e7ef;
+  border-radius: 8px;
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .progress-bar {
-    height: 8px;
-    border-radius: 8px;
-    background: linear-gradient(90deg,#38bdf8 60%,#2563eb 100%);
-    transition: width 0.4s;
+  height: 8px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #38bdf8 60%, #2563eb 100%);
+  transition: width 0.4s;
 }
 
 /* 网格布局样式 */
 .main-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
 }
 
 .grid-left {
-    grid-column: 1;
+  grid-column: 1;
 }
 
 .grid-center {
-    grid-column: 2;
+  grid-column: 2;
 }
 
 .grid-right {
-    grid-column: 3;
+  grid-column: 3;
 }
 
 @media (max-width: 900px) {
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-    .grid-left, .grid-center, .grid-right {
-        grid-column: 1;
-    }
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .grid-left,
+  .grid-center,
+  .grid-right {
+    grid-column: 1;
+  }
 }
 
 /* 技术栈模块样式 */
 .tech-stack-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .tech-stack-list span {
-    background: var(--accent-primary);
-    color: #ffffff;
-    border: 1px solid var(--accent-primary);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: 1px solid var(--accent-primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 /* 合并卡片样式 */
 .grid-left h2:not(:first-child),
 .grid-right h2:not(:first-child) {
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid var(--card-border);
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--card-border);
 }
 
 /* 技术图谱画布样式 */
 .tech-graph-canvas {
-    position: relative;
-    width: 100%;
-    min-height: 320px;
-    background: rgba(255,255,255,0.95);
-    margin: 32px 0;
-    border-radius: 24px;
-    box-shadow: 0 4px 24px rgba(59,130,246,0.08);
-    cursor: grab;
-    backdrop-filter: blur(8px);
-    overflow: auto;
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  background: rgba(255, 255, 255, 0.95);
+  margin: 32px 0;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.08);
+  cursor: grab;
+  backdrop-filter: blur(8px);
+  overflow: auto;
 }
 
 .tech-stage {
-    position: relative;
-    width: 1400px;
-    height: 720px;
+  position: relative;
+  width: 1400px;
+  height: 720px;
 }
 
 .tech-node {
-    position: absolute;
-    min-width: 120px;
-    padding: 18px 24px;
-    background: #334155;
-    color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(14,165,233,0.08);
+  position: absolute;
+  min-width: 120px;
+  padding: 18px 24px;
+  background: #334155;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.08);
 }
 
 .tech-node-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 6px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .tech-node-desc {
-    font-size: 1rem;
-    color: #0ea5e9;
+  font-size: 1rem;
+  color: #0ea5e9;
 }
 
 .tech-node.checked {
-    background: linear-gradient(135deg,#38bdf8 60%,#2563eb 100%);
-    color: #fff;
+  background: linear-gradient(135deg, #38bdf8 60%, #2563eb 100%);
+  color: #fff;
 }
 
 .tech-link {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* 资源链接样式 */
 .resource-link {
-    display: flex;
-    align-items: center;
-    padding: 18px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 14px;
-    margin-bottom: 14px;
-    text-decoration: none;
-    transition: background 0.2s;
-    color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  transition: background 0.2s;
+  color: var(--text-primary);
 }
 
 .resource-link:hover {
-    background: var(--bg-secondary);
-    color: #fff;
+  background: var(--bg-secondary);
+  color: #fff;
 }
 
 .resource-icon {
-    width: 38px;
-    height: 38px;
-    background: #38bdf8;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.5rem;
-    margin-right: 18px;
+  width: 38px;
+  height: 38px;
+  background: #38bdf8;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 18px;
 }
 
 .resource-link h3 {
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    margin: 0;
-    font-weight: 600;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 600;
 }
 
 .resource-link p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
 }
 
 /* 项目弹窗样式 */
 .modal-bg {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(30,64,175,0.18);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 64, 175, 0.18);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-content {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(59,130,246,0.18);
-    padding: 32px 40px;
-    min-width: 320px;
-    max-width: 90vw;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-    color: var(--text-primary);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.18);
+  padding: 32px 40px;
+  min-width: 320px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  color: var(--text-primary);
 }
 
 .modal-content h2 {
-    color: var(--text-header);
-    margin-bottom: 18px;
+  color: var(--text-header);
+  margin-bottom: 18px;
 }
 
 .modal-close {
-    position: absolute;
-    top: 18px;
-    right: 24px;
-    font-size: 1.5rem;
-    color: var(--accent-primary);
-    cursor: pointer;
-    font-weight: bold;
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 1.5rem;
+  color: var(--accent-primary);
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .project-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 .project-list li {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .project-list li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .project-list a {
-    color: var(--accent-primary);
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: block;
-    margin-bottom: 8px;
-    position: relative;
-    z-index: 10;
-    pointer-events: auto;
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .project-list a:hover {
-    color: var(--accent-secondary);
-    text-decoration: none;
+  color: var(--accent-secondary);
+  text-decoration: none;
 }
 
 .project-desc {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    margin-top: 8px;
-    line-height: 1.5;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
 .project-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--accent-primary);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
-    pointer-events: none;
+  width: 40px;
+  height: 40px;
+  background: var(--accent-primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
 }
-           
-                        .custom-checkbox {
-                            position: relative;
-                            width: 22px;
-                            height: 22px;
-                            margin-right: 8px;
-                        }
-                        .custom-checkbox input[type="checkbox"] {
-                            opacity: 0;
-                            width: 22px;
-                            height: 22px;
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            cursor: pointer;
-                        }
-                        .custom-checkbox .checkmark {
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            width: 22px;
-                            height: 22px;
-                            background: #fff;
-                            border: 2px solid #38bdf8;
-                            border-radius: 6px;
-                            transition: border-color 0.2s;
-                            box-shadow: 0 1px 4px rgba(56,189,248,0.08);
-                        }
-                        .custom-checkbox input[type="checkbox"]:checked + .checkmark {
-                            background: linear-gradient(135deg,#38bdf8 60%,#0ea5e9 100%);
-                            border-color: #0ea5e9;
-                        }
-                        .custom-checkbox .checkmark:after {
-                            content: "";
-                            position: absolute;
-                            display: none;
-                        }
-                        .custom-checkbox input[type="checkbox"]:checked + .checkmark:after {
-                            display: block;
-                        }
-                        .custom-checkbox .checkmark:after {
-                            left: 6px;
-                            top: 2px;
-                            width: 7px;
-                            height: 13px;
-                            border: solid #fff;
-                            border-width: 0 3px 3px 0;
-                            transform: rotate(45deg);
-                        }
-                        .week-task-list label {
-                            font-size: 1em;
-                            color: #334155;
-                            transition: color 0.2s;
-                        }
-                        .week-task-list input[type="checkbox"]:checked ~ span {
-                            color: #0ea5e9;
-                            text-decoration: line-through;
-                        }
-                        .week-mood {
-                            display: flex;
-                            align-items: center;
-                            gap: 8px;
-                            margin-left: 12px;
-                        }
-                        .mood-icon {
-                            font-size: 1.4em;
-                            cursor: pointer;
-                            transition: transform 0.15s;
-                        }
-                        .mood-icon.selected {
-                            transform: scale(1.2);
-                            filter: drop-shadow(0 2px 6px #38bdf8);
-                        }
-                    
+
+.custom-checkbox {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin-right: 8px;
+}
+.custom-checkbox input[type="checkbox"] {
+  opacity: 0;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+.custom-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border: 2px solid #38bdf8;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+  box-shadow: 0 1px 4px rgba(56, 189, 248, 0.08);
+}
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+  background: linear-gradient(135deg, #38bdf8 60%, #0ea5e9 100%);
+  border-color: #0ea5e9;
+}
+.custom-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.custom-checkbox input[type="checkbox"]:checked + .checkmark:after {
+  display: block;
+}
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 7px;
+  height: 13px;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+.week-task-list label {
+  font-size: 1em;
+  color: #334155;
+  transition: color 0.2s;
+}
+.week-task-list input[type="checkbox"]:checked ~ span {
+  color: #0ea5e9;
+  text-decoration: line-through;
+}
+.week-mood {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+.mood-icon {
+  font-size: 1.4em;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.mood-icon.selected {
+  transform: scale(1.2);
+  filter: drop-shadow(0 2px 6px #38bdf8);
+}
