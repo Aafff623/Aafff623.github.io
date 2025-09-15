@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Palp1tate/LXGW-WenKai-Web@latest/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
     <link rel="stylesheet" href="css/main.css">
+    
 </head>
 
 <body class="lxgw-main">
@@ -67,6 +68,7 @@
     </nav>
     <!-- 欢迎横幅 -->
     <div class="welcome-banner" style="text-align:center;">
+          <div id="light-animation" style="width:100px;height:100px;"></div>
         <img src="images/iconfont/标签.svg" alt="icon" width="100" height="50">
         <span>
             君来此处，风雅自生
@@ -109,7 +111,12 @@
         <main class="main-grid">
             <!-- 左侧：学习进度 + 本周任务 -->
             <div class="card-hover grid-left">
-                <h2>Learning Progress</h2>
+                <h2>
+                    <a href="">
+                          <img src="images/blue-flag.svg" alt="icon" width="50" height="50" >
+                    Learning Progress
+                    </a>
+                </h2>
                 <!-- JavaSE -->
                 <div style="margin-bottom:18px;">
                     <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
@@ -138,11 +145,17 @@
                     </div>
                 </div>
                 
-                <h2>WeekTask</h2>
+                <h2>
+                    <a href="">
+                           <img src="images/菜单管理.svg" alt="icon" width="30" height="30" >
+                    WeekTask
+                     </a>
+                </h2>
+                   
                 <div class="week-task-list" style="background:var(--card-bg,#f8fafc);border-radius:16px;padding:24px 18px;box-shadow:0 2px 12px rgba(60,60,60,0.08);margin-bottom:20px;">
          
                     <!-- 周任务列表区域，包含本周和下周任务 -->
-                    <div style="display:flex;gap:18px;flex-w</div>rap:wrap;"></div>
+                    <div style="display:flex;gap:18px;flex-wrap:wrap;"></div>
                         <!-- W1：本周任务 -->
                         <details open style="flex:1;min-width:220px;background:#e0f2fe;border-radius:10px;padding:14px 12px;box-shadow:0 1px 6px rgba(56,189,248,0.08);display:flex;flex-direction:column;">
                             <summary style="cursor:pointer;font-size:1.08em;color:#0ea5e9;font-weight:500;display:flex;justify-content:space-between;align-items:center;">
@@ -244,7 +257,10 @@
             
             <!-- 中间：核心资源模块 -->
             <div class="card-hover grid-center">
-                <h2>Output</h2>
+                <h2>
+                    <img src="images/齿轮.svg" alt="icon" width="50" height="50">
+                    Output
+                </h2>
                 <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank" class="resource-link">
                     <span class="resource-icon">&#128221;</span>
                     <div>
@@ -306,7 +322,9 @@
                     </div>
                 </details> -->
 
-                <h2><a href="Notes/Road/ttajouery.html">Study Plan</a></h2>
+                <h2><a href="Notes/Road/ttajouery.html">
+                    <div id="study-plan-animation" style="width:80px;height:80px;margin:auto;display:inline-block;"></div>
+                    Study Plan</a></h2>
                 <div style="margin-bottom:14px;">
                     <h3 style="margin-bottom:4px;">Current Stage</h3>
                     <p style="color:var(--text-secondary);">
@@ -365,5 +383,6 @@
         </div>
     </div>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
 </body>
 </html>

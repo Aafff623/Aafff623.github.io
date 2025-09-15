@@ -224,3 +224,30 @@ document.addEventListener('DOMContentLoaded', initApp);
                                 });
                             });
                         });
+
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            lottie.loadAnimation({
+                              container:
+                                document.getElementById("light-animation"),
+                              renderer: "svg",
+                              loop: true,
+                              autoplay: true,
+                              path: "json/光照.json", // 你的动画json路径
+                            });
+                          }
+);
+                        document.addEventListener(
+                          "DOMContentLoaded",
+                          function () {
+                            lottie.loadAnimation({
+                              container:
+                                document.getElementById("study-plan-animation"),
+                              renderer: "svg",
+                              loop: true,
+                              autoplay: true,
+                              path: "json/气压.json", // 你的动画json路径
+                            });
+                          }
+                        );
