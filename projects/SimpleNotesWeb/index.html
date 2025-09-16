@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简易网页笔记应用</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+   <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800 min-h-screen text-medium"
+  >
+    <!-- 顶部导航 -->
+    <nav
+      class="flex items-center justify-between px-4 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur shadow-sm sticky top-0 z-50"
+    >
+      <div class="flex items-center gap-3">
+        <button
+          id="toggleSidebar"
+          class="md:hidden text-gray-600 dark:text-gray-300"
+        >
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+        <span
+          class="text-2xl font-bold tracking-tight text-indigo-600 dark:text-indigo-400 flex items-center gap-2"
+        >
+          <i class="fa-solid fa-book-open"></i> 简易网页笔记应用
+        </span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div
+          class="hidden md:flex items-center bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1"
+        >
+          <input
+            id="searchInput"
+            type="text"
+            class="bg-transparent border-0 focus:ring-0 text-sm px-2 py-1 dark:bg-gray-700 dark:text-white"
+            placeholder="搜索笔记..."
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- 模块切换按钮 -->
+        <div class="hidden md:flex items-center gap-1">
+          <button
+            class="px-3 py-1 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-semibold"
+            onclick="switchModule('module-notes')"
+          >
+            <i class="fas fa-pen mr-1"></i>笔记
+          </button>
+          <button
+            class="px-3 py-1 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-semibold"
+            onclick="switchModule('module-category')"
+          >
+            <i class="fas fa-folder mr-1"></i>分类
+          </button>
+          <button
+            class="px-3 py-1 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-semibold"
+            onclick="switchModule('module-tags')"
+          >
+            <i class="fas fa-tag mr-1"></i>标签
+          </button>
+          <button
+            class="px-3 py-1 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900 text-indigo-600 dark:text-indigo-300 font-semibold"
+            onclick="switchModule('module-recycle')"
+          >
+            <i class="fas fa-trash mr-1"></i>回收站
+          </button>
+        </div>
+
+        <button
+          id="themeToggle"
+          class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+        >
+          <i class="fas fa-moon"></i>
+        </button>
+        <div class="dropdown">
+          <button
+            class="btn btn-light dark:btn-dark dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a
+                class="dropdown-item font-size-option"
+                data-size="small"
+                href="#"
+                >小字体</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item font-size-option"
+                data-size="medium"
+                href="#"
+                >中字体</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item font-size-option"
+                data-size="large"
+                href="#"
+                >大字体</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" id="exportAllBtn" href="#"
+                >导出所有笔记</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" id="importAllDataBtn" href="#"
+                >导入数据</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                onclick="switchModule('module-recycle')"
+                href="#"
+                >回收站</a
+              >
+            </li>
+            <li><a class="dropdown-item" id="aboutBtn" href="#">关于</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 主区域 -->
+    <div class="flex min-h-screen">
+      <!-- 侧边栏 -->
+      <aside
+        id="notesSidebar"
+        class="w-80 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col transition-transform transform -translate-x-full md:translate-x-0 fixed md:static inset-y-0 left-0 z-40 pt-16 md:pt-0"
+      >
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <button
+            id="newNoteBtn"
+            class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow flex items-center justify-center gap-2"
+          >
+            <i class="fas fa-plus"></i> 新建笔记
+          </button>
+          <div class="mt-3 flex gap-2">
+            <select
+              id="categoryFilter"
+              class="flex-1 text-sm rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 p-2 dark:text-white"
+            >
+              <option value="">所有分类</option>
+            </select>
+            <select
+              id="tagFilter"
+              class="flex-1 text-sm rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 p-2 dark:text-white"
+            >
+              <option value="">所有标签</option>
+            </select>
+          </div>
+        </div>
+        <ul id="notesList" class="flex-1 overflow-y-auto p-2 space-y-2"></ul>
+        <div
+          class="p-3 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-500 dark:text-gray-400 flex justify-between"
+        >
+          <span id="notesCount">0 条笔记</span>
+          <span id="searchStatus">全部</span>
+        </div>
+      </aside>
+
+      <!-- 主内容区 -->
+      <main
+        class="flex-1 flex flex-col bg-white dark:bg-gray-900 pt-16 md:pt-0"
+      >
+        <div class="max-w-6xl mx-auto w-full py-8 px-4">
+          <!-- 编辑器模块 -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-8 module-card"
+            id="module-notes"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <span id="editorTitle" class="text-xl font-bold dark:text-white"
+                >新建笔记</span
+              >
+              <div class="flex gap-2">
+                <button
+                  class="px-4 py-2 bg-indigo-500 text-white rounded-lg shadow hover:bg-indigo-600"
+                  id="newNoteBtn2"
+                >
+                  <i class="fas fa-plus mr-1"></i>新建
+                </button>
+                <button
+                  class="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600"
+                  id="saveNoteBtn"
+                >
+                  <i class="fas fa-save mr-1"></i>保存
+                </button>
+                <button
+                  class="px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600"
+                  id="deleteNoteBtn"
+                >
+                  <i class="fas fa-trash mr-1"></i>删除
+                </button>
+                <button
+                  class="px-4 py-2 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-600"
+                  id="togglePreviewBtn"
+                >
+                  <i class="fas fa-eye mr-1"></i>预览
+                </button>
+              </div>
+            </div>
+            <div class="mb-4 flex gap-4 flex-col md:flex-row">
+              <input
+                type="text"
+                class="flex-1 text-lg font-semibold bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
+                id="noteTitleInput"
+                placeholder="笔记标题"
+              />
+              <select
+                class="w-full md:w-40 text-sm rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 p-2 dark:text-white"
+                id="noteCategory"
+              >
+                <option value="">选择分类</option>
+              </select>
+            </div>
+            <div class="mb-4" id="tag-container">
+              <label class="block text-sm font-medium mb-2 dark:text-gray-300"
+                >标签:</label
+              >
+              <div id="selected-tags" class="flex flex-wrap gap-2 mb-2"></div>
+              <div class="flex gap-2">
+                <select
+                  class="flex-1 text-sm rounded border-gray-300 dark:border-gray-600 dark:bg-gray-800 p-2 dark:text-white"
+                  id="tag-selector"
+                >
+                  <option value="">选择标签...</option>
+                </select>
+                <button
+                  class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded dark:text-white"
+                  type="button"
+                  id="add-tag-btn"
+                >
+                  添加
+                </button>
+              </div>
+            </div>
+            <div
+              id="editor-container"
+              class="min-h-[300px] border border-gray-200 dark:border-gray-700 rounded-lg"
+            ></div>
+            <div
+              class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-4 mt-4"
+            >
+              <span>最后保存: <span id="last-saved">-</span></span>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between mt-4 gap-2">
+              <div>
+                <button
+                  class="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded mr-2 dark:text-white"
+                  id="exportNoteBtn"
+                >
+                  <i class="fas fa-download mr-1"></i>导出
+                </button>
+                <button
+                  class="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded dark:text-white"
+                  id="importNoteBtn"
+                >
+                  <i class="fas fa-upload mr-1"></i>导入
+                </button>
+                <input
+                  type="file"
+                  id="importFile"
+                  class="hidden"
+                  accept=".json"
+                />
+              </div>
+              <div id="note-status" class="text-muted dark:text-gray-400">
+                <small
+                  >字数: <span id="wordCount">0</span> | 字符:
+                  <span id="charCount">0</span></small
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Markdown预览区，插在这里 -->
+          <div
+            id="markdownPreview"
+            class="preview-container"
+            style="display: none"
+          >
+            <h3 class="text-lg font-bold mb-2 dark:text-white">Markdown预览</h3>
+            <div id="markdownContent"></div>
+          </div>
+
+          <!-- 分类管理模块 -->
+          <div
+            id="module-category"
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-8 module-card hidden"
+          >
+            <h2
+              class="text-xl font-bold mb-6 flex items-center gap-2 dark:text-white"
+            >
+              <i class="fas fa-folder text-indigo-500"></i> 分类管理
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div
+                class="stat-card bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500"
+              >
+                <div class="text-sm text-blue-600 dark:text-blue-300">
+                  分类数量
+                </div>
+                <div
+                  class="text-2xl font-bold mt-1 dark:text-white"
+                  id="categoryCount"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="stat-card bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500"
+              >
+                <div class="text-sm text-green-600 dark:text-green-300">
+                  笔记最多的分类
+                </div>
+                <div
+                  class="text-xl font-bold mt-1 dark:text-white"
+                  id="mostUsedCategory"
+                >
+                  -
+                </div>
+              </div>
+              <div
+                class="stat-card bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500"
+              >
+                <div class="text-sm text-purple-600 dark:text-purple-300">
+                  最近更新
+                </div>
+                <div
+                  class="text-xl font-bold mt-1 dark:text-white"
+                  id="lastUpdatedCategory"
+                >
+                  -
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold dark:text-white">所有分类</h3>
+              <button
+                class="px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center gap-2"
+                onclick="addNewCategory()"
+              >
+                <i class="fas fa-plus"></i> 新建分类
+              </button>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table
+                class="min-w-full divide-y divide-gray-200 dark:divide-gray-700"
+              >
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      分类名称
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      笔记数量
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      创建时间
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      操作
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+                  id="categoryTableBody"
+                ></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 标签管理模块 - 修复后的版本 -->
+          <div
+            id="module-tags"
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-8 module-card hidden"
+          >
+            <h2
+              class="text-xl font-bold mb-6 flex items-center gap-2 dark:text-white"
+            >
+              <i class="fas fa-tag text-indigo-500"></i> 标签管理
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div
+                class="stat-card bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500"
+              >
+                <div class="text-sm text-blue-600 dark:text-blue-300">
+                  标签数量
+                </div>
+                <div
+                  class="text-2xl font-bold mt-1 dark:text-white"
+                  id="tagCount"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="stat-card bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500"
+              >
+                <div class="text-sm text-green-600 dark:text-green-300">
+                  最常用标签
+                </div>
+                <div
+                  class="text-xl font-bold mt-1 dark:text-white"
+                  id="mostUsedTag"
+                >
+                  -
+                </div>
+              </div>
+              <div
+                class="stat-card bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500"
+              >
+                <div class="text-sm text-purple-600 dark:text-purple-300">
+                  最近使用
+                </div>
+                <div
+                  class="text-xl font-bold mt-1 dark:text-white"
+                  id="lastUpdatedTag"
+                >
+                  -
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold dark:text-white">所有标签</h3>
+              <div class="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="搜索标签..."
+                  class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white"
+                  id="tagSearchInput"
+                />
+                <button
+                  class="px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center gap-2"
+                  onclick="addNewTag()"
+                >
+                  <i class="fas fa-plus"></i> 新建标签
+                </button>
+              </div>
+            </div>
+
+            <div class="tag-cloud mb-6" id="tagCloud"></div>
+
+            <div class="overflow-x-auto">
+              <table
+                class="min-w-full divide-y divide-gray-200 dark:divide-gray-700"
+              >
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      标签名称
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      使用次数
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      创建时间
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      颜色
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      操作
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+                  id="tagTableBody"
+                ></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 回收站模块 -->
+          <div
+            id="module-recycle"
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 mb-8 module-card hidden"
+          >
+            <h2
+              class="text-xl font-bold mb-6 flex items-center gap-2 dark:text-white"
+            >
+              <i class="fas fa-trash text-indigo-500"></i> 回收站
+            </h2>
+
+            <div
+              class="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-400 p-4 mb-6"
+            >
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                </div>
+                <div class="ml-3">
+                  <p class="text-sm text-yellow-700 dark:text-yellow-300">
+                    <strong>注意：</strong>
+                    回收站中的内容将在30天后自动永久删除。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div
+                class="stat-card bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500"
+              >
+                <div class="text-sm text-blue-600 dark:text-blue-300">
+                  回收站项目
+                </div>
+                <div
+                  class="text-2xl font-bold mt-1 dark:text-white"
+                  id="recycleCount"
+                >
+                  0
+                </div>
+              </div>
+              <div
+                class="stat-card bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500"
+              >
+                <div class="text-sm text-green-600 dark:text-green-300">
+                  最早删除
+                </div>
+                <div
+                  class="text-xl font-bold mt-1 dark:text-white"
+                  id="oldestDeleted"
+                >
+                  -
+                </div>
+              </div>
+              <div
+                class="stat-card bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500"
+              >
+                <div class="text-sm text-red-600 dark:text-red-300">
+                  即将删除
+                </div>
+                <div
+                  class="text-xl font-bold mt-1 dark:text-white"
+                  id="soonToDelete"
+                >
+                  -
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg font-semibold dark:text-white">已删除项目</h3>
+              <div class="flex gap-2">
+                <button
+                  class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg flex items-center gap-2"
+                  onclick="emptyRecycleBin()"
+                >
+                  <i class="fas fa-broom"></i> 清空回收站
+                </button>
+                <button
+                  class="px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center gap-2"
+                  onclick="restoreAllNotes()"
+                >
+                  <i class="fas fa-undo"></i> 全部恢复
+                </button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table
+                class="min-w-full divide-y divide-gray-200 dark:divide-gray-700"
+              >
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      名称
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      类型
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      删除时间
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      剩余时间
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    >
+                      操作
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+                  id="recycleTableBody"
+                ></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 模态框：关于 -->
+    <div class="modal fade" id="aboutModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">关于简易网页笔记应用</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              这是一个简易版网页的笔记管理页面,一个麻雀虽小,然而五脏俱全的笔记应用.
+              <ul>
+                <li>文本编辑</li>
+                <li>分类管理</li>
+                <li>标签系统</li>
+              </ul>
+            </p>
+            <p class="mt-2">version-0.1</p>
+            <p class="mt-2">开发者: threetwoa</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              关闭
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/app.js"></script>
+
+  </body>
+</html>
