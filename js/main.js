@@ -287,3 +287,47 @@ document.addEventListener("DOMContentLoaded", function () {
     path: "json/气压.json", // 你的动画json路径
   });
 });
+
+// 添加新的动画（例如飞行无人机）
+document.addEventListener("DOMContentLoaded", function () {
+  lottie.loadAnimation({
+    container: document.getElementById("drone-animation"), // 新容器的 id
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "json/飞行无人机.json", // 新 JSON 文件路径
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  lottie.loadAnimation({
+    container: document.getElementById("loading-animation"), // 新容器的 id
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "json/lottie-iconfont/加载loading5.json", // 修正路径
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  lottie.loadAnimation({
+    container: document.getElementById("carRun-animation"), // 新容器的 id
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "json/lottie-iconfont/carCycle.json", // 修正路径
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  lottie.loadAnimation({
+    container: document.getElementById("colorfulLoading-animation"), // 新容器的 id
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "json/lottie-iconfont/colorfulLoading.json", // 修正路径
+  });
+});
+
+
+
