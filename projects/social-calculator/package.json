@@ -1,0 +1,13 @@
+{
+  "name": "social-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "postcss lib/bootstrap.min.css -o lib/bootstrap.purged.css"
+  },
+  "devDependencies": {
+    "postcss": "^8.0.0",
+    "postcss-cli": "^9.0.0",
+    "@fullhuman/postcss-purgecss": "^4.0.3"
+  }
+}

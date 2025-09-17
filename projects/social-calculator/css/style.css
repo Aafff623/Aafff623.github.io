@@ -1,0 +1,216 @@
+body {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+  /* 使用系统楷体为首选，后备为常见中文或英文字体 */
+  font-family: "KaiTi", "楷体", STKaiti, "Microsoft Yahei", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-align: center;
+}
+
+/* 两侧SVG墙纸样式 */
+.wallpaper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 22vw;
+  min-width: 180px;
+  max-width: 400px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wallpaper-left {
+  left: 0;
+}
+.wallpaper-right {
+  right: 0;
+}
+.wallpaper-img {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+  opacity: 0.95;
+}
+@media (max-width: 900px) {
+  .wallpaper {
+    width: 18vw;
+    min-width: 100px;
+    max-width: 180px;
+    opacity: 0.7;
+  }
+}
+@media (max-width: 600px) {
+  .wallpaper {
+    display: none;
+  }
+}
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  backdrop-filter: blur(15px);
+  max-width: 1000px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+h2 {
+  color: #e17055;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.table {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+.table thead th {
+  background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+.table tbody tr {
+  transition: background-color 0.3s ease;
+}
+.table tbody tr:hover {
+  background-color: rgba(108, 92, 231, 0.1);
+  transform: scale(1.02);
+}
+.table-primary {
+  background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+}
+.table-success {
+  background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+}
+.btn-danger {
+  background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+  border: none;
+  border-radius: 30px;
+  padding: 0.75rem 2.5rem;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+}
+.btn-danger:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(108, 92, 231, 0.4);
+}
+.form-control {
+  border-radius: 30px;
+  border: 2px solid #ddd;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+.form-control:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 0.3rem rgba(108, 92, 231, 0.25);
+  transform: scale(1.02);
+}
+.author-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.author-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(45deg, #e17055, #fdcb6e);
+}
+.author-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+.author-card h4 {
+  color: #e17055;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.author-card p {
+  color: #616161;
+  line-height: 1.6;
+}
+/* Circular avatar styles */
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e17055;
+}
+
+/* Additional styles */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+/* Social links styles */
+.social-links {
+  margin-top: 1.5rem;
+}
+.social-links .btn {
+  margin: 0.25rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+.social-links .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.author-card {
+  margin-bottom: 1rem;
+}
+/* Social links styles */
+.social-links {
+  margin-top: 1.5rem;
+}
+.social-links .btn {
+  margin: 0.25rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+.social-links .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+/* Additional components */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}

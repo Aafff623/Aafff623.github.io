@@ -1,0 +1,6 @@
+This directory will contain local copies of Bootstrap CSS and JS.
+Download and place the following files here:
+- bootstrap.min.css (from Bootstrap 5.3.0)
+- bootstrap.bundle.min.js (from Bootstrap 5.3.0)
+
+See LIB_README.md for maintenance instructions.

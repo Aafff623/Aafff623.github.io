@@ -1,0 +1,29 @@
+		function calc() {
+			const sal = parseFloat(document.getElementById('salary').value) || 0;
+			const ylgr = sal * 0.08;
+			const ylgs = sal * 0.2;
+			document.getElementById('ylgr').innerText = ylgr.toFixed(2);
+			document.getElementById('ylgs').innerText = ylgs.toFixed(2);
+			const ybgr = sal * 0.02;
+			const ybgs = sal * 0.06;
+			document.getElementById('ybgr').innerText = ybgr.toFixed(2);
+			document.getElementById('ybgs').innerText = ybgs.toFixed(2);
+			const sygr = sal * 0.005;
+			const sygs = sal * 0.015;
+			document.getElementById('sygr').innerText = sygr.toFixed(2);
+			document.getElementById('sygs').innerText = sygs.toFixed(2);
+			const gsgs = sal * 0.005;
+			document.getElementById('gsgs').innerText = gsgs.toFixed(2);
+			const shygs = sal * 0.008;
+			document.getElementById('shygs').innerText = shygs.toFixed(2);
+			const gjjgr = sal * 0.12;
+			const gjjgs = sal * 0.12;
+			document.getElementById('gjjgr').innerText = gjjgr.toFixed(2);
+			document.getElementById('gjjgs').innerText = gjjgs.toFixed(2);
+			const grSum = gjjgr + sygr + ybgr + ylgr;
+			const gsSum = gjjgs + sygs + ybgs + ylgs + gsgs + shygs;
+			document.getElementById('grSum').innerText = grSum.toFixed(2);
+			document.getElementById('gsSum').innerText = gsSum.toFixed(2);
+			const moneySum = grSum + gsSum;
+			document.getElementById('moneySum').innerText = moneySum.toFixed(2);
+		}

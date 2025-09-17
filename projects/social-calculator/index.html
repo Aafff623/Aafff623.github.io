@@ -1,134 +1,138 @@
 <!DOCTYPE html>
-<html>
-	<!-- 标题 -->
-	<head>
-		<meta charset="utf-8">
-		<title>个人社保计算软件</title>
-		  <meta name="viewport" content="width=device-width, initial-scale=1">
-		  <!-- js封装的函数 -->
-		  <script>
-			  function calc(){
-				  var sal = document.getElementById('salary').value;
-				  salNum = parseInt(sal); // 强转
-				  ylgr = salNum * 0.08;
-				  ylgs = salNum * 0.2;
-				  document.getElementById('ylgr').innerText = ylgr;
-				  document.getElementById('ylgs').innerText = ylgs;
-				  ybgr = salNum * 0.02;
-				  ybgs = salNum * 0.06;
-				  document.getElementById('ybgr').innerText = ybgr;
-				  document.getElementById('ybgs').innerText = ybgs;
-				 sygr = salNum * 0.005;
-				 sygs = salNum * 0.015;
-				 document.getElementById('sygr').innerText = sygr;
-				 document.getElementById('sygs').innerText = sygs;
-				 gsgs = salNum * 0.005;
-				 document.getElementById('gsgs').innerText = gsgs;
-				 shygs = salNum * 0.008;
-				 document.getElementById('shygs').innerText = shygs;
-				 gjjgr = salNum * 0.12;
-				 gjjgs = salNum * 0.12;
-				 document.getElementById('gjjgr').innerText = gjjgr;
-				 document.getElementById('gjjgs').innerText = gjjgs;
-				 // 合计
-				 grSum = gjjgr +sygr + ybgr + ylgr;
-				 gsSum = gjjgs +sygs + ybgs + ylgs + gsgs + shygs;
-				 document.getElementById('grSum').innerText = grSum;
-				 document.getElementById('gsSum').innerText = gsSum;
-				 //总额
-				 moneySum = grSum + gsSum;
-				 document.getElementById('moneySum').innerText = moneySum;
-				 
-			  }
-		  </script>
-		<!-- 新 Bootstrap5 核心 CSS 文件 -->
-		<link rel="stylesheet" href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
-		 
-		<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
-		<script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-	</head>
-	
-	<!-- 主体 -->
-	<body>
-		<div class="container text-center" >
-			<h2>个人社保计算软件-中北大学-马楷超</h2>
-			<table class = "table table-bordered text-center">
-				<tr>
-					<td>工资</td>
-					<td colspan="3">
-						<input class = "form-control" type="text" id = "salary" placeholder="请输入工资">
-					</td>
-					<td>
-						<button class = "btn btn-danger" onclick = "calc()">计算</button>
-					</td>
-				</tr>
-				<tr class = "bg-primary text-white">
-					<td>险种</td>
-					<td>个人%</td>
-					<td>个人</td>
-					<td>公司%</td>
-					<td>公司</td>
-				</tr>
-				<tr>
-					<td>养老</td>
-					<td>8%</td>
-					<td id = 'ylgr'></td>
-					<td>20%</td>
-					<td id = 'ylgs'></td>
-				</tr>
-				<tr>
-					<td>医保</td>
-					<td>2%</td>
-					<td id = 'ybgr'></td>
-					<td>6%</td>
-					<td id = 'ybgs'></td>
-				</tr>
-				<tr>
-					<td>失业</td>
-					<td>0.5%</td>
-					<td id = 'sygr'></td>
-					<td>1.5%</td>
-					<td id = 'sygs'></td>
-				</tr>
-				<tr>
-					<td>工伤</td>
-					<td></td>
-					<td ></td>
-					<td>0.5%</td>
-					<td id = 'gsgs'></td>
-				</tr>
-				<tr>
-					<td>生育</td>
-					<td></td>
-					<td></td>
-					<td >0.8%</td>
-					<td id = 'shygs'></td>
-				</tr>
-				<tr>
-					<td>公积金</td>
-					<td>12%</td>
-					<td id = 'gjjgr'></td>
-					<td>12%</td>
-					<td id = 'gjjgs'></td>
-				</tr>
-				<tr>
-					<td>合计</td>
-					<td>个人合计</td>
-					<td id = 'grSum'></td>
-					<td>公司合计</td>
-					<td id = 'gsSum'></td>
-				</tr>
-				<tr>
-					<td >总额</td>
-					<td  id = 'moneySum' colspan="4">
-					</td>
-				</tr>
-			
-			</table>
-			
-			
-		</div>
-		
-	</body>
-</html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人社保计算软件</title>
+    <!-- Bootstrap 5 CSS (本地引用, 请确保 lib/bootstrap.min.css 存在) -->
+    <link href="lib/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS for modern UI -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- 左侧墙纸SVG -->
+    <div class="wallpaper wallpaper-left">
+      <img
+        src="img/funny-doodle.svg"
+        alt="funny doodle"
+        class="wallpaper-img"
+      />
+    </div>
+    <!-- 右侧墙纸SVG -->
+    <div class="wallpaper wallpaper-right">
+      <img
+        src="img/floating-girl.svg"
+        alt="floating girl"
+        class="wallpaper-img"
+      />
+    </div>
 
+    <div class="container">
+      <h2 class="text-center">
+        个人社保计算软件(项目添加测试样例)
+        <hr />
+        xx大学 - xxx
+      </h2>
+      <div class="row mb-4">
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            type="number"
+            id="salary"
+            placeholder="请输入工资"
+            min="0"
+          />
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-danger w-100" onclick="calc()">计算</button>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>险种</th>
+            <th>个人%</th>
+            <th>个人金额</th>
+            <th>公司%</th>
+            <th>公司金额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>养老</td>
+            <td>8%</td>
+            <td id="ylgr">-</td>
+            <td>20%</td>
+            <td id="ylgs">-</td>
+          </tr>
+          <tr>
+            <td>医保</td>
+            <td>2%</td>
+            <td id="ybgr">-</td>
+            <td>6%</td>
+            <td id="ybgs">-</td>
+          </tr>
+          <tr>
+            <td>失业</td>
+            <td>0.5%</td>
+            <td id="sygr">-</td>
+            <td>1.5%</td>
+            <td id="sygs">-</td>
+          </tr>
+          <tr>
+            <td>工伤</td>
+            <td>-</td>
+            <td>-</td>
+            <td>0.5%</td>
+            <td id="gsgs">-</td>
+          </tr>
+          <tr>
+            <td>生育</td>
+            <td>-</td>
+            <td>-</td>
+            <td>0.8%</td>
+            <td id="shygs">-</td>
+          </tr>
+          <tr>
+            <td>公积金</td>
+            <td>12%</td>
+            <td id="gjjgr">-</td>
+            <td>12%</td>
+            <td id="gjjgs">-</td>
+          </tr>
+          <tr class="table-primary">
+            <td><strong>合计</strong></td>
+            <td>个人合计</td>
+            <td id="grSum">-</td>
+            <td>公司合计</td>
+            <td id="gsSum">-</td>
+          </tr>
+          <tr class="table-success">
+            <td><strong>总额</strong></td>
+            <td colspan="4" id="moneySum">-</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="author-card text-center">
+        <h4>作者: threetwoa</h4>
+        <img src="img/wx头像.jpg" alt="me" class="avatar" />
+        <p></p>
+        <hr />
+        <img src="img/笔记本1.svg" alt="icon" class="me-2" width="24px" />
+        <h5>维护记录</h5>
+        <ul>
+          <li>优化了输入框和按钮的样式</li>
+          <li>增强了表格的可读性</li>
+          <li>改进了整体的用户交互体验</li>
+        </ul>
+        <hr />
+        <p>对之前的社保计算页面进行简单的优化,ui设计和互动体验</p>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS (本地引用, 请确保 lib/bootstrap.bundle.min.js 存在) -->
+    <script src="lib/bootstrap.bundle.min.js"></script>
+    <!-- Calculation Script -->
+    <script src="js/api.js"></script>
+  </body>
+</html>
