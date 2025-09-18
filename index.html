@@ -11,10 +11,10 @@
 </head>
 
 <body class="lxgw-main">
-    <!-- 顶部导航栏 -->
+    <!-- 顶部导航栏 Threetwoa Home Blog Projects Plan ChatNotes Resources -->
     <nav class="lxgw-nav">
         <div class="nav-inner">
-               <div id="study-plan-animation" style="width:80px;height:80px;margin:auto;display:inline-block;"></div>
+            <div id="study-plan-animation" style="width:80px;height:80px;margin:auto;display:inline-block;"></div>
             <span class="brand">
                 <a href="index.html">
                     ThreeTwoA
@@ -26,7 +26,7 @@
                     Home
                 </a>
                 <a href="http://threetwoa.me/threetwoa-hugoBlog/" target="_blank">
-                    <img src="/images/blogger.svg" alt="icon" width="30" height="30">
+                    <img src="images/blogger.svg" alt="icon" width="30" height="30">
                     Blog
                 </a>
                 <a href="#" id="projectLink">
@@ -42,20 +42,70 @@
                     ChatNotes
                 </a>
                 <a href="https://education.github.com/pack">
-                     <img src="images/iconfont/004-robot hand.svg" alt="icon" width="30" height="30">
-                     Resources
-                    </a>
+                    <img src="images/iconfont/004-robot hand.svg" alt="icon" width="30" height="30">
+                    Resources
+                </a>
                 <!-- 添加主题切换按钮 -->
             </div>
         </div>
     </nav>
-    <!-- 欢迎横幅 -->
+        <!-- 菜单按钮 -->
+        <div id="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- 侧边栏弹出菜单 -->
+        <div id="sidebar">
+                    <div class="sidebar-card">
+                        <!-- 头像与寄语 -->
+                        <div class="sidebar-header">
+                            <img src="images/wx头像.jpg" alt="头像" class="sidebar-avatar">
+                            <div class="sidebar-greeting">你好，欢迎来到我的主页！<br><span style="font-size:0.95em;color:#7c3aed;">—— threetwoa</span></div>
+                        </div>
+                        <!-- 照片集 -->
+                        <div class="sidebar-section">
+                            <div class="sidebar-title">照片集</div>
+                            <div class="sidebar-gallery">
+                                <img src="images/头像/首页小人.svg" alt="照片1">
+                                <img src="images/bluegirl.png" alt="照片2">
+                                <img src="images/homebg-cat.png" alt="照片3">
+                            </div>
+                        </div>
+                        <!-- 日历挂件 -->
+                        <div class="sidebar-section">
+                            <div class="sidebar-title">日历</div>
+                            <div class="sidebar-calendar">
+                                <table>
+                                    <tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>
+                                    <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                                    <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                                    <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+                                    <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+                                    <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 挂件区 -->
+                        <div class="sidebar-section">
+                            <div class="sidebar-title">挂件</div>
+                            <div class="sidebar-widget">
+                                <span style="font-size:2em;">🧮</span>
+                                <span style="font-size:2em;">📝</span>
+                                <span style="font-size:2em;">🎉</span>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    
+    <!-- 欢迎横幅 & 主题切换-->
     <div class="welcome-banner" style="text-align:center;">
          <div id="carRun-animation" style="width: 250px; height: 165px; margin: 0 ;"></div>
           <div id="light-animation" style="width:100px;height:100px;"></div>
         <!-- <img src="images/iconfont/标签.svg" alt="icon" width="100" height="50"> -->
         <span>
             君来此处，风雅自生
+            <!-- 主题切换 -->
             <button class="theme-toggle" id="themeToggle" title="切换主题">
                     <svg class="theme-icon" id="themeIcon" viewBox="0 0 24 24">
                         <!-- 月亮图标 -->
@@ -76,7 +126,9 @@
             Welcome to my personal portfolio!
         </span>
     </div>
+    
     <div class="container"></div>
+
         <!-- 主页头部信息 -->
         <header class="main-header">
             <div class="avatar-large">

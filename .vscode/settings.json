@@ -19,5 +19,8 @@
   "debug.showBreakpointsInOverviewRuler": true, // 断点显示
   "code-runner.runInTerminal": true,
   "code-runner.saveAllFilesBeforeRun": true,
-  "code-runner.saveFileBeforeRun": true
+  "code-runner.saveFileBeforeRun": true,
+  "aide.convertLanguagePairs": {
+    "html": "c"
+  }
 }

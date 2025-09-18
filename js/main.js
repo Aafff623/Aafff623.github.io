@@ -1,3 +1,13 @@
+// 菜单弹出动画控制
+document.addEventListener("DOMContentLoaded", function () {
+  var menuBtn = document.getElementById("menu-btn");
+  var sidebar = document.getElementById("sidebar");
+  if (menuBtn && sidebar) {
+    menuBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+    };
+  }
+});
 // 技术栈标签自适应
 const techTagList = [
   "JavaSE/MySQL/JDBC",
@@ -191,6 +201,13 @@ function setTheme(isDark) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
   updateThemeIcon(isDark);
+
+  // 主题变化时重新初始化粒子背景
+  if (window.particleBackground) {
+    window.particleBackground.destroy();
+  }
+  window.particleBackground = new ParticleBackground(theme);
+  window.particleBackground.init();
 }
 
 // 初始化主题
@@ -249,10 +266,243 @@ function initEventListeners() {
     });
 }
 
+// 粒子背景类
+class ParticleBackground {
+  constructor(theme) {
+    this.theme = theme;
+    this.config = this.getConfig(theme);
+    this.canvas = null;
+    this.ctx = null;
+    this.dots = [];
+    this.animationId = null;
+    this.eventHandlers = {};
+  }
+
+  getConfig(theme) {
+    return theme === "dark"
+      ? {
+          colorDot: "#b39ddb",
+          colorLine: "#9575cd",
+          dotRadius: 2.5,
+          lineMaxDist: 180,
+          dotCount: 50,
+          lineWidth: 1.2,
+          speed: 0.18,
+          bgColor: "#232526",
+          shadowColor: "#b39ddb",
+        }
+      : {
+          colorDot: "#ffffff", // 粒子颜色（白色）
+          colorLine: "#cccccc", // 连线颜色（浅灰）
+          dotRadius: 2.2, // 粒子半径
+          lineMaxDist: 180, // 连线最大距离
+          dotCount: 50, // 粒子数量
+          lineWidth: 1, // 连线宽度
+          speed: 0.18, // 粒子速度
+          bgColor: "#fff", // 背景色
+          shadowColor: "#9575cd", // 发光色
+        };
+  }
+
+  init() {
+    this.canvas = document.createElement("canvas");
+    this.ctx = this.canvas.getContext("2d");
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.canvas.style.cssText =
+      "position:fixed;top:0;left:0;z-index:-1;opacity:1;pointer-events:none;background:" +
+      this.config.bgColor;
+    document.body.appendChild(this.canvas);
+
+    // 初始化粒子
+    this.dots = [];
+    for (let i = 0; i < this.config.dotCount; i++) {
+      this.dots.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        vx: (Math.random() - 0.5) * this.config.speed,
+        vy: (Math.random() - 0.5) * this.config.speed,
+      });
+    }
+
+    // 初始化鼠标状态
+    this.mouse = { x: null, y: null, paused: false };
+
+    // 绑定事件
+    this.bindEvents();
+
+    // 开始动画
+    this.draw();
+  }
+
+  bindEvents() {
+    // 鼠标移动事件
+    this.eventHandlers.mousemove = (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+      this.mouse.paused = false;
+    };
+
+    // 鼠标离开事件
+    this.eventHandlers.mouseout = () => {
+      this.mouse.x = null;
+      this.mouse.y = null;
+      this.mouse.paused = true;
+    };
+
+    // 点击事件
+    this.eventHandlers.click = (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+      for (let i = 0; i < this.dots.length; i++) {
+        const d = this.dots[i];
+        const dist = Math.sqrt(
+          (d.x - this.mouse.x) * (d.x - this.mouse.x) +
+            (d.y - this.mouse.y) * (d.y - this.mouse.y)
+        );
+        if (dist < this.config.lineMaxDist * 1.2) {
+          const angle = Math.atan2(d.y - this.mouse.y, d.x - this.mouse.x);
+          d.vx += Math.cos(angle) * this.config.speed * 2.5;
+          d.vy += Math.sin(angle) * this.config.speed * 2.5;
+        }
+      }
+    };
+
+    // 窗口调整大小事件
+    this.eventHandlers.resize = () => {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    };
+
+    // 添加事件监听
+    window.addEventListener("mousemove", this.eventHandlers.mousemove);
+    window.addEventListener("mouseout", this.eventHandlers.mouseout);
+    window.addEventListener("click", this.eventHandlers.click);
+    window.addEventListener("resize", this.eventHandlers.resize);
+  }
+
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    for (let i = 0; i < this.dots.length; i++) {
+      const d = this.dots[i];
+      d.x += d.vx;
+      d.y += d.vy;
+
+      // 边界检查
+      if (d.x < 0 || d.x > this.canvas.width) d.vx *= -1;
+      if (d.y < 0 || d.y > this.canvas.height) d.vy *= -1;
+
+      // 鼠标互动
+      if (
+        this.mouse.x !== null &&
+        this.mouse.y !== null &&
+        !this.mouse.paused
+      ) {
+        const distMouse = Math.sqrt(
+          (d.x - this.mouse.x) * (d.x - this.mouse.x) +
+            (d.y - this.mouse.y) * (d.y - this.mouse.y)
+        );
+        if (distMouse < this.config.lineMaxDist * 0.8) {
+          const angle = Math.atan2(this.mouse.y - d.y, this.mouse.x - d.x);
+          d.vx += Math.cos(angle) * this.config.speed * 0.08;
+          d.vy += Math.sin(angle) * this.config.speed * 0.08;
+        }
+      }
+
+      if (this.mouse.paused && this.mouse.x !== null && this.mouse.y !== null) {
+        const distMouse = Math.sqrt(
+          (d.x - this.mouse.x) * (d.x - this.mouse.x) +
+            (d.y - this.mouse.y) * (d.y - this.mouse.y)
+        );
+        if (distMouse < this.config.lineMaxDist * 0.7) {
+          const angle = Math.atan2(this.mouse.y - d.y, this.mouse.x - d.x);
+          d.vx += Math.cos(angle) * this.config.speed * 0.04;
+          d.vy += Math.sin(angle) * this.config.speed * 0.04;
+        }
+      }
+
+      // 绘制粒子
+      this.ctx.beginPath();
+      this.ctx.arc(d.x, d.y, this.config.dotRadius, 0, 2 * Math.PI);
+      this.ctx.fillStyle = this.config.colorDot;
+      this.ctx.shadowColor = this.config.shadowColor;
+      this.ctx.shadowBlur = 12;
+      this.ctx.globalAlpha = 1;
+      this.ctx.fill();
+      this.ctx.shadowBlur = 0;
+
+      // 绘制连线
+      for (let j = i + 1; j < this.dots.length; j++) {
+        const d2 = this.dots[j];
+        const dist = Math.sqrt(
+          (d.x - d2.x) * (d.x - d2.x) + (d.y - d2.y) * (d.y - d2.y)
+        );
+        if (dist < this.config.lineMaxDist) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(d.x, d.y);
+          this.ctx.lineTo(d2.x, d2.y);
+          this.ctx.strokeStyle = this.config.colorLine;
+          this.ctx.globalAlpha = 0.7 - (dist / this.config.lineMaxDist) * 0.7;
+          this.ctx.lineWidth = this.config.lineWidth;
+          this.ctx.stroke();
+          this.ctx.globalAlpha = 1;
+        }
+      }
+
+      // 鼠标连线
+      if (this.mouse.x !== null && this.mouse.y !== null) {
+        const distMouse = Math.sqrt(
+          (d.x - this.mouse.x) * (d.x - this.mouse.x) +
+            (d.y - this.mouse.y) * (d.y - this.mouse.y)
+        );
+        if (distMouse < this.config.lineMaxDist) {
+          this.ctx.beginPath();
+          this.ctx.moveTo(d.x, d.y);
+          this.ctx.lineTo(this.mouse.x, this.mouse.y);
+          this.ctx.strokeStyle = this.config.shadowColor;
+          this.ctx.globalAlpha =
+            0.8 - (distMouse / this.config.lineMaxDist) * 0.8;
+          this.ctx.lineWidth = this.config.lineWidth + 0.5;
+          this.ctx.stroke();
+          this.ctx.globalAlpha = 1;
+        }
+      }
+    }
+
+    this.animationId = requestAnimationFrame(() => this.draw());
+  }
+
+  destroy() {
+    // 停止动画
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
+
+    // 移除事件监听
+    if (this.eventHandlers.mousemove) {
+      window.removeEventListener("mousemove", this.eventHandlers.mousemove);
+      window.removeEventListener("mouseout", this.eventHandlers.mouseout);
+      window.removeEventListener("click", this.eventHandlers.click);
+      window.removeEventListener("resize", this.eventHandlers.resize);
+    }
+
+    // 移除画布
+    if (this.canvas && this.canvas.parentNode) {
+      this.canvas.parentNode.removeChild(this.canvas);
+    }
+  }
+}
+
 // 初始化应用
 function initApp() {
   initTheme();
   initEventListeners();
+
+  // 初始化粒子背景
+  const currentTheme = document.documentElement.getAttribute("data-theme");
+  window.particleBackground = new ParticleBackground(currentTheme);
+  window.particleBackground.init();
 }
 
 // 启动应用
@@ -269,65 +519,44 @@ document.querySelectorAll(".week-mood").forEach(function (moodBar) {
     });
   });
 });
+
+// Lottie动画初始化
 document.addEventListener("DOMContentLoaded", function () {
   lottie.loadAnimation({
     container: document.getElementById("light-animation"),
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "json/光照.json", // 你的动画json路径
+    path: "json/光照.json",
   });
 });
+
 document.addEventListener("DOMContentLoaded", function () {
   lottie.loadAnimation({
     container: document.getElementById("study-plan-animation"),
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "json/气压.json", // 你的动画json路径
-  });
-});
-
-// 添加新的动画（例如飞行无人机）
-document.addEventListener("DOMContentLoaded", function () {
-  lottie.loadAnimation({
-    container: document.getElementById("drone-animation"), // 新容器的 id
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "json/飞行无人机.json", // 新 JSON 文件路径
+    path: "json/气压.json",
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
   lottie.loadAnimation({
-    container: document.getElementById("loading-animation"), // 新容器的 id
+    container: document.getElementById("carRun-animation"),
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "json/lottie-iconfont/加载loading5.json", // 修正路径
+    path: "json/lottie-iconfont/carCycle.json",
   });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
   lottie.loadAnimation({
-    container: document.getElementById("carRun-animation"), // 新容器的 id
+    container: document.getElementById("colorfulLoading-animation"),
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: "json/lottie-iconfont/carCycle.json", // 修正路径
+    path: "json/lottie-iconfont/colorfulLoading.json",
   });
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-  lottie.loadAnimation({
-    container: document.getElementById("colorfulLoading-animation"), // 新容器的 id
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: "json/lottie-iconfont/colorfulLoading.json", // 修正路径
-  });
-});
-
-
-

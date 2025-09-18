@@ -1,0 +1,66 @@
+/* 页面基础样式，去除默认边距并禁止滚动条出现 */
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 菜单按钮样式：固定在左上角，带圆角和阴影，点击可弹出侧边栏 */
+#menu-btn {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s;
+}
+
+/* 菜单按钮中的三条横线（汉堡图标）样式 */
+#menu-btn span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin: 5px 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* 侧边栏初始状态：宽度为0，仅显示半圆弧遮罩，内容隐藏 */
+#sidebar {
+  position: fixed;
+  top: 40px; /* 上方留空间 */
+  left: 0;
+  width: 0;
+  height: calc(100vh - 80px); /* 上下各留40px空间 */
+  background: linear-gradient(135deg, #222 80%, #444 100%); /* 更柔和的渐变色 */
+  color: #fff;
+  z-index: 1000;
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 100vh;
+  border-bottom-right-radius: 100vh;
+  transition: width 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+    border-radius 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+    padding 0.4s cubic-bezier(0.77, 0, 0.175, 1), background 0.4s;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0.97;
+}
+
+/* 侧边栏弹出状态：宽度变为200px，圆角变小，内容显示，动画更顺滑 */
+#sidebar.active {
+  width: 200px;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+  padding: 40px 24px;
+  background: linear-gradient(135deg, #333 80%, #666 100%);
+  transition: width 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+    border-radius 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+    padding 0.4s cubic-bezier(0.77, 0, 0.175, 1), background 0.4s;
+}
